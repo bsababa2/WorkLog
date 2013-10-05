@@ -1,3 +1,4 @@
+import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import org.jdesktop.swingx.*;
@@ -22,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -261,6 +263,7 @@ public class WorkLogScr extends JXFrame
             public void actionPerformed(ActionEvent e)
             {
                 int selectedRow = workTable.getSelectedRow();
+                if (selectedRow == -1) return;
                 Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().get(selectedRow);
                 try
                 {
@@ -356,14 +359,8 @@ public class WorkLogScr extends JXFrame
         chooser.setCurrentDirectory(chooser.getFileSystemView().getParentDirectory(new File("C:\\")).getParentFile());
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setFileFilter(new FileNameExtensionFilter("Excel document (*.xls)", "xls"));
-        chooser.setApproveButtonText("טען קובץ");
         chooser.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-
-        JXFrame chooserFrame = new JXFrame();
-        chooserFrame.add(chooser);
-        chooserFrame.pack();
-        chooserFrame.setLocationRelativeTo(null);
-        chooserFrame.setVisible(true);
+        chooser.showDialog(WorkLogScr.this, "טען");
 
         List<Job> jobs = new ArrayList<Job>();
         File inputWorkbook = chooser.getSelectedFile();
@@ -371,6 +368,7 @@ public class WorkLogScr extends JXFrame
         if (chooser.getSelectedFile() != null)
         {
             Workbook workbook;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             try
             {
                 workbook = Workbook.getWorkbook(inputWorkbook);
@@ -378,11 +376,13 @@ public class WorkLogScr extends JXFrame
                 {
                     for (int row = 1; row < sheet.getRows(); row++)
                     {
-                        Date jobDate = DateFormat.getInstance().parse(sheet.getCell(row, 1).getContents());
-                        Customer customer = new Customer(sheet.getCell(row, 0).getContents());
-                        String jobDescr = sheet.getCell(row, 2).getContents();
-                        int price = Integer.parseInt(sheet.getCell(row, 3).getContents());
-                        String remarks = sheet.getCell(row, 4).getContents();
+                        Cell[] cells = sheet.getRow(row);
+
+                        Date jobDate = dateFormat.parse(cells[1].getContents());
+                        Customer customer = new Customer(cells[0].getContents());
+                        String jobDescr = cells[2].getContents();
+                        double price = Double.parseDouble(cells[3].getContents());
+                        String remarks = cells[4].getContents();
                         jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
                     }
                 }
@@ -393,6 +393,9 @@ public class WorkLogScr extends JXFrame
                 e.printStackTrace();
             }
         }
+
+        ((WorkTableModel)workTable.getModel()).getCurrentJobList().addAll(jobs);
+        ((WorkTableModel)workTable.getModel()).fireTableDataChanged();
     }
 
     private void doFilter()
