@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -113,6 +113,36 @@ public class DBManager
         }
 
         return jobs;
+    }
+
+    public Customer getCustomerByName(String customerName) throws SQLException
+    {
+        Connection conn;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            conn = getConnection();
+            ps = conn.prepareStatement("SELECT ID, NAME FROM CUSTOMERS WHERE NAME = TRIM(?) ");
+            ps.setString(1, customerName.trim());
+            rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return new Customer(rs.getInt("ID"), rs.getString("NAME"));
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+        finally
+        {
+            disconnect(ps, rs);
+        }
+
+        return null;
     }
 
     public int addJob(Job job) throws Exception
@@ -238,7 +268,7 @@ public class DBManager
         {
             conn = getConnection();
             ps = conn.prepareStatement("SELECT j.ID, j.JOB_DATE, j.CUSTOMER_ID, c.NAME, j.JOB_DESCR, j.PRICE, j.REMARKS" +
-                    "  FROM JOBS j, CUSTOMERS c where j.CUSTOMER_ID = c.ID AND j.JOB_DATE >= ? AND j.JOB_DATE <= ? ORDER BY JOB_DATE");
+                    "  FROM JOBS j, CUSTOMERS c where j.CUSTOMER_ID = c.ID AND j.JOB_DATE >= ? AND j.JOB_DATE <= ? ORDER BY JOB_DATE DESC");
             ps.setDate(1, new java.sql.Date(fromDate.getTime()));
             ps.setDate(2, new java.sql.Date(toDate.getTime()));
             rs = ps.executeQuery();

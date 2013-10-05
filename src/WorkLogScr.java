@@ -20,7 +20,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -40,7 +39,7 @@ public class WorkLogScr extends JXFrame
     public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
     public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
     public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 25);
-    public static Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 14);
+    public static Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
     public static Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
     public static Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
     public static Color NEW_RECORD_COLOR = new Color(217,242,138);
@@ -50,14 +49,13 @@ public class WorkLogScr extends JXFrame
     {
         UIManager.put("ComboBox.background", new ColorUIResource(UIManager.getColor("TextField.background")));
         UIManager.put("ComboBox.font", new FontUIResource(DEFAULT_TEXT_FONT));
-        UIManager.put("JXDatePicker.font", new FontUIResource(DEFAULT_TEXT_FONT));
         UIManager.put("Textfield.font", new FontUIResource(DEFAULT_TEXT_FONT));
         UIManager.put("Label.font", new FontUIResource(DEFAULT_LABEL_FONT));
         UIManager.put("Button.font", new FontUIResource(DEFAULT_LABEL_FONT));
         UIManager.put("OptionPane.okButtonText", "אישור");
         UIManager.put("OptionPane.cancelButtonText", "ביטול");
         UIManager.put("FileChooser.cancelButtonText", "ביטול");
-        UIManager.put("FileChooser.openButtonText", "פתח");
+        UIManager.put("FileChooser.directoryOpenButtonText", "פתח");
         Locale.setDefault(new Locale("he", "IL"));
     }
 
@@ -198,6 +196,8 @@ public class WorkLogScr extends JXFrame
         Utils.setSoftSize(resetButton, DEFAULT_BUTTON_SIZE);
         Utils.setSoftSize(printButton, new Dimension(150, 25));
         Utils.setSoftSize(importFromExcelButton, new Dimension(150, 25));
+        fromDatePicker.setFont(DEFAULT_TEXT_FONT);
+        toDatePicker.setFont(DEFAULT_TEXT_FONT);
 
         Calendar monthBack = Calendar.getInstance();
         monthBack.add(Calendar.MONTH, -1);
@@ -307,7 +307,7 @@ public class WorkLogScr extends JXFrame
                 {
                     importFromExcel();
                 }
-                catch (IOException e1)
+                catch (Exception e1)
                 {
                     Utils.showExceptionMsg(WorkLogScr.this, e1);
                     e1.printStackTrace();
@@ -353,7 +353,7 @@ public class WorkLogScr extends JXFrame
         initComponentsFromDB();
     }
 
-    public void importFromExcel() throws IOException
+    public void importFromExcel() throws Exception
     {
         final JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(chooser.getFileSystemView().getParentDirectory(new File("C:\\")).getParentFile());
@@ -368,7 +368,7 @@ public class WorkLogScr extends JXFrame
         if (chooser.getSelectedFile() != null)
         {
             Workbook workbook;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
             try
             {
                 workbook = Workbook.getWorkbook(inputWorkbook);
@@ -394,8 +394,24 @@ public class WorkLogScr extends JXFrame
             }
         }
 
+        for (Job job : jobs)
+        {
+            Customer customer = DBManager.getSingleton().getCustomerByName(job.getCustomer().getName());
+            if (customer == null)
+            {
+                DBManager.getSingleton().addCustomer(job.getCustomer());
+            }
+
+            job.setCustomer(customer);
+
+            DBManager.getSingleton().addJob(job);
+        }
+
         ((WorkTableModel)workTable.getModel()).getCurrentJobList().addAll(jobs);
         ((WorkTableModel)workTable.getModel()).fireTableDataChanged();
+        initCustomerCombo();
+
+        Utils.showInfoMsg(this, "הנתונים נטענו בהצלחה!");
     }
 
     private void doFilter()
@@ -422,11 +438,16 @@ public class WorkLogScr extends JXFrame
 
     private void initComponentsFromDB() throws Exception
     {
+        initCustomerCombo();
+        ((WorkTableModel)workTable.getModel()).setPreservedJobList
+                (DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
+    }
+
+    private void initCustomerCombo() throws Exception
+    {
         List<Customer> customers = DBManager.getSingleton().getCustomers();
         customers.add(0, Customer.ALL_VALUES);
         customerCombo.setModel(new DefaultComboBoxModel(customers.toArray()));
-        ((WorkTableModel)workTable.getModel()).setPreservedJobList
-                (DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
     }
 
     private class WorkTableModel extends AbstractTableModel
@@ -528,6 +549,8 @@ public class WorkLogScr extends JXFrame
             {
                 component.setBackground(isSelected ? NEW_RECORD_SELECTED_COLOR : NEW_RECORD_COLOR);
             }
+
+            component.setFont(DEFAULT_TEXT_FONT);
 
             return component;
         }

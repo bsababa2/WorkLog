@@ -4,7 +4,8 @@ import org.jdesktop.swingx.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -157,6 +158,11 @@ public class JobRecordDialog extends JDialog
                 {
                     try
                     {
+                        if (DBManager.getSingleton().getCustomerByName(name) != null)
+                        {
+                            throw new Exception("הלקוח כבר קיים!");
+                        }
+
                         DBManager.getSingleton().addCustomer(new Customer(name));
                         initCustomerComboFromDB();
                     }

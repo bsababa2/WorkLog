@@ -10,6 +10,11 @@ import java.awt.*;
  */
 public class Utils
 {
+    public static void showInfoMsg(Component parent, String msg)
+    {
+        JOptionPane.showMessageDialog(parent, msg, "מידע", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public static void showErrorMsg(Component parent, String errorMsg)
     {
         JOptionPane.showMessageDialog(parent, errorMsg, "שגיאה", JOptionPane.ERROR_MESSAGE);
