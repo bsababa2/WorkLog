@@ -280,7 +280,7 @@ public class JobRecordDialog extends JDialog
 
         Job job = new Job(datePicker.getDate(), (Customer) customerCombo.getSelectedItem(),
                 workField.getText(), Double.parseDouble(priceField.getText()),
-                remarksField.getText().equals(DEFAULT_REMARKS_TEXT) ? "" : remarksField.getText(), true);
+                remarksField.getText().equals(DEFAULT_REMARKS_TEXT) ? "" : remarksField.getText());
 
         try
         {

@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="WorkLog:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="" />
+    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/WorkLog_jar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jxl.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Job.java" afterPath="$PROJECT_DIR$/src/Job.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JobRecordDialog.java" afterPath="$PROJECT_DIR$/src/JobRecordDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils.java" afterPath="$PROJECT_DIR$/src/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorkLog.iml" afterPath="$PROJECT_DIR$/WorkLog.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/WorkLogScr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="WorkLog.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/workLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380732782405" ignored="false" />
     <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380973736305" ignored="false" />
-    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380736468886" ignored="false" />
+    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380975200779" ignored="false" />
     <file path="$PROJECT_DIR$/../investmentCalc/.idea/workspace.xml" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380478333146" ignored="false" />
     <file path="/DBHandler.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380401873348" ignored="false" />
     <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380972393570" ignored="false" />
     <file path="/Customer.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380728577598" ignored="false" />
-    <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380843790574" ignored="false" />
-    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380974973057" ignored="false" />
-    <file path="/Job.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380966597158" ignored="false" />
+    <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380978977988" ignored="false" />
+    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380984810666" ignored="false" />
+    <file path="/Job.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380980570025" ignored="false" />
     <file path="/AddJobRecordScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380793537945" ignored="false" />
     <file path="/AddJobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380973244172" ignored="false" />
     <file path="/a.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380972345899" ignored="false" />
@@ -87,26 +103,38 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="283" column="91" selection-start="12085" selection-end="12085" vertical-scroll-proportion="0.8677043">
+            <state line="505" column="66" selection-start="19683" selection-end="19683" vertical-scroll-proportion="0.37548637">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10051#10802#0" expanded="true" />
-                <element signature="e#10791#10792#0" expanded="true" />
-                <element signature="e#10845#11644#0" expanded="true" />
-                <element signature="e#11633#11634#0" expanded="true" />
-                <element signature="e#11686#12316#0" expanded="true" />
-                <element signature="e#12305#12306#0" expanded="true" />
-                <element signature="e#12360#12533#0" expanded="true" />
-                <element signature="e#12522#12523#0" expanded="true" />
-                <element signature="e#12575#12838#0" expanded="true" />
-                <element signature="e#12827#12828#0" expanded="true" />
-                <element signature="e#13046#13412#0" expanded="true" />
-                <element signature="e#13401#13402#0" expanded="true" />
+                <element signature="e#10226#10977#0" expanded="true" />
+                <element signature="e#10966#10967#0" expanded="true" />
+                <element signature="e#11020#11819#0" expanded="true" />
+                <element signature="e#11808#11809#0" expanded="true" />
+                <element signature="e#11861#12491#0" expanded="true" />
+                <element signature="e#12480#12481#0" expanded="true" />
+                <element signature="e#12543#12965#0" expanded="true" />
+                <element signature="e#12954#12955#0" expanded="true" />
+                <element signature="e#13009#13182#0" expanded="true" />
+                <element signature="e#13171#13172#0" expanded="true" />
+                <element signature="e#13224#13487#0" expanded="true" />
+                <element signature="e#13476#13477#0" expanded="true" />
+                <element signature="e#13695#14061#0" expanded="true" />
+                <element signature="e#14050#14051#0" expanded="true" />
                 <element signature="method#doFilter#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#initComponentsFromDB#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="class#WorkTableModel#0;class#WorkLogScr#0" expanded="false" />
-                <element signature="class#WorkTableRenderer#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#main#0;class#WorkLogScr#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="97" selection-start="2019" selection-end="2019" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,7 +155,7 @@
       <file leaf-file-name="JobRecordDialog.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="57" selection-start="1557" selection-end="1557" vertical-scroll-proportion="0.0">
+            <state line="282" column="97" selection-start="10845" selection-end="10845" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6016#6834#0" expanded="true" />
@@ -152,7 +180,7 @@
       <file leaf-file-name="Job.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Job.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="25" selection-start="332" selection-end="332" vertical-scroll-proportion="0.0">
+            <state line="27" column="26" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -165,6 +193,14 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -172,10 +208,10 @@
         <option value="$PROJECT_DIR$/src/workLogScr.java" />
         <option value="$PROJECT_DIR$/src/AddJobRecordScr.java" />
         <option value="$PROJECT_DIR$/src/Customer.java" />
-        <option value="$PROJECT_DIR$/src/Utils.java" />
-        <option value="$PROJECT_DIR$/src/Job.java" />
         <option value="$PROJECT_DIR$/src/AddJobRecordDialog.java" />
         <option value="$PROJECT_DIR$/src/DBManager.java" />
+        <option value="$PROJECT_DIR$/src/Utils.java" />
+        <option value="$PROJECT_DIR$/src/Job.java" />
         <option value="$PROJECT_DIR$/src/JobRecordDialog.java" />
         <option value="$PROJECT_DIR$/src/WorkLogScr.java" />
       </list>
@@ -187,7 +223,7 @@
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -219,6 +255,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="WorkLog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -257,10 +297,10 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="fileTemplates" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../swingx-all-1.6.4.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/jxl.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -445,7 +485,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24919957" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
@@ -570,13 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="25" selection-start="332" selection-end="332" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="178" column="31" selection-start="4807" selection-end="4807" vertical-scroll-proportion="0.0">
@@ -608,9 +641,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="26" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="57" selection-start="1557" selection-end="1557" vertical-scroll-proportion="0.0">
+        <state line="282" column="97" selection-start="10845" selection-end="10845" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6016#6834#0" expanded="true" />
@@ -633,7 +673,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="23" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.33268481">
+        <state line="69" column="97" selection-start="2019" selection-end="2019" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -642,25 +682,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="91" selection-start="12085" selection-end="12085" vertical-scroll-proportion="0.8677043">
+        <state line="505" column="66" selection-start="19683" selection-end="19683" vertical-scroll-proportion="0.37548637">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10051#10802#0" expanded="true" />
-            <element signature="e#10791#10792#0" expanded="true" />
-            <element signature="e#10845#11644#0" expanded="true" />
-            <element signature="e#11633#11634#0" expanded="true" />
-            <element signature="e#11686#12316#0" expanded="true" />
-            <element signature="e#12305#12306#0" expanded="true" />
-            <element signature="e#12360#12533#0" expanded="true" />
-            <element signature="e#12522#12523#0" expanded="true" />
-            <element signature="e#12575#12838#0" expanded="true" />
-            <element signature="e#12827#12828#0" expanded="true" />
-            <element signature="e#13046#13412#0" expanded="true" />
-            <element signature="e#13401#13402#0" expanded="true" />
+            <element signature="e#10226#10977#0" expanded="true" />
+            <element signature="e#10966#10967#0" expanded="true" />
+            <element signature="e#11020#11819#0" expanded="true" />
+            <element signature="e#11808#11809#0" expanded="true" />
+            <element signature="e#11861#12491#0" expanded="true" />
+            <element signature="e#12480#12481#0" expanded="true" />
+            <element signature="e#12543#12965#0" expanded="true" />
+            <element signature="e#12954#12955#0" expanded="true" />
+            <element signature="e#13009#13182#0" expanded="true" />
+            <element signature="e#13171#13172#0" expanded="true" />
+            <element signature="e#13224#13487#0" expanded="true" />
+            <element signature="e#13476#13477#0" expanded="true" />
+            <element signature="e#13695#14061#0" expanded="true" />
+            <element signature="e#14050#14051#0" expanded="true" />
             <element signature="method#doFilter#0;class#WorkLogScr#0" expanded="false" />
             <element signature="method#initComponentsFromDB#0;class#WorkLogScr#0" expanded="false" />
             <element signature="class#WorkTableModel#0;class#WorkLogScr#0" expanded="false" />
-            <element signature="class#WorkTableRenderer#0;class#WorkLogScr#0" expanded="false" />
             <element signature="method#main#0;class#WorkLogScr#0" expanded="false" />
           </folding>
         </state>
@@ -672,10 +713,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>WorkLog:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -723,7 +766,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -731,7 +773,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>swingx-all-1.6.4</last-edited>
+          <last-edited>jxl</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -18,14 +18,14 @@ public class Job
 
     private boolean isNewRecord = false;
 
-    public Job(Date jobDate, Customer customer, String jobDescription, double price, String remarks, boolean newRecord)
+    public Job(Date jobDate, Customer customer, String jobDescription, double price, String remarks)
     {
         this.jobDate = jobDate;
         this.customer = customer;
         this.jobDescription = jobDescription;
         this.price = price;
         this.remarks = remarks;
-        isNewRecord = newRecord;
+        isNewRecord = true;
     }
 
     public Job(int id, Date jobDate, Customer customer, String jobDescription, double price, String remarks)

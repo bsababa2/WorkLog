@@ -1,3 +1,5 @@
+import jxl.Sheet;
+import jxl.Workbook;
 import org.jdesktop.swingx.*;
 import org.jdesktop.swingx.renderer.*;
 
@@ -5,6 +7,7 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.AbstractTableModel;
@@ -14,13 +17,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
-import java.text.MessageFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -68,7 +70,8 @@ public class WorkLogScr extends JXFrame
     private JXTextField workField = new JXTextField();
     private JXButton multipleAddButton = new JXButton("הוספה מרובה");
     private JXButton removeButton = new JXButton("מחק רשומה");
-    private JXButton printButton = new JXButton("הדפס טבלה");
+    private JXButton printButton = new JXButton("הדפס טבלה", new ImageIcon(Utils.scaleImage("print.png", 25 ,25)));
+    private JXButton importFromExcelButton = new JXButton("יבא מאקסל", new ImageIcon(Utils.scaleImage("excel.png", 25 ,25)));
 
     public WorkLogScr() throws HeadlessException
     {
@@ -91,9 +94,7 @@ public class WorkLogScr extends JXFrame
         JXPanel helloPanel = new JXPanel();
         Utils.setLineLayout(helloPanel);
         Utils.addStandardRigid(helloPanel);
-        Image dadImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("dad.png"));
-        dadImage = dadImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-        helloPanel.add(new JXLabel(new ImageIcon(dadImage)));
+        helloPanel.add(new JXLabel(new ImageIcon(Utils.scaleImage("dad.png", 50, 50))));
         Utils.addStandardRigid(helloPanel);
         JXLabel helloLabel = new JXLabel("שלום נועם, התאריך היום");
         helloLabel.setFont(DEFAULT_TITLE_FONT);
@@ -123,6 +124,7 @@ public class WorkLogScr extends JXFrame
         filterPanel.add(workField);
         Utils.addStandardRigid(filterPanel);
         filterPanel.add(resetButton);
+        Utils.addStandardRigid(filterPanel);
 
         JXTitledPanel filterTitledPanel = new JXTitledPanel("סינון");
         filterTitledPanel.setTitleFont(DEFAULT_TITLE_FONT);
@@ -145,21 +147,19 @@ public class WorkLogScr extends JXFrame
         editButtonsPanel.add(removeButton);
         editButtonsPanel.add(Box.createHorizontalGlue());
 
-        Image printImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("print.png"));
-        printImage = printImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-        printButton.setIcon(new ImageIcon(printImage));
-
-        JXPanel printButtonPanel = new JXPanel();
-        Utils.setLineLayout(printButtonPanel);
-        printButtonPanel.add(Box.createHorizontalGlue());
-        Utils.addStandardRigid(printButtonPanel);
-        printButtonPanel.add(printButton);
-        Utils.addStandardRigid(printButtonPanel);
+        JXPanel printAndExcelImportButtonsPanel = new JXPanel();
+        Utils.setLineLayout(printAndExcelImportButtonsPanel);
+        printAndExcelImportButtonsPanel.add(Box.createHorizontalGlue());
+        Utils.addStandardRigid(printAndExcelImportButtonsPanel);
+        printAndExcelImportButtonsPanel.add(printButton);
+        Utils.addStandardRigid(printAndExcelImportButtonsPanel);
+        printAndExcelImportButtonsPanel.add(importFromExcelButton);
+        Utils.addStandardRigid(printAndExcelImportButtonsPanel);
 
         JXPanel lineButtonsPanel = new JXPanel();
         lineButtonsPanel.setLayout(new BorderLayout());
         lineButtonsPanel.add(editButtonsPanel, BorderLayout.EAST);
-        lineButtonsPanel.add(printButtonPanel, BorderLayout.WEST);
+        lineButtonsPanel.add(printAndExcelImportButtonsPanel, BorderLayout.WEST);
 
         JXPanel pageButtonPanel = new JXPanel();
         Utils.setPageLayout(pageButtonPanel);
@@ -192,6 +192,7 @@ public class WorkLogScr extends JXFrame
         Utils.setSoftSize(removeButton, DEFAULT_BUTTON_SIZE);
         Utils.setSoftSize(resetButton, DEFAULT_BUTTON_SIZE);
         Utils.setSoftSize(printButton, new Dimension(150, 25));
+        Utils.setSoftSize(importFromExcelButton, new Dimension(150, 25));
 
         Calendar monthBack = Calendar.getInstance();
         monthBack.add(Calendar.MONTH, -1);
@@ -291,6 +292,23 @@ public class WorkLogScr extends JXFrame
             }
         });
 
+        importFromExcelButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                try
+                {
+                    importFromExcel();
+                }
+                catch (IOException e1)
+                {
+                    Utils.showExceptionMsg(WorkLogScr.this, e1);
+                    e1.printStackTrace();
+                }
+            }
+        });
+
         customerCombo.addActionListener(new ActionListener()
         {
             @Override
@@ -327,6 +345,39 @@ public class WorkLogScr extends JXFrame
         helloTimer.start();
 
         initComponentsFromDB();
+    }
+
+    public void importFromExcel() throws IOException
+    {
+        final JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(chooser.getFileSystemView().getParentDirectory(new File("C:\\")));
+        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        chooser.showDialog(importFromExcelButton, "טען קובץ");
+
+        List<Job> jobs = new ArrayList<Job>();
+        File inputWorkbook = chooser.getSelectedFile();
+        Workbook workbook;
+        try
+        {
+            workbook = Workbook.getWorkbook(inputWorkbook);
+            for (Sheet sheet : workbook.getSheets())
+            {
+                for (int row = 1; row < sheet.getRows(); row++)
+                {
+                    Date jobDate = DateFormat.getInstance().parse(sheet.getCell(row, 1).getContents());
+                    Customer customer = new Customer(sheet.getCell(row, 0).getContents());
+                    String jobDescr = sheet.getCell(row, 2).getContents();
+                    int price = Integer.parseInt(sheet.getCell(row, 3).getContents());
+                    String remarks = sheet.getCell(row, 4).getContents();
+                    jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Utils.showExceptionMsg(this, e);
+            e.printStackTrace();
+        }
     }
 
     private void doFilter()
@@ -451,7 +502,9 @@ public class WorkLogScr extends JXFrame
 
             Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-            if (((WorkTableModel)workTable.getModel()).getCurrentJobList().get(row).isNewRecord())
+            int realRow = table.getRowSorter().convertRowIndexToModel(row);
+
+            if (((WorkTableModel)workTable.getModel()).getCurrentJobList().get(realRow).isNewRecord())
             {
                 component.setBackground(isSelected ? NEW_RECORD_SELECTED_COLOR : NEW_RECORD_COLOR);
             }

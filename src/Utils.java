@@ -64,4 +64,10 @@ public class Utils
         component.setMaximumSize(boxSize);
         component.setMinimumSize(boxSize);
     }
+
+    public static Image scaleImage(String imageName, int width, int height)
+    {
+        Image image = Toolkit.getDefaultToolkit().getImage(WorkLogScr.class.getResource(imageName));
+        return image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+    }
 }
