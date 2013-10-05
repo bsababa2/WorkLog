@@ -1,13 +1,14 @@
 import jxl.Sheet;
 import jxl.Workbook;
 import org.jdesktop.swingx.*;
-import org.jdesktop.swingx.renderer.*;
+import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.AbstractTableModel;
@@ -53,6 +54,8 @@ public class WorkLogScr extends JXFrame
         UIManager.put("Button.font", new FontUIResource(DEFAULT_LABEL_FONT));
         UIManager.put("OptionPane.okButtonText", "אישור");
         UIManager.put("OptionPane.cancelButtonText", "ביטול");
+        UIManager.put("FileChooser.cancelButtonText", "ביטול");
+        UIManager.put("FileChooser.openButtonText", "פתח");
         Locale.setDefault(new Locale("he", "IL"));
     }
 
@@ -350,33 +353,45 @@ public class WorkLogScr extends JXFrame
     public void importFromExcel() throws IOException
     {
         final JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(chooser.getFileSystemView().getParentDirectory(new File("C:\\")));
-        chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        chooser.showDialog(importFromExcelButton, "טען קובץ");
+        chooser.setCurrentDirectory(chooser.getFileSystemView().getParentDirectory(new File("C:\\")).getParentFile());
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.setFileFilter(new FileNameExtensionFilter("Excel document (*.xls)", "xls"));
+        chooser.setApproveButtonText("טען קובץ");
+        chooser.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+
+        JXFrame chooserFrame = new JXFrame();
+        chooserFrame.add(chooser);
+        chooserFrame.pack();
+        chooserFrame.setLocationRelativeTo(null);
+        chooserFrame.setVisible(true);
 
         List<Job> jobs = new ArrayList<Job>();
         File inputWorkbook = chooser.getSelectedFile();
-        Workbook workbook;
-        try
+
+        if (chooser.getSelectedFile() != null)
         {
-            workbook = Workbook.getWorkbook(inputWorkbook);
-            for (Sheet sheet : workbook.getSheets())
+            Workbook workbook;
+            try
             {
-                for (int row = 1; row < sheet.getRows(); row++)
+                workbook = Workbook.getWorkbook(inputWorkbook);
+                for (Sheet sheet : workbook.getSheets())
                 {
-                    Date jobDate = DateFormat.getInstance().parse(sheet.getCell(row, 1).getContents());
-                    Customer customer = new Customer(sheet.getCell(row, 0).getContents());
-                    String jobDescr = sheet.getCell(row, 2).getContents();
-                    int price = Integer.parseInt(sheet.getCell(row, 3).getContents());
-                    String remarks = sheet.getCell(row, 4).getContents();
-                    jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+                    for (int row = 1; row < sheet.getRows(); row++)
+                    {
+                        Date jobDate = DateFormat.getInstance().parse(sheet.getCell(row, 1).getContents());
+                        Customer customer = new Customer(sheet.getCell(row, 0).getContents());
+                        String jobDescr = sheet.getCell(row, 2).getContents();
+                        int price = Integer.parseInt(sheet.getCell(row, 3).getContents());
+                        String remarks = sheet.getCell(row, 4).getContents();
+                        jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+                    }
                 }
             }
-        }
-        catch (Exception e)
-        {
-            Utils.showExceptionMsg(this, e);
-            e.printStackTrace();
+            catch (Exception e)
+            {
+                Utils.showExceptionMsg(this, e);
+                e.printStackTrace();
+            }
         }
     }
 
@@ -491,11 +506,13 @@ public class WorkLogScr extends JXFrame
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
-            if (column == WorkTableModel.DATE_COL)
+            int realColumn = table.convertColumnIndexToModel(column);
+
+            if (realColumn == WorkTableModel.DATE_COL)
             {
                 value = DateFormat.getDateInstance().format(value);
             }
-            else if (column == WorkTableModel.PRICE_COL)
+            else if (realColumn == WorkTableModel.PRICE_COL)
             {
                 value = NumberFormat.getCurrencyInstance().format(value);
             }
@@ -504,7 +521,7 @@ public class WorkLogScr extends JXFrame
 
             int realRow = table.getRowSorter().convertRowIndexToModel(row);
 
-            if (((WorkTableModel)workTable.getModel()).getCurrentJobList().get(realRow).isNewRecord())
+            if (((WorkTableModel)table.getModel()).getCurrentJobList().get(realRow).isNewRecord())
             {
                 component.setBackground(isSelected ? NEW_RECORD_SELECTED_COLOR : NEW_RECORD_COLOR);
             }
