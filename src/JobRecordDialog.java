@@ -33,7 +33,7 @@ public class JobRecordDialog extends JDialog
     private JXButton updateCustomerButton = new JXButton("עדכון");
     private JTextArea jobDescField = new JTextArea(DEFAULT_JOB_DESC_TEXT);
     private JXLabel priceLabel = new JXLabel("מחיר:");
-    private JTextField priceField = new JTextField("0");
+    private JTextField priceField = new JTextField();
     private JTextArea remarksField = new JTextArea(DEFAULT_REMARKS_TEXT);
     private JXButton feedButton = new JXButton("הזן");
     private JXButton finishButton = new JXButton("סיים");
@@ -148,6 +148,7 @@ public class JobRecordDialog extends JDialog
         datePicker.setFont(WorkLogScr.DEFAULT_TEXT_FONT);
 
         priceField.setDocument(new NumberDocument());
+        priceField.setText("0");
         jobDescField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         remarksField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -259,7 +260,7 @@ public class JobRecordDialog extends JDialog
             }
         });
 
-        getRootPane().setDefaultButton(feedButton);
+        getRootPane().setDefaultButton(jobToUpdate != null ? finishButton : feedButton);
         feedButton.addActionListener(new ActionListener()
         {
             @Override
