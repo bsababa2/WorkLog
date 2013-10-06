@@ -17,6 +17,7 @@ public class Job
     private String remarks;
 
     private boolean isNewRecord = false;
+    private boolean isUpdated = false;
 
     public Job(Date jobDate, Customer customer, String jobDescription, double price, String remarks)
     {
@@ -106,5 +107,49 @@ public class Job
     public void setNewRecord(boolean newRecord)
     {
         isNewRecord = newRecord;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Job job = (Job) o;
+
+        if (id != job.id) return false;
+        if (Double.compare(job.price, price) != 0) return false;
+        if (customer != null ? !customer.equals(job.customer) : job.customer != null) return false;
+        if (jobDate != null ? !jobDate.equals(job.jobDate) : job.jobDate != null) return false;
+        if (jobDescription != null ? !jobDescription.equals(job.jobDescription) : job.jobDescription != null)
+            return false;
+        if (remarks != null ? !remarks.equals(job.remarks) : job.remarks != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (jobDate != null ? jobDate.hashCode() : 0);
+        result = 31 * result + (customer != null ? customer.hashCode() : 0);
+        result = 31 * result + (jobDescription != null ? jobDescription.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (remarks != null ? remarks.hashCode() : 0);
+        return result;
+    }
+
+    public boolean isUpdated()
+    {
+        return isUpdated;
+    }
+
+    public void setUpdated(boolean updated)
+    {
+        isUpdated = updated;
     }
 }

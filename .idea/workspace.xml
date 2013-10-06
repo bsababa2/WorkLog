@@ -8,28 +8,28 @@
   <component name="ChangeListManager">
     <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBManager.java" afterPath="$PROJECT_DIR$/src/DBManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Job.java" afterPath="$PROJECT_DIR$/src/Job.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JobRecordDialog.java" afterPath="$PROJECT_DIR$/src/JobRecordDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils.java" afterPath="$PROJECT_DIR$/src/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/WorkLogScr.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/workLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380732782405" ignored="false" />
-    <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381000429852" ignored="false" />
-    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380990018129" ignored="false" />
+    <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381094846406" ignored="false" />
+    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381093257897" ignored="false" />
     <file path="$PROJECT_DIR$/../investmentCalc/.idea/workspace.xml" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380478333146" ignored="false" />
     <file path="/DBHandler.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380401873348" ignored="false" />
-    <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381003522239" ignored="false" />
+    <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381095827615" ignored="false" />
     <file path="/Customer.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380728577598" ignored="false" />
     <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381001646364" ignored="false" />
-    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381002608504" ignored="false" />
-    <file path="/Job.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380980570025" ignored="false" />
+    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096243457" ignored="false" />
+    <file path="/Job.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096019629" ignored="false" />
     <file path="/AddJobRecordScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380793537945" ignored="false" />
     <file path="/AddJobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380973244172" ignored="false" />
     <file path="/a.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380972345899" ignored="false" />
     <file path="/sample.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380967793840" ignored="false" />
-    <file path="/JobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381002445774" ignored="false" />
+    <file path="/JobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096376768" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +49,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -85,7 +86,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -98,28 +98,27 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="406" column="40" selection-start="16569" selection-end="16569" vertical-scroll-proportion="0.0">
+            <state line="589" column="105" selection-start="23313" selection-end="23313" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#10475#11226#0" expanded="true" />
-                <element signature="e#11215#11216#0" expanded="true" />
-                <element signature="e#11269#12115#0" expanded="true" />
-                <element signature="e#12104#12105#0" expanded="true" />
-                <element signature="e#12157#12787#0" expanded="true" />
-                <element signature="e#12776#12777#0" expanded="true" />
-                <element signature="e#12839#13259#0" expanded="true" />
-                <element signature="e#13248#13249#0" expanded="true" />
-                <element signature="e#13303#13476#0" expanded="true" />
-                <element signature="e#13465#13466#0" expanded="true" />
-                <element signature="e#13518#13781#0" expanded="true" />
-                <element signature="e#13770#13771#0" expanded="true" />
-                <element signature="e#13989#14355#0" expanded="true" />
-                <element signature="e#14344#14345#0" expanded="true" />
+                <element signature="e#11182#11870#0" expanded="true" />
+                <element signature="e#11859#11860#0" expanded="true" />
+                <element signature="e#11918#12681#0" expanded="true" />
+                <element signature="e#12670#12671#0" expanded="true" />
+                <element signature="e#12724#13824#0" expanded="true" />
+                <element signature="e#13813#13814#0" expanded="true" />
+                <element signature="e#13866#14496#0" expanded="true" />
+                <element signature="e#14485#14486#0" expanded="true" />
+                <element signature="e#14548#14968#0" expanded="true" />
+                <element signature="e#14957#14958#0" expanded="true" />
+                <element signature="e#15012#15185#0" expanded="true" />
+                <element signature="e#15174#15175#0" expanded="true" />
+                <element signature="e#15227#15490#0" expanded="true" />
+                <element signature="e#15479#15480#0" expanded="true" />
+                <element signature="method#importFromExcel#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#doFilter#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#initComponentsFromDB#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#initCustomerCombo#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="class#WorkTableModel#0;class#WorkLogScr#0" expanded="false" />
-                <element signature="class#WorkTableRenderer#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#main#0;class#WorkLogScr#0" expanded="false" />
               </folding>
             </state>
@@ -130,17 +129,15 @@
         <entry file="file://$PROJECT_DIR$/src/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="14" column="49" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DBManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="71" selection-start="1644" selection-end="1644" vertical-scroll-proportion="0.36575875">
+            <state line="189" column="31" selection-start="5106" selection-end="5106" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1409#1419#0" expanded="true" />
@@ -149,23 +146,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="159" column="84" selection-start="6442" selection-end="6442" vertical-scroll-proportion="0.0">
+            <state line="337" column="41" selection-start="12874" selection-end="12874" vertical-scroll-proportion="0.7392996">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6016#7041#0" expanded="true" />
-                <element signature="e#7030#7031#0" expanded="true" />
-                <element signature="e#7142#8643#0" expanded="true" />
-                <element signature="e#8632#8633#0" expanded="true" />
-                <element signature="e#9587#9947#0" expanded="true" />
-                <element signature="e#9936#9937#0" expanded="true" />
-                <element signature="e#10040#10218#0" expanded="true" />
-                <element signature="e#10207#10208#0" expanded="true" />
-                <element signature="e#10261#10489#0" expanded="true" />
-                <element signature="e#10478#10479#0" expanded="true" />
-                <element signature="method#getFocusAdapter#0;class#JobRecordDialog#0" expanded="false" />
+                <element signature="e#10594#11198#0" expanded="true" />
+                <element signature="e#11187#11188#0" expanded="true" />
+                <element signature="method#feedJobIntoDB#0;class#JobRecordDialog#0" expanded="false" />
                 <element signature="method#initCustomerComboFromDB#0;class#JobRecordDialog#0" expanded="false" />
                 <element signature="method#getReturnedJob#0;class#JobRecordDialog#0" expanded="false" />
                 <element signature="method#isFinished#0;class#JobRecordDialog#0" expanded="false" />
@@ -177,7 +165,7 @@
       <file leaf-file-name="Job.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Job.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="26" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0">
+            <state line="146" column="5" selection-start="3523" selection-end="3523" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -206,11 +194,11 @@
         <option value="$PROJECT_DIR$/src/AddJobRecordScr.java" />
         <option value="$PROJECT_DIR$/src/Customer.java" />
         <option value="$PROJECT_DIR$/src/AddJobRecordDialog.java" />
-        <option value="$PROJECT_DIR$/src/Job.java" />
         <option value="$PROJECT_DIR$/src/Utils.java" />
-        <option value="$PROJECT_DIR$/src/JobRecordDialog.java" />
-        <option value="$PROJECT_DIR$/src/WorkLogScr.java" />
         <option value="$PROJECT_DIR$/src/DBManager.java" />
+        <option value="$PROJECT_DIR$/src/Job.java" />
+        <option value="$PROJECT_DIR$/src/WorkLogScr.java" />
+        <option value="$PROJECT_DIR$/src/JobRecordDialog.java" />
       </list>
     </option>
   </component>
@@ -246,6 +234,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -303,7 +292,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,12 +308,12 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -367,6 +355,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -392,19 +393,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -495,7 +483,11 @@
       <created>1380990020559</created>
       <updated>1380990020559</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixing more bugs&#10;">
+      <created>1381003653309</created>
+      <updated>1381003653309</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -505,21 +497,21 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24919957" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -566,7 +558,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing more bugs&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -583,6 +575,7 @@
     <MESSAGE value="Adding excel + Fixing sort" />
     <MESSAGE value="Fixing excel + rearrangement of columns&#10;" />
     <MESSAGE value="Fixing bugs&#10;" />
+    <MESSAGE value="Fixing more bugs&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -592,13 +585,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/Icon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="17" selection-start="410" selection-end="410" vertical-scroll-proportion="0.33268481">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/ImageIcon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="68" column="35" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.46303502">
@@ -608,37 +594,27 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/Image.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="22" selection-start="804" selection-end="804" vertical-scroll-proportion="0.33268481">
-          <folding />
-        </state>
+        <state line="44" column="22" selection-start="804" selection-end="804" vertical-scroll-proportion="0.33268481" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/UIResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="17" selection-start="1653" selection-end="1653" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="65" column="17" selection-start="1653" selection-end="1653" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../swingx-all-1.6.4.jar!/org/jdesktop/swingx/renderer/StringValues.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="119" selection-start="1113" selection-end="1113" vertical-scroll-proportion="-11.72">
-          <folding />
-        </state>
+        <state line="21" column="119" selection-start="1113" selection-end="1113" vertical-scroll-proportion="-11.72" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JOptionPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="492" column="25" selection-start="19694" selection-end="19694" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="492" column="25" selection-start="19694" selection-end="19694" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/DefaultKeyboardFocusManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="57" selection-start="1384" selection-end="1384" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="62" column="57" selection-start="1384" selection-end="1384" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/KeyboardFocusManager.java">
@@ -650,9 +626,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/KeyEventDispatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="17" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.33268481">
-          <folding />
-        </state>
+        <state line="53" column="17" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.33268481" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JFileChooser.java">
@@ -669,9 +643,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Job.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JTextArea.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="26" selection-start="709" selection-end="709" vertical-scroll-proportion="0.0">
+        <state line="126" column="45" selection-start="4522" selection-end="4536" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -679,70 +653,65 @@
     <entry file="file://$PROJECT_DIR$/src/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="49" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="189" column="31" selection-start="5106" selection-end="5106" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1409#1419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="146" column="5" selection-start="3523" selection-end="3523" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="589" column="105" selection-start="23313" selection-end="23313" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#11182#11870#0" expanded="true" />
+            <element signature="e#11859#11860#0" expanded="true" />
+            <element signature="e#11918#12681#0" expanded="true" />
+            <element signature="e#12670#12671#0" expanded="true" />
+            <element signature="e#12724#13824#0" expanded="true" />
+            <element signature="e#13813#13814#0" expanded="true" />
+            <element signature="e#13866#14496#0" expanded="true" />
+            <element signature="e#14485#14486#0" expanded="true" />
+            <element signature="e#14548#14968#0" expanded="true" />
+            <element signature="e#14957#14958#0" expanded="true" />
+            <element signature="e#15012#15185#0" expanded="true" />
+            <element signature="e#15174#15175#0" expanded="true" />
+            <element signature="e#15227#15490#0" expanded="true" />
+            <element signature="e#15479#15480#0" expanded="true" />
+            <element signature="method#importFromExcel#0;class#WorkLogScr#0" expanded="false" />
+            <element signature="method#doFilter#0;class#WorkLogScr#0" expanded="false" />
+            <element signature="method#initComponentsFromDB#0;class#WorkLogScr#0" expanded="false" />
+            <element signature="method#initCustomerCombo#0;class#WorkLogScr#0" expanded="false" />
+            <element signature="class#WorkTableModel#0;class#WorkLogScr#0" expanded="false" />
+            <element signature="method#main#0;class#WorkLogScr#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="84" selection-start="6442" selection-end="6442" vertical-scroll-proportion="0.0">
+        <state line="337" column="41" selection-start="12874" selection-end="12874" vertical-scroll-proportion="0.7392996">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6016#7041#0" expanded="true" />
-            <element signature="e#7030#7031#0" expanded="true" />
-            <element signature="e#7142#8643#0" expanded="true" />
-            <element signature="e#8632#8633#0" expanded="true" />
-            <element signature="e#9587#9947#0" expanded="true" />
-            <element signature="e#9936#9937#0" expanded="true" />
-            <element signature="e#10040#10218#0" expanded="true" />
-            <element signature="e#10207#10208#0" expanded="true" />
-            <element signature="e#10261#10489#0" expanded="true" />
-            <element signature="e#10478#10479#0" expanded="true" />
-            <element signature="method#getFocusAdapter#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="e#10594#11198#0" expanded="true" />
+            <element signature="e#11187#11188#0" expanded="true" />
+            <element signature="method#feedJobIntoDB#0;class#JobRecordDialog#0" expanded="false" />
             <element signature="method#initCustomerComboFromDB#0;class#JobRecordDialog#0" expanded="false" />
             <element signature="method#getReturnedJob#0;class#JobRecordDialog#0" expanded="false" />
             <element signature="method#isFinished#0;class#JobRecordDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="406" column="40" selection-start="16569" selection-end="16569" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10475#11226#0" expanded="true" />
-            <element signature="e#11215#11216#0" expanded="true" />
-            <element signature="e#11269#12115#0" expanded="true" />
-            <element signature="e#12104#12105#0" expanded="true" />
-            <element signature="e#12157#12787#0" expanded="true" />
-            <element signature="e#12776#12777#0" expanded="true" />
-            <element signature="e#12839#13259#0" expanded="true" />
-            <element signature="e#13248#13249#0" expanded="true" />
-            <element signature="e#13303#13476#0" expanded="true" />
-            <element signature="e#13465#13466#0" expanded="true" />
-            <element signature="e#13518#13781#0" expanded="true" />
-            <element signature="e#13770#13771#0" expanded="true" />
-            <element signature="e#13989#14355#0" expanded="true" />
-            <element signature="e#14344#14345#0" expanded="true" />
-            <element signature="method#doFilter#0;class#WorkLogScr#0" expanded="false" />
-            <element signature="method#initComponentsFromDB#0;class#WorkLogScr#0" expanded="false" />
-            <element signature="method#initCustomerCombo#0;class#WorkLogScr#0" expanded="false" />
-            <element signature="class#WorkTableModel#0;class#WorkLogScr#0" expanded="false" />
-            <element signature="class#WorkTableRenderer#0;class#WorkLogScr#0" expanded="false" />
-            <element signature="method#main#0;class#WorkLogScr#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="71" selection-start="1644" selection-end="1644" vertical-scroll-proportion="0.36575875">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1409#1419#0" expanded="true" />
           </folding>
         </state>
       </provider>

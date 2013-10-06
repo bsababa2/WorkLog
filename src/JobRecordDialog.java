@@ -2,6 +2,7 @@ import com.sun.deploy.panel.NumberDocument;
 import org.jdesktop.swingx.*;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
@@ -21,7 +22,7 @@ public class JobRecordDialog extends JDialog
     public static Dimension DEFAULT_LABEL_SIZE = new Dimension(50, 25);
     public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(75, 25);
 
-    public static String DEFAULT_WORK_TEXT = "עבודה שנעשתה..";
+    public static String DEFAULT_JOB_DESC_TEXT = "עבודה שנעשתה..";
     public static String DEFAULT_REMARKS_TEXT = "הערות..";
 
     private JXLabel dateLabel = new JXLabel("בתאריך:");
@@ -30,22 +31,24 @@ public class JobRecordDialog extends JDialog
     private JXComboBox customerCombo = new JXComboBox();
     private JXButton addNewCustomerButton = new JXButton("הוספה");
     private JXButton updateCustomerButton = new JXButton("עדכון");
-    private JTextArea workField = new JTextArea(DEFAULT_WORK_TEXT);
+    private JTextArea jobDescField = new JTextArea(DEFAULT_JOB_DESC_TEXT);
     private JXLabel priceLabel = new JXLabel("מחיר:");
     private JTextField priceField = new JTextField("0");
     private JTextArea remarksField = new JTextArea(DEFAULT_REMARKS_TEXT);
     private JXButton feedButton = new JXButton("הזן");
     private JXButton finishButton = new JXButton("סיים");
 
-    private Job job = null;
+    private Job returnedJob = null;
     private boolean isFinished = false;
+    private Job jobToUpdate = null;
 
-    public JobRecordDialog(Frame owner)
+    public JobRecordDialog(Frame owner, Job jobToUpdate)
     {
         super(owner, true);
         this.setTitle("הוספת רשומה חדשה");
         Utils.setSoftSize(this, new Dimension(450, 350));
         this.setLocationRelativeTo(owner);
+        this.jobToUpdate = jobToUpdate;
 
         try
         {
@@ -81,7 +84,7 @@ public class JobRecordDialog extends JDialog
         JXPanel workPanel = new JXPanel();
         Utils.setLineLayout(workPanel);
         Utils.addSmallRigid(workPanel);
-        workPanel.add(workField);
+        workPanel.add(jobDescField);
         Utils.addSmallRigid(workPanel);
         workPanel.add(Box.createHorizontalGlue());
 
@@ -142,9 +145,10 @@ public class JobRecordDialog extends JDialog
         Utils.setHardSize(priceLabel, DEFAULT_LABEL_SIZE);
         Utils.setSoftSize(addNewCustomerButton, DEFAULT_BUTTON_SIZE);
         Utils.setSoftSize(updateCustomerButton, DEFAULT_BUTTON_SIZE);
+        datePicker.setFont(WorkLogScr.DEFAULT_TEXT_FONT);
 
         priceField.setDocument(new NumberDocument());
-        workField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        jobDescField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         remarksField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         addNewCustomerButton.setFocusable(false);
@@ -210,8 +214,8 @@ public class JobRecordDialog extends JDialog
             }
         });
 
-        workField.addFocusListener(getFocusAdapter(workField, DEFAULT_WORK_TEXT));
-        workField.addKeyListener(new KeyAdapter()
+        jobDescField.addFocusListener(getFocusAdapter(jobDescField, DEFAULT_JOB_DESC_TEXT));
+        jobDescField.addKeyListener(new KeyAdapter()
         {
             @Override
             public void keyTyped(KeyEvent e)
@@ -223,6 +227,8 @@ public class JobRecordDialog extends JDialog
                 }
             }
         });
+
+        priceField.addFocusListener(getFocusAdapter(priceField, "0"));
 
         remarksField.addFocusListener(getFocusAdapter(remarksField, DEFAULT_REMARKS_TEXT));
         remarksField.addKeyListener(new KeyAdapter()
@@ -268,12 +274,32 @@ public class JobRecordDialog extends JDialog
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                if (jobToUpdate != null)
+                {
+                    returnedJob = new Job(jobToUpdate.getId(), datePicker.getDate(), (Customer) customerCombo.getSelectedItem(),
+                            jobDescField.getText(), Double.parseDouble(priceField.getText()), remarksField.getText());
+                    returnedJob.setUpdated(true);
+                }
+
                 isFinished = true;
                 JobRecordDialog.this.dispose();
             }
         });
 
         initCustomerComboFromDB();
+
+        if (jobToUpdate != null)
+        {
+            this.setTitle("עדכון רשומה קיימת");
+
+            this.datePicker.setDate(jobToUpdate.getJobDate());
+            this.customerCombo.setSelectedItem(jobToUpdate.getCustomer());
+            this.jobDescField.setText(jobToUpdate.getJobDescription());
+            this.priceField.setText((int)jobToUpdate.getPrice() + "");
+            this.remarksField.setText(jobToUpdate.getRemarks());
+
+            feedButton.setVisible(false);
+        }
     }
 
     private void feedJobIntoDB()
@@ -285,7 +311,7 @@ public class JobRecordDialog extends JDialog
         }
 
         Job job = new Job(datePicker.getDate(), (Customer) customerCombo.getSelectedItem(),
-                workField.getText(), Double.parseDouble(priceField.getText()),
+                jobDescField.getText(), Double.parseDouble(priceField.getText()),
                 remarksField.getText().equals(DEFAULT_REMARKS_TEXT) ? "" : remarksField.getText());
 
         try
@@ -298,26 +324,26 @@ public class JobRecordDialog extends JDialog
             e1.printStackTrace();
         }
 
-        JobRecordDialog.this.job = job;
+        JobRecordDialog.this.returnedJob = job;
         JobRecordDialog.this.dispose();
     }
 
-    private FocusAdapter getFocusAdapter(final JTextArea textArea, final String defaultText)
+    private FocusAdapter getFocusAdapter(final JTextComponent textComponent, final String defaultText)
     {
         return new FocusAdapter()
         {
             @Override
             public void focusGained(FocusEvent e)
             {
-                textArea.selectAll();
+                if (jobToUpdate == null) textComponent.selectAll();
             }
 
             @Override
             public void focusLost(FocusEvent e)
             {
-                if (textArea.getText().trim().equals(""))
+                if (textComponent.getText().trim().equals(""))
                 {
-                    textArea.setText(defaultText);
+                    textComponent.setText(defaultText);
                 }
             }
         };
@@ -330,7 +356,7 @@ public class JobRecordDialog extends JDialog
 
     public Job getReturnedJob()
     {
-        return this.job;
+        return this.returnedJob;
     }
 
     public boolean isFinished()

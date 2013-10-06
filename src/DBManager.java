@@ -187,6 +187,34 @@ public class DBManager
         return id;
     }
 
+    public void updateJob(Job job) throws Exception
+    {
+        Connection conn;
+        PreparedStatement ps = null;
+
+        try
+        {
+            conn = getConnection();
+            ps = conn.prepareStatement("UPDATE JOBS SET JOB_DATE = ?, CUSTOMER_ID = ?, JOB_DESCR = ?, PRICE = ?, REMARKS = ? WHERE ID = ?");
+            ps.setDate(1, new java.sql.Date(job.getJobDate().getTime()));
+            ps.setInt(2, job.getCustomer().getId());
+            ps.setString(3, job.getJobDescription());
+            ps.setDouble(4, job.getPrice());
+            ps.setString(5, job.getRemarks());
+            ps.setInt(6, job.getId());
+            ps.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            throw e;
+        }
+        finally
+        {
+            disconnect(ps, null);
+        }
+    }
+
     public void removeJob(int jobId) throws Exception
     {
         Connection conn;

@@ -14,10 +14,7 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.DateFormat;
@@ -44,12 +41,15 @@ public class WorkLogScr extends JXFrame
     public static Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
     public static Color NEW_RECORD_COLOR = new Color(217,242,138);
     public static Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
+    public static Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
+    public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
 
     static
     {
         UIManager.put("ComboBox.background", new ColorUIResource(UIManager.getColor("TextField.background")));
         UIManager.put("ComboBox.font", new FontUIResource(DEFAULT_TEXT_FONT));
-        UIManager.put("Textfield.font", new FontUIResource(DEFAULT_TEXT_FONT));
+        UIManager.put("TextField.font", new FontUIResource(DEFAULT_TEXT_FONT));
+        UIManager.put("TextArea.font", new FontUIResource(DEFAULT_TEXT_FONT));
         UIManager.put("Label.font", new FontUIResource(DEFAULT_LABEL_FONT));
         UIManager.put("Button.font", new FontUIResource(DEFAULT_LABEL_FONT));
         UIManager.put("OptionPane.okButtonText", "אישור");
@@ -208,6 +208,35 @@ public class WorkLogScr extends JXFrame
         workTable.getColumn(WorkTableModel.REMARKS_COL).setMinWidth(250);
         workTable.setDefaultRenderer(Object.class, new WorkTableRenderer());
 
+        workTable.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                if (e.getClickCount() >= 2 && workTable.getSelectedRow() != -1)
+                {
+                    Job jobToUpdate = ((WorkTableModel) workTable.getModel()).getCurrentJobList().get(workTable.getSelectedRow());
+                    JobRecordDialog recordDialog = new JobRecordDialog(WorkLogScr.this,jobToUpdate);
+
+                    if (recordDialog.isFinished() && !jobToUpdate.equals(recordDialog.getReturnedJob()))
+                    {
+                        try
+                        {
+                            DBManager.getSingleton().updateJob(recordDialog.getReturnedJob());
+                            ((WorkTableModel)workTable.getModel()).getCurrentJobList().set(workTable.getSelectedRow(),
+                                    recordDialog.getReturnedJob());
+                            ((WorkTableModel)workTable.getModel()).fireTableDataChanged();
+                        } catch (Exception e1)
+                        {
+                            Utils.showExceptionMsg(WorkLogScr.this, e1);
+                            e1.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+        });
+
         workField.addKeyListener(new KeyAdapter()
         {
             @Override
@@ -241,7 +270,7 @@ public class WorkLogScr extends JXFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                JobRecordDialog jobRecordDialog = new JobRecordDialog(WorkLogScr.this);
+                JobRecordDialog jobRecordDialog = new JobRecordDialog(WorkLogScr.this, null);
                 while (!jobRecordDialog.isFinished())
                 {
                     Job job  = jobRecordDialog.getReturnedJob();
@@ -252,7 +281,7 @@ public class WorkLogScr extends JXFrame
 
                     ((WorkTableModel)workTable.getModel()).getCurrentJobList().add(job);
                     ((WorkTableModel) workTable.getModel()).fireTableDataChanged();
-                    jobRecordDialog = new JobRecordDialog(WorkLogScr.this);
+                    jobRecordDialog = new JobRecordDialog(WorkLogScr.this, null);
                 }
             }
         });
@@ -262,13 +291,20 @@ public class WorkLogScr extends JXFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                int selectedRow = workTable.getSelectedRow();
-                if (selectedRow == -1) return;
-                Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().get(selectedRow);
+                int[] selectedRows = workTable.getSelectedRows();
+                if (selectedRows.length == 0) return;
                 try
                 {
-                    DBManager.getSingleton().removeJob(job.getId());
-                    ((WorkTableModel)workTable.getModel()).getCurrentJobList().remove(selectedRow);
+                    List<Job> removedJobs = new ArrayList<Job>();
+
+                    for (int i = 0; i < selectedRows.length; i++)
+                    {
+                        Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().get(selectedRows[i]);
+                        DBManager.getSingleton().removeJob(job.getId());
+                        removedJobs.add(job);
+                    }
+
+                    ((WorkTableModel)workTable.getModel()).getCurrentJobList().removeAll(removedJobs);
                     ((WorkTableModel) workTable.getModel()).fireTableDataChanged();
                 }
                 catch (Exception e1)
@@ -548,6 +584,10 @@ public class WorkLogScr extends JXFrame
             if (((WorkTableModel)table.getModel()).getCurrentJobList().get(realRow).isNewRecord())
             {
                 component.setBackground(isSelected ? NEW_RECORD_SELECTED_COLOR : NEW_RECORD_COLOR);
+            }
+            else if (((WorkTableModel)table.getModel()).getCurrentJobList().get(realRow).isUpdated())
+            {
+                component.setBackground(isSelected ? UPDATED_RECORD_SELECTED_COLOR : UPDATED_RECORD_COLOR);
             }
 
             component.setFont(DEFAULT_TEXT_FONT);
