@@ -7,17 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JobRecordDialog.java" afterPath="$PROJECT_DIR$/src/JobRecordDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBManager.java" afterPath="$PROJECT_DIR$/src/DBManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/workLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380732782405" ignored="false" />
     <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381094846406" ignored="false" />
-    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096807540" ignored="false" />
+    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381262900772" ignored="false" />
     <file path="$PROJECT_DIR$/../investmentCalc/.idea/workspace.xml" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380478333146" ignored="false" />
     <file path="/DBHandler.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380401873348" ignored="false" />
-    <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381095827615" ignored="false" />
+    <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381263551062" ignored="false" />
     <file path="/Customer.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380728577598" ignored="false" />
     <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381001646364" ignored="false" />
     <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096243457" ignored="false" />
@@ -110,19 +110,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DBManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="31" selection-start="5106" selection-end="5106" vertical-scroll-proportion="0.0">
+            <state line="28" column="193" selection-start="829" selection-end="829" vertical-scroll-proportion="0.5622568">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="29" selection-start="6038" selection-end="6038" vertical-scroll-proportion="0.52918285">
+            <state line="182" column="60" selection-start="7372" selection-end="7372" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="method#feedJobIntoDB#0;class#JobRecordDialog#0" expanded="false" />
                 <element signature="method#getFocusAdapter#0;class#JobRecordDialog#0" expanded="false" />
@@ -167,10 +167,10 @@
         <option value="$PROJECT_DIR$/src/Customer.java" />
         <option value="$PROJECT_DIR$/src/AddJobRecordDialog.java" />
         <option value="$PROJECT_DIR$/src/Utils.java" />
-        <option value="$PROJECT_DIR$/src/DBManager.java" />
         <option value="$PROJECT_DIR$/src/Job.java" />
         <option value="$PROJECT_DIR$/src/WorkLogScr.java" />
         <option value="$PROJECT_DIR$/src/JobRecordDialog.java" />
+        <option value="$PROJECT_DIR$/src/DBManager.java" />
       </list>
     </option>
   </component>
@@ -206,7 +206,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -264,6 +263,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -463,22 +463,26 @@
       <created>1381096431633</created>
       <updated>1381096431633</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixing minor bugs&#10;&#10;">
+      <created>1381097161413</created>
+      <updated>1381097161413</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3263041" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -534,7 +538,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing more bugs + Adding Edit record option&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing minor bugs&#10;&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -553,6 +557,7 @@
     <MESSAGE value="Fixing bugs&#10;" />
     <MESSAGE value="Fixing more bugs&#10;" />
     <MESSAGE value="Fixing more bugs + Adding Edit record option&#10;&#10;" />
+    <MESSAGE value="Fixing minor bugs&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -594,9 +599,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/KeyboardFocusManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="26" selection-start="3323" selection-end="3323" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="108" column="26" selection-start="3323" selection-end="3323" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/KeyEventDispatcher.java">
@@ -616,7 +619,32 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JTextArea.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="45" selection-start="4522" selection-end="4536" vertical-scroll-proportion="0.0">
+        <state line="126" column="45" selection-start="4522" selection-end="4536" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="146" column="5" selection-start="3523" selection-end="3523" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="182" column="60" selection-start="7372" selection-end="7372" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#feedJobIntoDB#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="method#getFocusAdapter#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="method#initCustomerComboFromDB#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="method#getReturnedJob#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="method#isFinished#0;class#JobRecordDialog#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="589" column="105" selection-start="23313" selection-end="23313" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -630,35 +658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="31" selection-start="5106" selection-end="5106" vertical-scroll-proportion="0.0">
+        <state line="28" column="193" selection-start="829" selection-end="829" vertical-scroll-proportion="0.5622568">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="5" selection-start="3523" selection-end="3523" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="589" column="105" selection-start="23313" selection-end="23313" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="29" selection-start="6038" selection-end="6038" vertical-scroll-proportion="0.52918285">
-          <folding>
-            <element signature="method#feedJobIntoDB#0;class#JobRecordDialog#0" expanded="false" />
-            <element signature="method#getFocusAdapter#0;class#JobRecordDialog#0" expanded="false" />
-            <element signature="method#initCustomerComboFromDB#0;class#JobRecordDialog#0" expanded="false" />
-            <element signature="method#getReturnedJob#0;class#JobRecordDialog#0" expanded="false" />
-            <element signature="method#isFinished#0;class#JobRecordDialog#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

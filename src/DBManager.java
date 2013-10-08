@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,24 +14,20 @@ import java.util.List;
  */
 public class DBManager
 {
-    private static final String CONNECTION_URL = "jdbc:h2:~/h2/test";
     private static final String CONNECTION_USER = "barak";
     private static final String CONNECTION_PASS = "123";
+    private static final String DB_LOC_FILE = "db.txt";
+    private String connectionUrl = "jdbc:h2:";
     private static DBManager dbManager = null;
 
-    private DBManager()
+    private DBManager() throws Exception
     {
-        try
-        {
-            Class.forName("org.h2.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        Class.forName("org.h2.Driver");
+        BufferedReader reader = new BufferedReader(new FileReader(DB_LOC_FILE));
+        connectionUrl = connectionUrl + reader.readLine();
     }
 
-    public static DBManager getSingleton()
+    public static DBManager getSingleton() throws Exception
     {
         if (dbManager == null)
         {
@@ -41,7 +39,7 @@ public class DBManager
 
     private Connection getConnection() throws SQLException
     {
-        return DriverManager.getConnection(CONNECTION_URL, CONNECTION_USER, CONNECTION_PASS);
+        return DriverManager.getConnection(connectionUrl, CONNECTION_USER, CONNECTION_PASS);
     }
 
     private void disconnect(PreparedStatement ps, ResultSet rs) throws SQLException
