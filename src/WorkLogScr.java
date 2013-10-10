@@ -401,33 +401,35 @@ public class WorkLogScr extends JXFrame
         List<Job> jobs = new ArrayList<Job>();
         File inputWorkbook = chooser.getSelectedFile();
 
-        if (chooser.getSelectedFile() != null)
+        if (chooser.getSelectedFile() == null)
         {
-            Workbook workbook;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
-            try
-            {
-                workbook = Workbook.getWorkbook(inputWorkbook);
-                for (Sheet sheet : workbook.getSheets())
-                {
-                    for (int row = 1; row < sheet.getRows(); row++)
-                    {
-                        Cell[] cells = sheet.getRow(row);
+            return;
+        }
 
-                        Date jobDate = dateFormat.parse(cells[1].getContents());
-                        Customer customer = new Customer(cells[0].getContents());
-                        String jobDescr = cells[2].getContents();
-                        double price = Double.parseDouble(cells[3].getContents());
-                        String remarks = cells[4].getContents();
-                        jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
-                    }
+        Workbook workbook;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        try
+        {
+            workbook = Workbook.getWorkbook(inputWorkbook);
+            for (Sheet sheet : workbook.getSheets())
+            {
+                for (int row = 1; row < sheet.getRows(); row++)
+                {
+                    Cell[] cells = sheet.getRow(row);
+
+                    Date jobDate = dateFormat.parse(cells[1].getContents());
+                    Customer customer = new Customer(cells[0].getContents());
+                    String jobDescr = cells[2].getContents();
+                    double price = Double.parseDouble(cells[3].getContents());
+                    String remarks = cells[4].getContents();
+                    jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
                 }
             }
-            catch (Exception e)
-            {
-                Utils.showExceptionMsg(this, e);
-                e.printStackTrace();
-            }
+        }
+        catch (Exception e)
+        {
+            Utils.showExceptionMsg(this, e);
+            e.printStackTrace();
         }
 
         for (Job job : jobs)
