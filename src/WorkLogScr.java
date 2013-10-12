@@ -468,8 +468,7 @@ public class WorkLogScr extends JXFrame
             }
 
             job.setCustomer(customer);
-
-            DBManager.getSingleton().addJob(job);
+            job.setId(DBManager.getSingleton().addJob(job));
         }
 
         ((WorkTableModel)workTable.getModel()).getCurrentJobList().addAll(jobs);

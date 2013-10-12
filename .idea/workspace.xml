@@ -7,20 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/WorkLog_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/WorkLog_jar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/WorkLogScr.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/workLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380732782405" ignored="false" />
     <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381593376626" ignored="false" />
-    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381594387986" ignored="false" />
+    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381595493085" ignored="false" />
     <file path="$PROJECT_DIR$/../investmentCalc/.idea/workspace.xml" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380478333146" ignored="false" />
     <file path="/DBHandler.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380401873348" ignored="false" />
     <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381570603787" ignored="false" />
     <file path="/Customer.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380728577598" ignored="false" />
     <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381592206587" ignored="false" />
-    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381593919511" ignored="false" />
+    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381595754034" ignored="false" />
     <file path="/Job.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096019629" ignored="false" />
     <file path="/AddJobRecordScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380793537945" ignored="false" />
     <file path="/AddJobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380973244172" ignored="false" />
@@ -96,43 +96,7 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="426" column="39" selection-start="17666" selection-end="17666" vertical-scroll-proportion="0.5311284">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="37" selection-start="2379" selection-end="2390" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="253" column="74" selection-start="7024" selection-end="7024" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="60" selection-start="7372" selection-end="7372" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Job.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Job.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="5" selection-start="3523" selection-end="3523" vertical-scroll-proportion="0.0">
+            <state line="469" column="38" selection-start="19598" selection-end="19598" vertical-scroll-proportion="0.70428014">
               <folding />
             </state>
           </provider>
@@ -275,12 +239,12 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -322,19 +286,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -360,6 +311,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -474,7 +438,11 @@
       <created>1381594390670</created>
       <updated>1381594390670</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fix jxl classNotFound&#10;&#10;">
+      <created>1381595041706</created>
+      <updated>1381595041706</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -545,7 +513,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix excel bugs + remove row bug&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix jxl classNotFound&#10;&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -568,6 +536,7 @@
     <MESSAGE value="Making the connection url dynamic&#10;&#10;" />
     <MESSAGE value="Fix excel bug + adding pics and db.txt&#10;&#10;" />
     <MESSAGE value="Fix excel bugs + remove row bug&#10;&#10;" />
+    <MESSAGE value="Fix jxl classNotFound&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -634,35 +603,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="60" selection-start="7372" selection-end="7372" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/jxl.jar!/jxl/read/biff/SheetImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="88" selection-start="3463" selection-end="3463" vertical-scroll-proportion="0.7897252" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils.java">
+    <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="37" selection-start="2379" selection-end="2390" vertical-scroll-proportion="0.0">
+        <state line="319" column="47" selection-start="12396" selection-end="12396" vertical-scroll-proportion="0.33275563">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="253" column="74" selection-start="7024" selection-end="7024" vertical-scroll-proportion="0.0">
+        <state line="145" column="15" selection-start="3913" selection-end="3913" vertical-scroll-proportion="0.2963605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="37" selection-start="2379" selection-end="2390" vertical-scroll-proportion="0.6759099">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="426" column="39" selection-start="17666" selection-end="17666" vertical-scroll-proportion="0.5311284">
+        <state line="469" column="38" selection-start="19598" selection-end="19598" vertical-scroll-proportion="0.70428014">
           <folding />
         </state>
       </provider>
