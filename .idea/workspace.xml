@@ -7,16 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBManager.java" afterPath="$PROJECT_DIR$/src/DBManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils.java" afterPath="$PROJECT_DIR$/src/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/WorkLogScr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/WorkLog_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/WorkLog_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/workLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380732782405" ignored="false" />
     <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381593376626" ignored="false" />
-    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381570188991" ignored="false" />
+    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381594387986" ignored="false" />
     <file path="$PROJECT_DIR$/../investmentCalc/.idea/workspace.xml" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380478333146" ignored="false" />
     <file path="/DBHandler.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380401873348" ignored="false" />
     <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381570603787" ignored="false" />
@@ -98,7 +96,7 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="437" column="77" selection-start="18425" selection-end="18425" vertical-scroll-proportion="0.82879376">
+            <state line="426" column="39" selection-start="17666" selection-end="17666" vertical-scroll-proportion="0.5311284">
               <folding />
             </state>
           </provider>
@@ -264,7 +262,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
@@ -472,12 +470,16 @@
       <created>1381389103680</created>
       <updated>1381389103680</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fix excel bugs + remove row bug&#10;&#10;">
+      <created>1381594390670</created>
+      <updated>1381594390670</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -493,7 +495,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -543,7 +545,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix excel bug + adding pics and db.txt&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix excel bugs + remove row bug&#10;&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -565,6 +567,7 @@
     <MESSAGE value="Fixing minor bugs&#10;&#10;" />
     <MESSAGE value="Making the connection url dynamic&#10;&#10;" />
     <MESSAGE value="Fix excel bug + adding pics and db.txt&#10;&#10;" />
+    <MESSAGE value="Fix excel bugs + remove row bug&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -659,7 +662,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="437" column="77" selection-start="18425" selection-end="18425" vertical-scroll-proportion="0.82879376">
+        <state line="426" column="39" selection-start="17666" selection-end="17666" vertical-scroll-proportion="0.5311284">
           <folding />
         </state>
       </provider>
