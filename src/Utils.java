@@ -1,3 +1,7 @@
+import jxl.Cell;
+import jxl.biff.EmptyCell;
+import jxl.read.biff.BlankCell;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -74,5 +78,10 @@ public class Utils
     {
         Image image = Toolkit.getDefaultToolkit().getImage(WorkLogScr.class.getResource(imageName));
         return image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+    }
+
+    public static boolean isCellEmpty(Cell cell)
+    {
+        return (cell instanceof EmptyCell || cell instanceof BlankCell || cell.getContents().trim().isEmpty());
     }
 }

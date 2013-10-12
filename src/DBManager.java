@@ -236,17 +236,26 @@ public class DBManager
         }
     }
 
-    public void addCustomer(Customer customer) throws Exception
+    public int addCustomer(Customer customer) throws Exception
     {
         Connection conn;
         PreparedStatement ps = null;
+        ResultSet rs = null;
+        int id = -1;
 
         try
         {
             conn = getConnection();
-            ps = conn.prepareStatement("INSERT INTO CUSTOMERS VALUES((SELECT MAX(ID) + 1 FROM CUSTOMERS), ?)");
-            ps.setString(1, customer.getName());
-            ps.executeUpdate();
+            ps = conn.prepareStatement("SELECT (MAX(ID) + 1) as NEW_ID FROM CUSTOMERS");
+            rs = ps.executeQuery();
+            if (rs.next())
+            {
+                id = rs.getInt("NEW_ID");
+                ps = conn.prepareStatement("INSERT INTO CUSTOMERS VALUES(?, ?)");
+                ps.setInt(1, id);
+                ps.setString(2, customer.getName());
+                ps.executeUpdate();
+            }
         }
         catch (SQLException e)
         {
@@ -255,8 +264,10 @@ public class DBManager
         }
         finally
         {
-            disconnect(ps, null);
+            disconnect(ps, rs);
         }
+
+        return id;
     }
 
     public void updateCustomer(Customer customer) throws Exception

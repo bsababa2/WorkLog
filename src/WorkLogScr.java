@@ -299,7 +299,8 @@ public class WorkLogScr extends JXFrame
 
                     for (int i = 0; i < selectedRows.length; i++)
                     {
-                        Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().get(selectedRows[i]);
+                        Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().
+                                get(workTable.getRowSorter().convertRowIndexToModel(selectedRows[i]));
                         DBManager.getSingleton().removeJob(job.getId());
                         removedJobs.add(job);
                     }
@@ -406,8 +407,10 @@ public class WorkLogScr extends JXFrame
             return;
         }
 
-        Workbook workbook;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        boolean isProblemOccured = false;
+        StringBuilder problematicRows = new StringBuilder("בעיה ביבוא של העבודות הבאות:").append("\n");
+        Workbook workbook;
         try
         {
             workbook = Workbook.getWorkbook(inputWorkbook);
@@ -416,13 +419,30 @@ public class WorkLogScr extends JXFrame
                 for (int row = 1; row < sheet.getRows(); row++)
                 {
                     Cell[] cells = sheet.getRow(row);
+                    int customerIndex = 0;
+                    int dateIndex = 1;
+                    int jobDescIndex = 2;
+                    int priceIndex = 3;
+                    int remarksIndex = 4;
 
-                    Date jobDate = dateFormat.parse(cells[1].getContents());
-                    Customer customer = new Customer(cells[0].getContents());
-                    String jobDescr = cells[2].getContents();
-                    double price = Double.parseDouble(cells[3].getContents());
-                    String remarks = cells[4].getContents();
-                    jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+                    try
+                    {
+                        if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
+                        {
+                            Customer customer = new Customer(cells[customerIndex].getContents());
+                            Date jobDate = dateFormat.parse(cells[dateIndex].getContents());
+                            String jobDescr = cells[jobDescIndex].getContents();
+                            double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
+                            String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
+                            jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                        problematicRows.append("בגיליון ").append(sheet.getName()).append(" בשורה מס' ").append(row).append("\n");
+                        isProblemOccured = true;
+                    }
                 }
             }
         }
@@ -432,12 +452,19 @@ public class WorkLogScr extends JXFrame
             e.printStackTrace();
         }
 
+        if (isProblemOccured)
+        {
+            Utils.showErrorMsg(WorkLogScr.this, problematicRows.toString());
+            return;
+        }
+
         for (Job job : jobs)
         {
             Customer customer = DBManager.getSingleton().getCustomerByName(job.getCustomer().getName());
             if (customer == null)
             {
-                DBManager.getSingleton().addCustomer(job.getCustomer());
+                customer = job.getCustomer();
+                customer.setId(DBManager.getSingleton().addCustomer(job.getCustomer()));
             }
 
             job.setCustomer(customer);
@@ -450,6 +477,37 @@ public class WorkLogScr extends JXFrame
         initCustomerCombo();
 
         Utils.showInfoMsg(this, "הנתונים נטענו בהצלחה!");
+    }
+
+    private boolean checkCellsValidity(Cell[] cells, int[] mustCells) throws Exception
+    {
+        boolean areAllCellsEmpty = true;
+
+        for (int i = 0; i < cells.length && areAllCellsEmpty; i++)
+        {
+            if (!Utils.isCellEmpty(cells[i]))
+            {
+                 areAllCellsEmpty = false;
+            }
+        }
+
+        // If all the cells are empty we don't want to use that row
+        if (areAllCellsEmpty)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < mustCells.length; i++)
+            {
+                if (Utils.isCellEmpty(cells[mustCells[i]]))
+                {
+                    throw new Exception("אחד או יותר מהשדות ההכרחיים חסר!");
+                }
+            }
+
+            return true;
+        }
     }
 
     private void doFilter()

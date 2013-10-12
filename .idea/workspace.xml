@@ -7,23 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Tools.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/excel.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBManager.java" afterPath="$PROJECT_DIR$/src/DBManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils.java" afterPath="$PROJECT_DIR$/src/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/WorkLogScr.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/workLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380732782405" ignored="false" />
-    <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381094846406" ignored="false" />
-    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381389010218" ignored="false" />
+    <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381593376626" ignored="false" />
+    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381570188991" ignored="false" />
     <file path="$PROJECT_DIR$/../investmentCalc/.idea/workspace.xml" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380478333146" ignored="false" />
     <file path="/DBHandler.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380401873348" ignored="false" />
-    <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381263551062" ignored="false" />
+    <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381570603787" ignored="false" />
     <file path="/Customer.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380728577598" ignored="false" />
-    <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381001646364" ignored="false" />
-    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381389059258" ignored="false" />
+    <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381592206587" ignored="false" />
+    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381593919511" ignored="false" />
     <file path="/Job.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096019629" ignored="false" />
     <file path="/AddJobRecordScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380793537945" ignored="false" />
     <file path="/AddJobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380973244172" ignored="false" />
@@ -49,6 +48,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -85,7 +85,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -98,7 +98,7 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="403" column="75" selection-start="16806" selection-end="16806" vertical-scroll-proportion="0.24708171">
+            <state line="437" column="77" selection-start="18425" selection-end="18425" vertical-scroll-proportion="0.82879376">
               <folding />
             </state>
           </provider>
@@ -107,7 +107,7 @@
       <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="49" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+            <state line="82" column="37" selection-start="2379" selection-end="2390" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -116,7 +116,7 @@
       <file leaf-file-name="DBManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="15" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
+            <state line="253" column="74" selection-start="7024" selection-end="7024" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -163,10 +163,10 @@
         <option value="$PROJECT_DIR$/src/AddJobRecordScr.java" />
         <option value="$PROJECT_DIR$/src/Customer.java" />
         <option value="$PROJECT_DIR$/src/AddJobRecordDialog.java" />
-        <option value="$PROJECT_DIR$/src/Utils.java" />
         <option value="$PROJECT_DIR$/src/Job.java" />
         <option value="$PROJECT_DIR$/src/JobRecordDialog.java" />
         <option value="$PROJECT_DIR$/src/DBManager.java" />
+        <option value="$PROJECT_DIR$/src/Utils.java" />
         <option value="$PROJECT_DIR$/src/WorkLogScr.java" />
       </list>
     </option>
@@ -203,7 +203,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -258,22 +257,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WorkLog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WorkLog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -482,31 +468,35 @@
       <created>1381263652066</created>
       <updated>1381263652066</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fix excel bug + adding pics and db.txt&#10;&#10;">
+      <created>1381389103680</created>
+      <updated>1381389103680</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3263041" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32480535" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -553,7 +543,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Making the connection url dynamic&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix excel bug + adding pics and db.txt&#10;&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -574,6 +564,7 @@
     <MESSAGE value="Fixing more bugs + Adding Edit record option&#10;&#10;" />
     <MESSAGE value="Fixing minor bugs&#10;&#10;" />
     <MESSAGE value="Making the connection url dynamic&#10;&#10;" />
+    <MESSAGE value="Fix excel bug + adding pics and db.txt&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -583,11 +574,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/ImageIcon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="35" selection-start="1631" selection-end="1631" vertical-scroll-proportion="0.46303502" />
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/Image.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="22" selection-start="804" selection-end="804" vertical-scroll-proportion="0.33268481" />
@@ -652,23 +638,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/jxl.jar!/jxl/read/biff/SheetImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="88" selection-start="3463" selection-end="3463" vertical-scroll-proportion="0.7897252" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="49" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+        <state line="82" column="37" selection-start="2379" selection-end="2390" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="15" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
+        <state line="253" column="74" selection-start="7024" selection-end="7024" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="403" column="75" selection-start="16806" selection-end="16806" vertical-scroll-proportion="0.24708171">
+        <state line="437" column="77" selection-start="18425" selection-end="18425" vertical-scroll-proportion="0.82879376">
           <folding />
         </state>
       </provider>
