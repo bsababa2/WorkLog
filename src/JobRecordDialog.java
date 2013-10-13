@@ -249,7 +249,7 @@ public class JobRecordDialog extends JDialog
         jobDescField.addKeyListener(new KeyAdapter()
         {
             @Override
-            public void keyTyped(KeyEvent e)
+            public void keyPressed(KeyEvent e)
             {
                 if (e.getKeyChar() == KeyEvent.VK_TAB)
                 {
@@ -265,7 +265,7 @@ public class JobRecordDialog extends JDialog
         remarksField.addKeyListener(new KeyAdapter()
         {
             @Override
-            public void keyTyped(KeyEvent e)
+            public void keyPressed(KeyEvent e)
             {
                 if (e.getKeyChar() == KeyEvent.VK_TAB)
                 {
