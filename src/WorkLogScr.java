@@ -502,7 +502,7 @@ public class WorkLogScr extends JXFrame
 
         ((WorkTableModel)workTable.getModel()).getCurrentJobList().addAll(jobs);
         ((WorkTableModel)workTable.getModel()).fireTableDataChanged();
-        initCustomerCombo();
+        Utils.initCustomerCombo(customerCombo, true);
 
         Utils.showInfoMsg(this, "הנתונים נטענו בהצלחה!");
     }
@@ -562,19 +562,9 @@ public class WorkLogScr extends JXFrame
 
     private void initComponentsFromDB() throws Exception
     {
-        initCustomerCombo();
+        Utils.initCustomerCombo(customerCombo, true);
         ((WorkTableModel)workTable.getModel()).setPreservedJobList
                 (DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
-    }
-
-    private void initCustomerCombo() throws Exception
-    {
-        List<Customer> customers = DBManager.getSingleton().getCustomers();
-        customers.add(0, Customer.ALL_VALUES);
-        customerCombo.setModel(new DefaultComboBoxModel(customers.toArray()));
-        customerCombo.setEditable(true);
-        customerCombo.setSelectedItem(Customer.ALL_VALUES);
-        new MaximumMatchComboBoxDoc(customerCombo);
     }
 
     private class WorkTableModel extends AbstractTableModel

@@ -6,8 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="Fix remove row bug&#10;&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MaximumMatchComboBoxDoc.java" />
+    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JobRecordDialog.java" afterPath="$PROJECT_DIR$/src/JobRecordDialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils.java" afterPath="$PROJECT_DIR$/src/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/WorkLogScr.java" />
@@ -17,19 +16,19 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/workLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380732782405" ignored="false" />
     <file path="/fragment.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381696942500" ignored="false" />
-    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381600645188" ignored="false" />
+    <file path="/Dummy.txt" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381698421991" ignored="false" />
     <file path="$PROJECT_DIR$/../investmentCalc/.idea/workspace.xml" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380478333146" ignored="false" />
     <file path="/DBHandler.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380401873348" ignored="false" />
     <file path="/DBManager.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381570603787" ignored="false" />
     <file path="/Customer.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380728577598" ignored="false" />
-    <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381601557818" ignored="false" />
-    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381696821907" ignored="false" />
+    <file path="/Utils.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381698810660" ignored="false" />
+    <file path="/WorkLogScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381698701300" ignored="false" />
     <file path="/Job.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381096019629" ignored="false" />
     <file path="/AddJobRecordScr.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380793537945" ignored="false" />
     <file path="/AddJobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380973244172" ignored="false" />
     <file path="/a.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380972345899" ignored="false" />
     <file path="/sample.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1380967793840" ignored="false" />
-    <file path="/JobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381679253295" ignored="false" />
+    <file path="/JobRecordDialog.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381699120794" ignored="false" />
     <file path="/S16MaximumMatch.java" changelist="d27edd39-ca13-44c6-86d7-30773b46306b" time="1381698365886" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +99,7 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="570" column="4" selection-start="23144" selection-end="23144" vertical-scroll-proportion="0.0">
+            <state line="198" column="8" selection-start="8883" selection-end="8932" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="method#initEventHandlers#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="e#14804#14977#0" expanded="true" />
@@ -111,7 +110,6 @@
                 <element signature="method#checkCellsValidity#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#doFilter#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#initComponentsFromDB#0;class#WorkLogScr#0" expanded="false" />
-                <element signature="method#initCustomerCombo#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="class#WorkTableModel#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="class#WorkTableRenderer#0;class#WorkLogScr#0" expanded="false" />
                 <element signature="method#main#0;class#WorkLogScr#0" expanded="false" />
@@ -120,26 +118,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MaximumMatchComboBoxDoc.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MaximumMatchComboBoxDoc.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="36" selection-start="111" selection-end="111" vertical-scroll-proportion="0.116838485">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#749#911#0" expanded="true" />
-                <element signature="e#900#901#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="277" column="63" selection-start="10927" selection-end="10927" vertical-scroll-proportion="0.0">
+            <state line="149" column="17" selection-start="5719" selection-end="5719" vertical-scroll-proportion="0.4085603">
               <folding>
-                <element signature="e#10610#11017#0" expanded="true" />
-                <element signature="e#11006#11007#0" expanded="true" />
+                <element signature="method#initSizesAndFonts#0;class#JobRecordDialog#0" expanded="false" />
+                <element signature="method#initEventHandlers#0;class#JobRecordDialog#0" expanded="false" />
+                <element signature="e#10908#12057#0" expanded="true" />
+                <element signature="e#12046#12047#0" expanded="true" />
+                <element signature="method#getFocusAdapter#0;class#JobRecordDialog#0" expanded="false" />
+                <element signature="method#getReturnedJob#0;class#JobRecordDialog#0" expanded="false" />
+                <element signature="method#isFinished#0;class#JobRecordDialog#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -166,7 +156,7 @@
       <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="5" selection-start="1897" selection-end="1897" vertical-scroll-proportion="0.0">
+            <state line="99" column="40" selection-start="3111" selection-end="3111" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -197,11 +187,11 @@
         <option value="$PROJECT_DIR$/src/AddJobRecordDialog.java" />
         <option value="$PROJECT_DIR$/src/Job.java" />
         <option value="$PROJECT_DIR$/src/DBManager.java" />
-        <option value="$PROJECT_DIR$/src/Utils.java" />
-        <option value="$PROJECT_DIR$/src/JobRecordDialog.java" />
-        <option value="$PROJECT_DIR$/src/WorkLogScr.java" />
         <option value="$PROJECT_DIR$/src/S16MaximumMatch.java" />
         <option value="$PROJECT_DIR$/src/MaximumMatchComboBoxDoc.java" />
+        <option value="$PROJECT_DIR$/src/WorkLogScr.java" />
+        <option value="$PROJECT_DIR$/src/Utils.java" />
+        <option value="$PROJECT_DIR$/src/JobRecordDialog.java" />
       </list>
     </option>
   </component>
@@ -518,7 +508,11 @@
       <created>1381595774320</created>
       <updated>1381595774320</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fix bugs found after first install + making the combo box searchable&#10;&#10;">
+      <created>1381698424839</created>
+      <updated>1381698424839</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -530,16 +524,16 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32369298" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32369298" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.676307" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -589,7 +583,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix remove row bug&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs found after first install + making the combo box searchable&#10;&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -614,6 +608,7 @@
     <MESSAGE value="Fix excel bugs + remove row bug&#10;&#10;" />
     <MESSAGE value="Fix jxl classNotFound&#10;&#10;" />
     <MESSAGE value="Fix remove row bug&#10;&#10;" />
+    <MESSAGE value="Fix bugs found after first install + making the combo box searchable&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -653,13 +648,6 @@
         <state line="83" column="88" selection-start="3463" selection-end="3463" vertical-scroll-proportion="0.7897252" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="5" selection-start="1897" selection-end="1897" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Job.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="150" column="19" selection-start="3576" selection-end="3576" vertical-scroll-proportion="0.0">
@@ -695,16 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="277" column="63" selection-start="10927" selection-end="10927" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#10610#11017#0" expanded="true" />
-            <element signature="e#11006#11007#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="13" selection-start="165" selection-end="165" vertical-scroll-proportion="0.23151751">
@@ -712,9 +690,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MaximumMatchComboBoxDoc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="36" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#885#1047#0" expanded="true" />
+            <element signature="e#1036#1037#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="40" selection-start="3111" selection-end="3111" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="570" column="4" selection-start="23144" selection-end="23144" vertical-scroll-proportion="0.0">
+        <state line="198" column="8" selection-start="8883" selection-end="8932" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="method#initEventHandlers#0;class#WorkLogScr#0" expanded="false" />
             <element signature="e#14804#14977#0" expanded="true" />
@@ -725,7 +721,6 @@
             <element signature="method#checkCellsValidity#0;class#WorkLogScr#0" expanded="false" />
             <element signature="method#doFilter#0;class#WorkLogScr#0" expanded="false" />
             <element signature="method#initComponentsFromDB#0;class#WorkLogScr#0" expanded="false" />
-            <element signature="method#initCustomerCombo#0;class#WorkLogScr#0" expanded="false" />
             <element signature="class#WorkTableModel#0;class#WorkLogScr#0" expanded="false" />
             <element signature="class#WorkTableRenderer#0;class#WorkLogScr#0" expanded="false" />
             <element signature="method#main#0;class#WorkLogScr#0" expanded="false" />
@@ -733,13 +728,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MaximumMatchComboBoxDoc.java">
+    <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="36" selection-start="111" selection-end="111" vertical-scroll-proportion="0.116838485">
+        <state line="149" column="17" selection-start="5719" selection-end="5719" vertical-scroll-proportion="0.4085603">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#749#911#0" expanded="true" />
-            <element signature="e#900#901#0" expanded="true" />
+            <element signature="method#initSizesAndFonts#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="method#initEventHandlers#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="e#10908#12057#0" expanded="true" />
+            <element signature="e#12046#12047#0" expanded="true" />
+            <element signature="method#getFocusAdapter#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="method#getReturnedJob#0;class#JobRecordDialog#0" expanded="false" />
+            <element signature="method#isFinished#0;class#JobRecordDialog#0" expanded="false" />
           </folding>
         </state>
       </provider>

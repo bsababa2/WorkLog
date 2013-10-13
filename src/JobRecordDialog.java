@@ -133,6 +133,40 @@ public class JobRecordDialog extends JDialog
 
     private void initComponents() throws Exception
     {
+        priceField.setDocument(new NumberDocument());
+        priceField.setText("0");
+        jobDescField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        remarksField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        jobDescField.setLineWrap(true);
+        jobDescField.setWrapStyleWord(true);
+        remarksField.setLineWrap(true);
+        remarksField.setWrapStyleWord(true);
+
+        addNewCustomerButton.setFocusable(false);
+        updateCustomerButton.setFocusable(false);
+
+        initSizesAndFonts();
+        initEventHandlers();
+        Utils.initCustomerCombo(customerCombo, false);
+
+        getRootPane().setDefaultButton(jobToUpdate != null ? finishButton : feedButton);
+
+        if (jobToUpdate != null)
+        {
+            this.setTitle("עדכון רשומה קיימת");
+
+            this.datePicker.setDate(jobToUpdate.getJobDate());
+            this.customerCombo.setSelectedItem(jobToUpdate.getCustomer());
+            this.jobDescField.setText(jobToUpdate.getJobDescription());
+            this.priceField.setText((int)jobToUpdate.getPrice() + "");
+            this.remarksField.setText(jobToUpdate.getRemarks());
+
+            feedButton.setVisible(false);
+        }
+    }
+
+    private void initSizesAndFonts()
+    {
         Dimension comboDimension = new Dimension(DEFAULT_DATE_SIZE);
         comboDimension.width = comboDimension.width - 10;
         Utils.setSoftSize(customerCombo, comboDimension);
@@ -146,17 +180,10 @@ public class JobRecordDialog extends JDialog
         Utils.setSoftSize(addNewCustomerButton, DEFAULT_BUTTON_SIZE);
         Utils.setSoftSize(updateCustomerButton, DEFAULT_BUTTON_SIZE);
         datePicker.setFont(WorkLogScr.DEFAULT_TEXT_FONT);
+    }
 
-        priceField.setDocument(new NumberDocument());
-        priceField.setText("0");
-        jobDescField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        remarksField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        jobDescField.setLineWrap(true);
-        jobDescField.setWrapStyleWord(true);
-        remarksField.setLineWrap(true);
-        remarksField.setWrapStyleWord(true);
-
-        addNewCustomerButton.setFocusable(false);
+    private void initEventHandlers()
+    {
         addNewCustomerButton.addActionListener(new ActionListener()
         {
             @Override
@@ -173,7 +200,7 @@ public class JobRecordDialog extends JDialog
                         }
 
                         DBManager.getSingleton().addCustomer(new Customer(name));
-                        initCustomerComboFromDB();
+                        Utils.initCustomerCombo(customerCombo, false);
                     }
                     catch (Exception e1)
                     {
@@ -184,7 +211,6 @@ public class JobRecordDialog extends JDialog
             }
         });
 
-        updateCustomerButton.setFocusable(false);
         updateCustomerButton.addActionListener(new ActionListener()
         {
             @Override
@@ -208,7 +234,7 @@ public class JobRecordDialog extends JDialog
                         Customer customer = (Customer)customerCombo.getSelectedItem();
                         customer.setName(name);
                         DBManager.getSingleton().updateCustomer(customer);
-                        initCustomerComboFromDB();
+                        Utils.initCustomerCombo(customerCombo, false);
                     }
                     catch (Exception e1)
                     {
@@ -249,22 +275,6 @@ public class JobRecordDialog extends JDialog
             }
         });
 
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher()
-        {
-            @Override
-            public boolean dispatchKeyEvent(KeyEvent e)
-            {
-                if (e.getKeyChar() == KeyEvent.VK_ESCAPE)
-                {
-                    JobRecordDialog.this.dispose();
-                    e.consume();
-                }
-
-                return false;
-            }
-        });
-
-        getRootPane().setDefaultButton(jobToUpdate != null ? finishButton : feedButton);
         feedButton.addActionListener(new ActionListener()
         {
             @Override
@@ -272,8 +282,22 @@ public class JobRecordDialog extends JDialog
             {
                 try
                 {
-                    feedJobIntoDB();
-                } catch (Exception e1)
+                    if (priceField.getText().isEmpty() || customerCombo.getSelectedIndex() == -1)
+                    {
+                        Utils.showErrorMsg(JobRecordDialog.this, "יש להזין ערכים בכל השדות!");
+                        return;
+                    }
+
+                    Job job = new Job(datePicker.getDate(), (Customer) customerCombo.getSelectedItem(),
+                            jobDescField.getText(), Double.parseDouble(priceField.getText()),
+                            remarksField.getText().equals(DEFAULT_REMARKS_TEXT) ? "" : remarksField.getText());
+
+                    job.setId(DBManager.getSingleton().addJob(job));
+
+                    JobRecordDialog.this.returnedJob = job;
+                    JobRecordDialog.this.dispose();
+                }
+                catch (Exception e1)
                 {
                     Utils.showExceptionMsg(JobRecordDialog.this, e1);
                     e1.printStackTrace();
@@ -298,38 +322,20 @@ public class JobRecordDialog extends JDialog
             }
         });
 
-        initCustomerComboFromDB();
-
-        if (jobToUpdate != null)
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher()
         {
-            this.setTitle("עדכון רשומה קיימת");
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e)
+            {
+                if (e.getKeyChar() == KeyEvent.VK_ESCAPE)
+                {
+                    JobRecordDialog.this.dispose();
+                    e.consume();
+                }
 
-            this.datePicker.setDate(jobToUpdate.getJobDate());
-            this.customerCombo.setSelectedItem(jobToUpdate.getCustomer());
-            this.jobDescField.setText(jobToUpdate.getJobDescription());
-            this.priceField.setText((int)jobToUpdate.getPrice() + "");
-            this.remarksField.setText(jobToUpdate.getRemarks());
-
-            feedButton.setVisible(false);
-        }
-    }
-
-    private void feedJobIntoDB() throws Exception
-    {
-        if (priceField.getText().isEmpty() || customerCombo.getSelectedIndex() == -1)
-        {
-            Utils.showErrorMsg(JobRecordDialog.this, "יש להזין ערכים בכל השדות!");
-            return;
-        }
-
-        Job job = new Job(datePicker.getDate(), (Customer) customerCombo.getSelectedItem(),
-                jobDescField.getText(), Double.parseDouble(priceField.getText()),
-                remarksField.getText().equals(DEFAULT_REMARKS_TEXT) ? "" : remarksField.getText());
-
-        job.setId(DBManager.getSingleton().addJob(job));
-
-        JobRecordDialog.this.returnedJob = job;
-        JobRecordDialog.this.dispose();
+                return false;
+            }
+        });
     }
 
     private FocusAdapter getFocusAdapter(final JTextComponent textComponent, final String defaultText)
@@ -351,11 +357,6 @@ public class JobRecordDialog extends JDialog
                 }
             }
         };
-    }
-
-    private void initCustomerComboFromDB() throws Exception
-    {
-        customerCombo.setModel(new DefaultComboBoxModel(DBManager.getSingleton().getCustomers().toArray()));
     }
 
     public Job getReturnedJob()

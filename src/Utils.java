@@ -89,4 +89,14 @@ public class Utils
     {
         return table.getRowSorter().convertRowIndexToModel(row);
     }
+
+    public static void initCustomerCombo(JComboBox customerCombo, boolean displayAllValues) throws Exception
+    {
+        java.util.List<Customer> customers = DBManager.getSingleton().getCustomers();
+        if (displayAllValues) customers.add(0, Customer.ALL_VALUES);
+        customerCombo.setModel(new DefaultComboBoxModel(customers.toArray()));
+        customerCombo.setEditable(true);
+        customerCombo.setSelectedIndex(0);
+        new MaximumMatchComboBoxDoc(customerCombo);
+    }
 }
