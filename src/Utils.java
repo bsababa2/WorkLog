@@ -84,4 +84,9 @@ public class Utils
     {
         return (cell instanceof EmptyCell || cell instanceof BlankCell || cell.getContents().trim().isEmpty());
     }
+
+    public static int getRealRow(int row, JTable table)
+    {
+        return table.getRowSorter().convertRowIndexToModel(row);
+    }
 }

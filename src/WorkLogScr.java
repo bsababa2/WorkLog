@@ -186,36 +186,34 @@ public class WorkLogScr extends JXFrame
 
     private void initComponents() throws Exception
     {
-        Utils.setSoftSize(customerCombo, DEFAULT_COMBO_SIZE);
-        Utils.setSoftSize(fromDatePicker, DEFAULT_DATE_SIZE);
-        Utils.setSoftSize(toDatePicker, DEFAULT_DATE_SIZE);
-        Utils.setSoftSize(workField, DEFAULT_WORKFILED_SIZE);
-        Utils.setSoftSize(filterDatesButton, DEFAULT_BUTTON_SIZE);
-        Utils.setSoftSize(multipleAddButton, DEFAULT_BUTTON_SIZE);
-        Utils.setSoftSize(removeButton, DEFAULT_BUTTON_SIZE);
-        Utils.setSoftSize(resetButton, DEFAULT_BUTTON_SIZE);
-        Utils.setSoftSize(printButton, new Dimension(150, 25));
-        Utils.setSoftSize(importFromExcelButton, new Dimension(150, 25));
-        fromDatePicker.setFont(DEFAULT_TEXT_FONT);
-        toDatePicker.setFont(DEFAULT_TEXT_FONT);
-
+        // Set the from date picker to be a month back
         Calendar monthBack = Calendar.getInstance();
         monthBack.add(Calendar.MONTH, -1);
         fromDatePicker.setDate(monthBack.getTime());
 
-        workTable.getTableHeader().setFont(DEFAULT_LABEL_FONT);
-        workTable.getColumn(WorkTableModel.JOBS_DESCR_COL).setMinWidth(350);
-        workTable.getColumn(WorkTableModel.REMARKS_COL).setMinWidth(250);
         workTable.setDefaultRenderer(Object.class, new WorkTableRenderer());
 
+        currentDateLabel.setText(DateFormat.getDateTimeInstance
+                (DateFormat.SHORT, DateFormat.SHORT).format(Calendar.getInstance().getTime()));
+
+        initSizesAndFonts();
+        initEventHandlers();
+        initHelloTimer();
+        initComponentsFromDB();
+    }
+
+    private void initEventHandlers()
+    {
         workTable.addMouseListener(new MouseAdapter()
         {
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                if (e.getClickCount() >= 2 && workTable.getSelectedRow() != -1)
+                int realSelectedRow = Utils.getRealRow(workTable.getSelectedRow(), workTable);
+
+                if (e.getClickCount() >= 2 && realSelectedRow != -1)
                 {
-                    Job jobToUpdate = ((WorkTableModel) workTable.getModel()).getCurrentJobList().get(workTable.getSelectedRow());
+                    Job jobToUpdate = ((WorkTableModel) workTable.getModel()).getCurrentJobList().get(realSelectedRow);
                     JobRecordDialog recordDialog = new JobRecordDialog(WorkLogScr.this,jobToUpdate);
 
                     if (recordDialog.isFinished() && !jobToUpdate.equals(recordDialog.getReturnedJob()))
@@ -223,7 +221,9 @@ public class WorkLogScr extends JXFrame
                         try
                         {
                             DBManager.getSingleton().updateJob(recordDialog.getReturnedJob());
-                            ((WorkTableModel)workTable.getModel()).getCurrentJobList().set(workTable.getSelectedRow(),
+                            ((WorkTableModel)workTable.getModel()).getCurrentJobList().set(realSelectedRow,
+                                    recordDialog.getReturnedJob());
+                            ((WorkTableModel)workTable.getModel()).getPreservedJobList().set(realSelectedRow,
                                     recordDialog.getReturnedJob());
                             ((WorkTableModel)workTable.getModel()).fireTableDataChanged();
                         } catch (Exception e1)
@@ -279,7 +279,8 @@ public class WorkLogScr extends JXFrame
                         return;
                     }
 
-                    ((WorkTableModel)workTable.getModel()).getCurrentJobList().add(job);
+                    ((WorkTableModel)workTable.getModel()).getCurrentJobList().add(0, job);
+                    ((WorkTableModel)workTable.getModel()).getPreservedJobList().add(0, job);
                     ((WorkTableModel) workTable.getModel()).fireTableDataChanged();
                     jobRecordDialog = new JobRecordDialog(WorkLogScr.this, null);
                 }
@@ -299,8 +300,7 @@ public class WorkLogScr extends JXFrame
 
                     for (int i = 0; i < selectedRows.length; i++)
                     {
-                        Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().
-                                get(workTable.getRowSorter().convertRowIndexToModel(selectedRows[i]));
+                        Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().get(Utils.getRealRow(selectedRows[i], workTable));
                         DBManager.getSingleton().removeJob(job.getId());
                         removedJobs.add(job);
                     }
@@ -371,9 +371,10 @@ public class WorkLogScr extends JXFrame
                 doFilter();
             }
         });
+    }
 
-        currentDateLabel.setText(DateFormat.getDateTimeInstance
-                (DateFormat.SHORT, DateFormat.SHORT).format(Calendar.getInstance().getTime()));
+    private void initHelloTimer()
+    {
         Timer helloTimer = new Timer(60000, new ActionListener()
         {
             @Override
@@ -386,11 +387,39 @@ public class WorkLogScr extends JXFrame
             }
         });
         helloTimer.start();
-
-        initComponentsFromDB();
     }
 
-    public void importFromExcel() throws Exception
+    private void initSizesAndFonts()
+    {
+        Utils.setSoftSize(customerCombo, DEFAULT_COMBO_SIZE);
+        Utils.setSoftSize(fromDatePicker, DEFAULT_DATE_SIZE);
+        Utils.setSoftSize(toDatePicker, DEFAULT_DATE_SIZE);
+        Utils.setSoftSize(workField, DEFAULT_WORKFILED_SIZE);
+        Utils.setSoftSize(filterDatesButton, DEFAULT_BUTTON_SIZE);
+        Utils.setSoftSize(multipleAddButton, DEFAULT_BUTTON_SIZE);
+        Utils.setSoftSize(removeButton, DEFAULT_BUTTON_SIZE);
+        Utils.setSoftSize(resetButton, DEFAULT_BUTTON_SIZE);
+        Utils.setSoftSize(printButton, new Dimension(150, 25));
+        Utils.setSoftSize(importFromExcelButton, new Dimension(150, 25));
+        fromDatePicker.setFont(DEFAULT_TEXT_FONT);
+        toDatePicker.setFont(DEFAULT_TEXT_FONT);
+
+        workTable.getTableHeader().setFont(DEFAULT_LABEL_FONT);
+        workTable.getColumn(WorkTableModel.DATE_COL).setMaxWidth(85);
+        workTable.getColumn(WorkTableModel.DATE_COL).setMinWidth(85);
+        workTable.getColumn(WorkTableModel.CUSTOMER_COL).setMinWidth(80);
+        workTable.getColumn(WorkTableModel.CUSTOMER_COL).setMaxWidth(120);
+        workTable.getColumn(WorkTableModel.CUSTOMER_COL).setPreferredWidth(120);
+        workTable.getColumn(WorkTableModel.JOBS_DESCR_COL).setMinWidth(500);
+        workTable.getColumn(WorkTableModel.PRICE_COL).setMinWidth(80);
+        workTable.getColumn(WorkTableModel.PRICE_COL).setMaxWidth(120);
+        workTable.getColumn(WorkTableModel.PRICE_COL).setPreferredWidth(120);
+        workTable.getColumn(WorkTableModel.REMARKS_COL).setMinWidth(100);
+        workTable.getColumn(WorkTableModel.REMARKS_COL).setPreferredWidth(100);
+        workTable.getColumn(WorkTableModel.REMARKS_COL).setMaxWidth(200);
+    }
+
+    private void importFromExcel() throws Exception
     {
         final JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(chooser.getFileSystemView().getParentDirectory(new File("C:\\")).getParentFile());
@@ -543,6 +572,9 @@ public class WorkLogScr extends JXFrame
         List<Customer> customers = DBManager.getSingleton().getCustomers();
         customers.add(0, Customer.ALL_VALUES);
         customerCombo.setModel(new DefaultComboBoxModel(customers.toArray()));
+        customerCombo.setEditable(true);
+        customerCombo.setSelectedItem(Customer.ALL_VALUES);
+        new MaximumMatchComboBoxDoc(customerCombo);
     }
 
     private class WorkTableModel extends AbstractTableModel
@@ -622,10 +654,19 @@ public class WorkLogScr extends JXFrame
 
     private class WorkTableRenderer extends DefaultTableRenderer
     {
+        private JTextArea textArea = new JTextArea();
+
+        private WorkTableRenderer()
+        {
+            textArea.setLineWrap(true);
+            textArea.setWrapStyleWord(true);
+        }
+
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
             int realColumn = table.convertColumnIndexToModel(column);
+            int realRow = Utils.getRealRow(row, table);
 
             if (realColumn == WorkTableModel.DATE_COL)
             {
@@ -638,7 +679,15 @@ public class WorkLogScr extends JXFrame
 
             Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-            int realRow = table.getRowSorter().convertRowIndexToModel(row);
+            if (column == WorkTableModel.JOBS_DESCR_COL)
+            {
+                textArea.setText(((JLabel) component).getText());
+                textArea.setBackground(component.getBackground());
+                textArea.setForeground(component.getForeground());
+                int numberOfLines = textArea.getText().length() / 60;
+                if (numberOfLines > 0) table.setRowHeight(realRow, numberOfLines *table.getRowHeight());
+                component = textArea;
+            }
 
             if (((WorkTableModel)table.getModel()).getCurrentJobList().get(realRow).isNewRecord())
             {

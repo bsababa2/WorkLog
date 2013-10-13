@@ -151,6 +151,10 @@ public class JobRecordDialog extends JDialog
         priceField.setText("0");
         jobDescField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         remarksField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        jobDescField.setLineWrap(true);
+        jobDescField.setWrapStyleWord(true);
+        remarksField.setLineWrap(true);
+        remarksField.setWrapStyleWord(true);
 
         addNewCustomerButton.setFocusable(false);
         addNewCustomerButton.addActionListener(new ActionListener()
@@ -266,7 +270,14 @@ public class JobRecordDialog extends JDialog
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                feedJobIntoDB();
+                try
+                {
+                    feedJobIntoDB();
+                } catch (Exception e1)
+                {
+                    Utils.showExceptionMsg(JobRecordDialog.this, e1);
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -303,7 +314,7 @@ public class JobRecordDialog extends JDialog
         }
     }
 
-    private void feedJobIntoDB()
+    private void feedJobIntoDB() throws Exception
     {
         if (priceField.getText().isEmpty() || customerCombo.getSelectedIndex() == -1)
         {
@@ -315,15 +326,7 @@ public class JobRecordDialog extends JDialog
                 jobDescField.getText(), Double.parseDouble(priceField.getText()),
                 remarksField.getText().equals(DEFAULT_REMARKS_TEXT) ? "" : remarksField.getText());
 
-        try
-        {
-            job.setId(DBManager.getSingleton().addJob(job));
-        }
-        catch (Exception e1)
-        {
-            Utils.showExceptionMsg(JobRecordDialog.this, e1);
-            e1.printStackTrace();
-        }
+        job.setId(DBManager.getSingleton().addJob(job));
 
         JobRecordDialog.this.returnedJob = job;
         JobRecordDialog.this.dispose();
