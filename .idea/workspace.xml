@@ -6,13 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBManager.java" afterPath="$PROJECT_DIR$/src/DBManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Job.java" afterPath="$PROJECT_DIR$/src/Job.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JobRecordDialog.java" afterPath="$PROJECT_DIR$/src/JobRecordDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Utils.java" afterPath="$PROJECT_DIR$/src/Utils.java" />
+    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="Fixing text area wrapping text">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/WorkLogScr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/swingx_all_1_6_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/swingx_all_1_6_4.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
@@ -86,35 +81,37 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="682" column="31" selection-start="22115" selection-end="22115" vertical-scroll-proportion="0.7376147" vertical-offset="11192" max-vertical-offset="12121">
+            <state line="592" column="0" selection-start="19817" selection-end="19817" vertical-scroll-proportion="0.33333334" vertical-offset="9881" max-vertical-offset="12291">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8354#9439#0" expanded="true" />
-                <element signature="e#9434#9435#0" expanded="true" />
-                <element signature="e#9470#9569#0" expanded="true" />
-                <element signature="e#9564#9565#0" expanded="true" />
-                <element signature="e#9611#10097#0" expanded="true" />
-                <element signature="e#10092#10093#0" expanded="true" />
-                <element signature="e#10139#10765#0" expanded="true" />
-                <element signature="e#10760#10761#0" expanded="true" />
-                <element signature="e#10802#11613#0" expanded="true" />
-                <element signature="e#11608#11609#0" expanded="true" />
-                <element signature="e#11649#12084#0" expanded="true" />
-                <element signature="e#12079#12080#0" expanded="true" />
-                <element signature="e#12130#12385#0" expanded="true" />
-                <element signature="e#12380#12381#0" expanded="true" />
-                <element signature="e#12423#12536#0" expanded="true" />
-                <element signature="e#12531#12532#0" expanded="true" />
-                <element signature="e#12572#12751#0" expanded="true" />
-                <element signature="e#12746#12747#0" expanded="true" />
-                <element signature="e#12830#13105#0" expanded="true" />
-                <element signature="e#13100#13101#0" expanded="true" />
-                <element signature="e#19700#19701#0" expanded="true" />
-                <element signature="e#19732#19733#0" expanded="true" />
-                <element signature="e#20129#20130#0" expanded="true" />
-                <element signature="e#20159#20160#0" expanded="true" />
-                <element signature="e#20382#20383#0" expanded="true" />
-                <element signature="e#20417#20418#0" expanded="true" />
+                <element signature="e#8397#9482#0" expanded="true" />
+                <element signature="e#9477#9478#0" expanded="true" />
+                <element signature="e#9513#9612#0" expanded="true" />
+                <element signature="e#9607#9608#0" expanded="true" />
+                <element signature="e#9654#10140#0" expanded="true" />
+                <element signature="e#10135#10136#0" expanded="true" />
+                <element signature="e#10182#10808#0" expanded="true" />
+                <element signature="e#10803#10804#0" expanded="true" />
+                <element signature="e#10845#11656#0" expanded="true" />
+                <element signature="e#11651#11652#0" expanded="true" />
+                <element signature="e#11692#12127#0" expanded="true" />
+                <element signature="e#12122#12123#0" expanded="true" />
+                <element signature="e#12173#12428#0" expanded="true" />
+                <element signature="e#12423#12424#0" expanded="true" />
+                <element signature="e#12466#12579#0" expanded="true" />
+                <element signature="e#12574#12575#0" expanded="true" />
+                <element signature="e#12615#12794#0" expanded="true" />
+                <element signature="e#12789#12790#0" expanded="true" />
+                <element signature="e#12873#13148#0" expanded="true" />
+                <element signature="e#13143#13144#0" expanded="true" />
+                <element signature="e#19719#20293#0" expanded="true" />
+                <element signature="e#20287#20288#0" expanded="true" />
+                <element signature="e#20345#20346#0" expanded="true" />
+                <element signature="e#20377#20378#0" expanded="true" />
+                <element signature="e#20774#20775#0" expanded="true" />
+                <element signature="e#20804#20805#0" expanded="true" />
+                <element signature="e#21027#21028#0" expanded="true" />
+                <element signature="e#21062#21063#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,10 +150,7 @@
         <entry file="file://$PROJECT_DIR$/src/DBManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="167" column="0" selection-start="0" selection-end="7206" vertical-scroll-proportion="0.0" vertical-offset="2839" max-vertical-offset="5746">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1336#1346#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -206,7 +200,7 @@
       <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="34" selection-start="0" selection-end="2869" vertical-scroll-proportion="0.0" vertical-offset="1206" max-vertical-offset="1836">
+            <state line="87" column="19" selection-start="2321" selection-end="2321" vertical-scroll-proportion="0.0" vertical-offset="1291" max-vertical-offset="1836">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -593,7 +587,11 @@
       <created>1381700042962</created>
       <updated>1381700042962</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixing text area wrapping text">
+      <created>1386622900341</created>
+      <updated>1386622900341</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -607,7 +605,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842106" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39894736" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39473686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -654,7 +652,8 @@
     <MESSAGE value="Fix bugs found after first install + making the combo box searchable&#10;&#10;" />
     <MESSAGE value="Fix bugs and rearranging methods&#10;&#10;" />
     <MESSAGE value="Changing from keyTyped to keyPressed&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing from keyTyped to keyPressed&#10;&#10;" />
+    <MESSAGE value="Fixing text area wrapping text" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing text area wrapping text" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -670,32 +669,34 @@
         <state line="49" column="80" selection-start="2018" selection-end="2098" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="11475">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8354#9439#0" expanded="true" />
-            <element signature="e#9434#9435#0" expanded="true" />
-            <element signature="e#9470#9569#0" expanded="true" />
-            <element signature="e#9564#9565#0" expanded="true" />
-            <element signature="e#9611#10097#0" expanded="true" />
-            <element signature="e#10092#10093#0" expanded="true" />
-            <element signature="e#10139#10765#0" expanded="true" />
-            <element signature="e#10760#10761#0" expanded="true" />
-            <element signature="e#10802#11613#0" expanded="true" />
-            <element signature="e#11608#11609#0" expanded="true" />
-            <element signature="e#11649#12084#0" expanded="true" />
-            <element signature="e#12079#12080#0" expanded="true" />
-            <element signature="e#12130#12385#0" expanded="true" />
-            <element signature="e#12380#12381#0" expanded="true" />
-            <element signature="e#12423#12536#0" expanded="true" />
-            <element signature="e#12531#12532#0" expanded="true" />
-            <element signature="e#12572#12751#0" expanded="true" />
-            <element signature="e#12746#12747#0" expanded="true" />
-            <element signature="e#12830#13105#0" expanded="true" />
-            <element signature="e#13100#13101#0" expanded="true" />
-            <element signature="e#19700#19701#0" expanded="true" />
-            <element signature="e#19732#19733#0" expanded="true" />
-            <element signature="e#20129#20130#0" expanded="true" />
-            <element signature="e#20159#20160#0" expanded="true" />
-            <element signature="e#20382#20383#0" expanded="true" />
-            <element signature="e#20417#20418#0" expanded="true" />
+            <element signature="e#8397#9482#0" expanded="true" />
+            <element signature="e#9477#9478#0" expanded="true" />
+            <element signature="e#9513#9612#0" expanded="true" />
+            <element signature="e#9607#9608#0" expanded="true" />
+            <element signature="e#9654#10140#0" expanded="true" />
+            <element signature="e#10135#10136#0" expanded="true" />
+            <element signature="e#10182#10808#0" expanded="true" />
+            <element signature="e#10803#10804#0" expanded="true" />
+            <element signature="e#10845#11656#0" expanded="true" />
+            <element signature="e#11651#11652#0" expanded="true" />
+            <element signature="e#11692#12127#0" expanded="true" />
+            <element signature="e#12122#12123#0" expanded="true" />
+            <element signature="e#12173#12428#0" expanded="true" />
+            <element signature="e#12423#12424#0" expanded="true" />
+            <element signature="e#12466#12579#0" expanded="true" />
+            <element signature="e#12574#12575#0" expanded="true" />
+            <element signature="e#12615#12794#0" expanded="true" />
+            <element signature="e#12789#12790#0" expanded="true" />
+            <element signature="e#12873#13148#0" expanded="true" />
+            <element signature="e#13143#13144#0" expanded="true" />
+            <element signature="e#19719#20293#0" expanded="true" />
+            <element signature="e#20287#20288#0" expanded="true" />
+            <element signature="e#20345#20346#0" expanded="true" />
+            <element signature="e#20377#20378#0" expanded="true" />
+            <element signature="e#20774#20775#0" expanded="true" />
+            <element signature="e#20804#20805#0" expanded="true" />
+            <element signature="e#21027#21028#0" expanded="true" />
+            <element signature="e#21062#21063#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -730,10 +731,7 @@
     <entry file="file://$PROJECT_DIR$/src/DBManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="167" column="0" selection-start="4743" selection-end="4743" vertical-scroll-proportion="0.0" vertical-offset="2839" max-vertical-offset="5746">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1336#1346#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -821,11 +819,6 @@
         <state line="90" column="14" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.6692607" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="292" column="32" selection-start="11643" selection-end="11643" vertical-scroll-proportion="0.33268481" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="13" selection-start="165" selection-end="165" vertical-scroll-proportion="0.23151751" vertical-offset="0" max-vertical-offset="0">
@@ -837,9 +830,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="36" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#885#1047#0" expanded="true" />
-            <element signature="e#1036#1037#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#885#1047#0" expanded="false" />
+            <element signature="e#1036#1037#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -882,10 +875,7 @@
     <entry file="file://$PROJECT_DIR$/src/DBManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="167" column="0" selection-start="0" selection-end="7206" vertical-scroll-proportion="0.0" vertical-offset="2839" max-vertical-offset="5746">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1336#1346#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -929,15 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="34" selection-start="0" selection-end="2869" vertical-scroll-proportion="0.0" vertical-offset="1206" max-vertical-offset="1836">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="8" selection-start="0" selection-end="11186" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="6409">
@@ -965,37 +946,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="682" column="31" selection-start="22115" selection-end="22115" vertical-scroll-proportion="0.7376147" vertical-offset="11192" max-vertical-offset="12121">
+        <state line="978" column="16" selection-start="37197" selection-end="37197" vertical-scroll-proportion="0.33211008" vertical-offset="15306" max-vertical-offset="160786">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3061" column="23" selection-start="105454" selection-end="105454" vertical-scroll-proportion="0.33211008" vertical-offset="49833" max-vertical-offset="169184">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="19" selection-start="2321" selection-end="2321" vertical-scroll-proportion="0.0" vertical-offset="1189" max-vertical-offset="1836">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8354#9439#0" expanded="true" />
-            <element signature="e#9434#9435#0" expanded="true" />
-            <element signature="e#9470#9569#0" expanded="true" />
-            <element signature="e#9564#9565#0" expanded="true" />
-            <element signature="e#9611#10097#0" expanded="true" />
-            <element signature="e#10092#10093#0" expanded="true" />
-            <element signature="e#10139#10765#0" expanded="true" />
-            <element signature="e#10760#10761#0" expanded="true" />
-            <element signature="e#10802#11613#0" expanded="true" />
-            <element signature="e#11608#11609#0" expanded="true" />
-            <element signature="e#11649#12084#0" expanded="true" />
-            <element signature="e#12079#12080#0" expanded="true" />
-            <element signature="e#12130#12385#0" expanded="true" />
-            <element signature="e#12380#12381#0" expanded="true" />
-            <element signature="e#12423#12536#0" expanded="true" />
-            <element signature="e#12531#12532#0" expanded="true" />
-            <element signature="e#12572#12751#0" expanded="true" />
-            <element signature="e#12746#12747#0" expanded="true" />
-            <element signature="e#12830#13105#0" expanded="true" />
-            <element signature="e#13100#13101#0" expanded="true" />
-            <element signature="e#19700#19701#0" expanded="true" />
-            <element signature="e#19732#19733#0" expanded="true" />
-            <element signature="e#20129#20130#0" expanded="true" />
-            <element signature="e#20159#20160#0" expanded="true" />
-            <element signature="e#20382#20383#0" expanded="true" />
-            <element signature="e#20417#20418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/table/AbstractTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="16" selection-start="4178" selection-end="4178" vertical-scroll-proportion="0.33211008" vertical-offset="1927" max-vertical-offset="5440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/event/TableModelEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="176" column="15" selection-start="6024" selection-end="6024" vertical-scroll-proportion="3.5577981" vertical-offset="645" max-vertical-offset="2720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1622" column="23" selection-start="61823" selection-end="61823" vertical-scroll-proportion="0.33211008" vertical-offset="26271" max-vertical-offset="93330">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="592" column="0" selection-start="19817" selection-end="19817" vertical-scroll-proportion="0.33333334" vertical-offset="9881" max-vertical-offset="12291">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8397#9482#0" expanded="true" />
+            <element signature="e#9477#9478#0" expanded="true" />
+            <element signature="e#9513#9612#0" expanded="true" />
+            <element signature="e#9607#9608#0" expanded="true" />
+            <element signature="e#9654#10140#0" expanded="true" />
+            <element signature="e#10135#10136#0" expanded="true" />
+            <element signature="e#10182#10808#0" expanded="true" />
+            <element signature="e#10803#10804#0" expanded="true" />
+            <element signature="e#10845#11656#0" expanded="true" />
+            <element signature="e#11651#11652#0" expanded="true" />
+            <element signature="e#11692#12127#0" expanded="true" />
+            <element signature="e#12122#12123#0" expanded="true" />
+            <element signature="e#12173#12428#0" expanded="true" />
+            <element signature="e#12423#12424#0" expanded="true" />
+            <element signature="e#12466#12579#0" expanded="true" />
+            <element signature="e#12574#12575#0" expanded="true" />
+            <element signature="e#12615#12794#0" expanded="true" />
+            <element signature="e#12789#12790#0" expanded="true" />
+            <element signature="e#12873#13148#0" expanded="true" />
+            <element signature="e#13143#13144#0" expanded="true" />
+            <element signature="e#19719#20293#0" expanded="true" />
+            <element signature="e#20287#20288#0" expanded="true" />
+            <element signature="e#20345#20346#0" expanded="true" />
+            <element signature="e#20377#20378#0" expanded="true" />
+            <element signature="e#20774#20775#0" expanded="true" />
+            <element signature="e#20804#20805#0" expanded="true" />
+            <element signature="e#21027#21028#0" expanded="true" />
+            <element signature="e#21062#21063#0" expanded="true" />
           </folding>
         </state>
       </provider>

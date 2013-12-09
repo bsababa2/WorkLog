@@ -9,6 +9,8 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
@@ -583,6 +585,20 @@ public class WorkLogScr extends JXFrame
 
 		private WorkTableModel()
 		{
+			addTableModelListener(new TableModelListener()
+			{
+				@Override
+				public void tableChanged(TableModelEvent e)
+				{
+					int colLen = workTable.getColumnModel().getColumn(workTable.convertColumnIndexToModel(JOBS_DESCR_COL)).getWidth();
+					for (int i = 0; i < getRowCount(); i++)
+					{
+						int realRow = Utils.getRealRow(i, workTable);
+						int textLen = workTable.getFontMetrics(DEFAULT_TEXT_FONT).stringWidth(getValueAt(realRow, JOBS_DESCR_COL).toString());
+						if (textLen > colLen) workTable.setRowHeight(realRow, (textLen/colLen + 1) * workTable.getRowHeight());
+					}
+				}
+			});
 		}
 
 		private List<Job> getPreservedJobList()
@@ -670,14 +686,11 @@ public class WorkLogScr extends JXFrame
 
 			Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
+			component.setFont(DEFAULT_TEXT_FONT);
+
 			if (column == WorkTableModel.JOBS_DESCR_COL)
 			{
 				textArea.setText(value.toString());
-				textArea.setSize(table.getColumnModel().getColumn(realColumn).getWidth(), textArea.getPreferredSize().height);
-				if (table.getRowHeight(row) != textArea.getPreferredSize().height)
-				{
-					table.setRowHeight(row, textArea.getPreferredSize().height);
-				}
 				textArea.setBackground(component.getBackground());
 				textArea.setForeground(component.getForeground());
 
@@ -692,8 +705,6 @@ public class WorkLogScr extends JXFrame
 			{
 				component.setBackground(isSelected ? UPDATED_RECORD_SELECTED_COLOR : UPDATED_RECORD_COLOR);
 			}
-
-			component.setFont(DEFAULT_TEXT_FONT);
 
 			return component;
 		}
