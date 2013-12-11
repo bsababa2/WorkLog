@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
@@ -16,6 +19,7 @@ import java.beans.PropertyChangeListener;
  */
 public class AutoCompletion extends PlainDocument
 {
+	private final BasicComboPopup popup;
 	JComboBox comboBox;
 	ComboBoxModel model;
 	JTextComponent editor;
@@ -33,15 +37,8 @@ public class AutoCompletion extends PlainDocument
 	public AutoCompletion(final JComboBox comboBox)
 	{
 		this.comboBox = comboBox;
+		popup = (BasicComboPopup)comboBox.getAccessibleContext().getAccessibleChild(0);
 		model = comboBox.getModel();
-
-		comboBox.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				if (!selecting) editor.selectAll();
-			}
-		});
 
 		comboBox.addPropertyChangeListener(new PropertyChangeListener()
 		{
@@ -49,6 +46,18 @@ public class AutoCompletion extends PlainDocument
 			{
 				if (e.getPropertyName().equals("editor")) configureEditor((ComboBoxEditor) e.getNewValue());
 				if (e.getPropertyName().equals("model")) model = (ComboBoxModel) e.getNewValue();
+			}
+		});
+
+		popup.getList().addListSelectionListener(new ListSelectionListener()
+		{
+			@Override
+			public void valueChanged(ListSelectionEvent e)
+			{
+				if (e.getValueIsAdjusting())
+				{
+//					pattern = popup.getList().getSelectedValue().toString();
+				}
 			}
 		});
 
@@ -66,6 +75,8 @@ public class AutoCompletion extends PlainDocument
 						hitBackspaceOnSelection=editor.getSelectionStart()!=editor.getSelectionEnd();
 						break;
 					// ignore delete key
+					case KeyEvent.VK_RIGHT :
+					case KeyEvent.VK_LEFT :
 					case KeyEvent.VK_DELETE :
 						e.consume();
 						comboBox.getToolkit().beep();
@@ -84,7 +95,8 @@ public class AutoCompletion extends PlainDocument
 		{
 			public void focusGained(FocusEvent e)
 			{
-				editor.selectAll();
+				editor.setCaretPosition(0);
+				pattern = "";
 			}
 			public void focusLost(FocusEvent e)
 			{
@@ -95,7 +107,6 @@ public class AutoCompletion extends PlainDocument
 		// Handle initially selected object
 		Object selected = comboBox.getSelectedItem();
 		if (selected!=null) setText(selected.toString());
-		editor.selectAll();
 	}
 
 	public static void enable(JComboBox comboBox)
@@ -120,7 +131,34 @@ public class AutoCompletion extends PlainDocument
 			editor.addKeyListener(editorKeyListener);
 			editor.addFocusListener(editorFocusListener);
 			editor.setDocument(this);
+			handleMouseEvents();
 		}
+	}
+
+	private void handleMouseEvents()
+	{
+		int length = editor.getMouseListeners().length;
+		for (int i = 0; i < length; i++)
+		{
+			editor.removeMouseListener(editor.getMouseListeners()[0]);
+		}
+		editor.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				comboBox.grabFocus();
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				if (editor.getSelectionStart() != editor.getSelectionEnd())
+				{
+					editor.setCaretPosition(0);
+				}
+			}
+		});
 	}
 
 	public void remove(int offs, int len) throws BadLocationException
@@ -133,7 +171,7 @@ public class AutoCompletion extends PlainDocument
 			if (editor.getSelectionStart() == editor.getSelectionEnd()) editor.setCaretPosition(0);
 			if (editor.getCaretPosition() > 0)
 			{
-				pattern = pattern.substring(0, pattern.length() - 1);
+				if (!pattern.isEmpty()) pattern = pattern.substring(0, pattern.length() - 1);
 				editor.moveCaretPosition(editor.getCaretPosition() - 1);
 			}
 			else
