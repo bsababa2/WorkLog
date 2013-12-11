@@ -7,7 +7,7 @@
  */
 public class Customer
 {
-    public static Customer ALL_VALUES = new Customer("-הכל-");
+    public static Customer ALL_VALUES = new Customer(-1, "-הכל-");
     private int id;
     private String name;
 

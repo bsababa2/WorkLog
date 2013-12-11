@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -10,12 +8,9 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-/* This work is hereby released into the Public Domain.
- * To view a copy of the public domain dedication, visit
- * http://creativecommons.org/licenses/publicdomain/
- *
- * Barak Harizi: Improved so the combo box would search not only by the prefix, but by all the sub strings of the combo
- * items.
+/*
+ * Barak Harizi: Improved so the combo box would search not only by the prefix,
+ * but by all the sub strings of the combo items.
  */
 public class AutoCompletion extends PlainDocument
 {
@@ -49,18 +44,6 @@ public class AutoCompletion extends PlainDocument
 			}
 		});
 
-		popup.getList().addListSelectionListener(new ListSelectionListener()
-		{
-			@Override
-			public void valueChanged(ListSelectionEvent e)
-			{
-				if (e.getValueIsAdjusting())
-				{
-//					pattern = popup.getList().getSelectedValue().toString();
-				}
-			}
-		});
-
 		editorKeyListener = new KeyAdapter()
 		{
 			public void keyPressed(KeyEvent e)
@@ -74,7 +57,15 @@ public class AutoCompletion extends PlainDocument
 						hitBackspace=true;
 						hitBackspaceOnSelection=editor.getSelectionStart()!=editor.getSelectionEnd();
 						break;
-					// ignore delete key
+					case KeyEvent.VK_DOWN:
+					case KeyEvent.VK_UP:
+						if (comboBox.isPopupVisible())
+						{
+							setPopupListSelectedItemByKeyEvent(e);
+						}
+						e.consume();
+						break;
+					// ignore keys
 					case KeyEvent.VK_RIGHT :
 					case KeyEvent.VK_LEFT :
 					case KeyEvent.VK_DELETE :
@@ -90,7 +81,6 @@ public class AutoCompletion extends PlainDocument
 			}
 		};
 
-		// Highlight whole text when gaining focus
 		editorFocusListener = new FocusAdapter()
 		{
 			public void focusGained(FocusEvent e)
@@ -103,10 +93,72 @@ public class AutoCompletion extends PlainDocument
 				pattern = "";
 			}
 		};
+
 		configureEditor(comboBox.getEditor());
+
 		// Handle initially selected object
 		Object selected = comboBox.getSelectedItem();
 		if (selected!=null) setText(selected.toString());
+	}
+
+	private void setPopupListSelectedItemByKeyEvent(KeyEvent keyEvent)
+	{
+		int selectedIndex = popup.getList().getSelectedIndex();
+		if (!pattern.isEmpty())
+		{
+			// If the key pressed is DOWN
+			if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
+			{
+				for (int i = selectedIndex + 1; i < model.getSize(); i++)
+				{
+					if (isCurrentItemMatchesPattern(i)) return;
+
+					if (i == model.getSize() - 1)
+					{
+						i = -1;
+					}
+				}
+			}
+			// The key pressed is UP
+			else
+			{
+				selectedIndex = (selectedIndex  == -1) ? model.getSize() : selectedIndex;
+				for (int i = selectedIndex - 1; i >= 0; i--)
+				{
+					if (isCurrentItemMatchesPattern(i)) return;
+
+					if (i == 0)
+					{
+						i = model.getSize();
+					}
+				}
+			}
+		}
+		else
+		{
+			if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
+			{
+				comboBox.setSelectedIndex((selectedIndex == model.getSize() - 1) ? 0 : selectedIndex + 1);
+			}
+			else
+			{
+				comboBox.setSelectedIndex((selectedIndex == 0) ? model.getSize() - 1 : selectedIndex - 1);
+			}
+		}
+	}
+
+	private boolean isCurrentItemMatchesPattern(int i)
+	{
+		Object currentItem = model.getElementAt(i);
+		// current item contains the pattern
+		if (currentItem != null && currentItem.toString().contains(pattern))
+		{
+			comboBox.setSelectedIndex(i);
+			setText(currentItem.toString());
+			highlightByPattern(currentItem);
+			return true;
+		}
+		return false;
 	}
 
 	public static void enable(JComboBox comboBox)
@@ -194,14 +246,19 @@ public class AutoCompletion extends PlainDocument
 			// insert the string into the document
 			super.insertString(offs, str, a);
 			setSelectedItem(item);
-			int indexPattern = item.toString().indexOf(pattern);
 			setText(item.toString());
-			editor.select(indexPattern, indexPattern+pattern.length());
+			highlightByPattern(item);
 		}
 		else
 		{
 			pattern = pattern.substring(0, pattern.length() - 1);
 		}
+	}
+
+	private void highlightByPattern(Object item)
+	{
+		int indexPattern = item.toString().indexOf(pattern);
+		editor.select(indexPattern, indexPattern+pattern.length());
 	}
 
 	private void setText(String text)
@@ -236,17 +293,17 @@ public class AutoCompletion extends PlainDocument
 		else
 		{
 			// iterate over all items
-			for (int i=0, n=model.getSize(); i < n; i++)
+			for (int i = 0, n = model.getSize(); i < n; i++)
 			{
 				Object currentItem = model.getElementAt(i);
-				// current item starts with the pattern?
+				// current item contains the pattern?
 				if (currentItem != null && currentItem.toString().contains(pattern))
 				{
 					return currentItem;
 				}
 			}
 		}
-		// no item starts with the pattern => return null
+		// no item contains the pattern => return null
 		return null;
 	}
 
