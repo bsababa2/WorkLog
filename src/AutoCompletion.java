@@ -9,8 +9,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /*
- * Barak Harizi: Improved so the combo box would search not only by the prefix,
- * but by all the sub strings of the combo items.
+ * Barak Harizi: Auto completion for combo box that searches not only by prefix,
+ * but by all the sub strings possible matching the pattern.
  */
 public class AutoCompletion extends PlainDocument
 {
@@ -150,6 +150,7 @@ public class AutoCompletion extends PlainDocument
 	private boolean isCurrentItemMatchesPattern(int i)
 	{
 		Object currentItem = model.getElementAt(i);
+
 		// current item contains the pattern
 		if (currentItem != null && currentItem.toString().contains(pattern))
 		{
