@@ -66,6 +66,11 @@ public class AutoCompletion extends PlainDocument
 						e.consume();
 						break;
 					// ignore keys
+					case KeyEvent.VK_A:
+						if (!e.isControlDown())
+						{
+							break;
+						}
 					case KeyEvent.VK_RIGHT :
 					case KeyEvent.VK_LEFT :
 					case KeyEvent.VK_DELETE :
@@ -195,6 +200,7 @@ public class AutoCompletion extends PlainDocument
 		{
 			editor.removeMouseListener(editor.getMouseListeners()[0]);
 		}
+
 		editor.addMouseListener(new MouseAdapter()
 		{
 			@Override
@@ -209,6 +215,23 @@ public class AutoCompletion extends PlainDocument
 				if (editor.getSelectionStart() != editor.getSelectionEnd())
 				{
 					editor.setCaretPosition(0);
+				}
+			}
+		});
+
+		popup.getList().addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				Object selectedValue = popup.getList().getSelectedValue();
+				if (selectedValue != null)
+				{
+					pattern = "";
+					setSelectedItem(selectedValue);
+					setText(selectedValue.toString());
+					editor.setCaretPosition(0);
+					e.consume();
 				}
 			}
 		});
@@ -244,8 +267,6 @@ public class AutoCompletion extends PlainDocument
 
 		if (item != null)
 		{
-			// insert the string into the document
-			super.insertString(offs, str, a);
 			setSelectedItem(item);
 			setText(item.toString());
 			highlightByPattern(item);
@@ -253,6 +274,7 @@ public class AutoCompletion extends PlainDocument
 		else
 		{
 			pattern = pattern.substring(0, pattern.length() - 1);
+			comboBox.getToolkit().beep();
 		}
 	}
 
