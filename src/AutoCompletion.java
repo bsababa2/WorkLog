@@ -243,7 +243,11 @@ public class AutoCompletion extends PlainDocument
 
 		if (hitBackspace)
 		{
-			if (editor.getSelectionStart() == editor.getSelectionEnd()) return;
+			if (editor.getSelectionStart() == editor.getSelectionEnd())
+			{
+				comboBox.getToolkit().beep();
+				return;
+			}
 			if (editor.getCaretPosition() > 0)
 			{
 				if (!pattern.isEmpty()) pattern = pattern.substring(0, pattern.length() - 1);
@@ -331,8 +335,7 @@ public class AutoCompletion extends PlainDocument
 
 	public boolean isValidChar(char c)
 	{
-		return (c >='א' && c <= 'ת' ) || (c >= '0' && c <= '9') || (Character.toUpperCase(c) >= 'A' &&
-			Character.toUpperCase(c) <= 'Z') || c == ' ' || c == '"';
+		return (Character.isAlphabetic(c) || Character.isDigit(c) || Character.isSpaceChar(c) || c == '"');
 	}
 
 	public static void enable(JComboBox comboBox)
