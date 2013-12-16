@@ -14,20 +14,23 @@ import java.beans.PropertyChangeListener;
  */
 public class AutoCompletion extends PlainDocument
 {
-	private final BasicComboPopup popup;
-	JComboBox comboBox;
-	ComboBoxModel model;
-	JTextComponent editor;
+	private static final String EDITOR_PROP_NAME = "editor";
+	private static final String MODEL_PROP_NAME = "model";
+
+	private BasicComboPopup popup;
+	private JComboBox comboBox;
+	private ComboBoxModel model;
+	private JTextComponent editor;
 	// flag to indicate if setSelectedItem has been called
 	// subsequent calls to remove/insertString should be ignored
-	boolean selecting=false;
-	boolean hitBackspace=false;
-	boolean hitBackspaceOnSelection;
+	private boolean selecting=false;
+	private boolean hitBackspace=false;
 
-	KeyListener editorKeyListener;
-	FocusListener editorFocusListener;
+	private KeyListener editorKeyListener;
+	private FocusListener editorFocusListener;
+	private MouseListener popupListMouseListener;
 
-	String pattern = "";
+	private String pattern = "";
 
 	public AutoCompletion(final JComboBox comboBox)
 	{
@@ -39,8 +42,8 @@ public class AutoCompletion extends PlainDocument
 		{
 			public void propertyChange(PropertyChangeEvent e)
 			{
-				if (e.getPropertyName().equals("editor")) configureEditor((ComboBoxEditor) e.getNewValue());
-				if (e.getPropertyName().equals("model")) model = (ComboBoxModel) e.getNewValue();
+				if (e.getPropertyName().equals(EDITOR_PROP_NAME)) configureEditor((ComboBoxEditor) e.getNewValue());
+				if (e.getPropertyName().equals(MODEL_PROP_NAME)) model = (ComboBoxModel) e.getNewValue();
 			}
 		});
 
@@ -55,7 +58,6 @@ public class AutoCompletion extends PlainDocument
 					// determine if the pressed key is backspace (needed by the remove method)
 					case KeyEvent.VK_BACK_SPACE :
 						hitBackspace=true;
-						hitBackspaceOnSelection=editor.getSelectionStart()!=editor.getSelectionEnd();
 						break;
 					case KeyEvent.VK_DOWN:
 					case KeyEvent.VK_UP:
@@ -69,6 +71,7 @@ public class AutoCompletion extends PlainDocument
 					case KeyEvent.VK_A:
 						if (!e.isControlDown())
 						{
+							pattern += e.getKeyChar();
 							break;
 						}
 					case KeyEvent.VK_RIGHT :
@@ -102,8 +105,7 @@ public class AutoCompletion extends PlainDocument
 		configureEditor(comboBox.getEditor());
 
 		// Handle initially selected object
-		Object selected = comboBox.getSelectedItem();
-		if (selected!=null) setText(selected.toString());
+		if (comboBox.getSelectedItem() != null) setText(comboBox.getSelectedItem().toString());
 	}
 
 	private void setPopupListSelectedItemByKeyEvent(KeyEvent keyEvent)
@@ -159,20 +161,12 @@ public class AutoCompletion extends PlainDocument
 		// current item contains the pattern
 		if (currentItem != null && currentItem.toString().contains(pattern))
 		{
-			comboBox.setSelectedIndex(i);
+			setSelectedItem(currentItem);
 			setText(currentItem.toString());
 			highlightByPattern(currentItem);
 			return true;
 		}
 		return false;
-	}
-
-	public static void enable(JComboBox comboBox)
-	{
-		// has to be editable
-		comboBox.setEditable(true);
-		// change the editor's document
-		new AutoCompletion(comboBox);
 	}
 
 	void configureEditor(ComboBoxEditor newEditor)
@@ -219,7 +213,11 @@ public class AutoCompletion extends PlainDocument
 			}
 		});
 
-		popup.getList().addMouseListener(new MouseAdapter()
+		if (popupListMouseListener != null)
+		{
+			popup.getList().removeMouseListener(popupListMouseListener);
+		}
+		popupListMouseListener = new MouseAdapter()
 		{
 			@Override
 			public void mousePressed(MouseEvent e)
@@ -234,7 +232,8 @@ public class AutoCompletion extends PlainDocument
 					e.consume();
 				}
 			}
-		});
+		};
+		popup.getList().addMouseListener(popupListMouseListener);
 	}
 
 	public void remove(int offs, int len) throws BadLocationException
@@ -244,7 +243,7 @@ public class AutoCompletion extends PlainDocument
 
 		if (hitBackspace)
 		{
-			if (editor.getSelectionStart() == editor.getSelectionEnd()) editor.setCaretPosition(0);
+			if (editor.getSelectionStart() == editor.getSelectionEnd()) return;
 			if (editor.getCaretPosition() > 0)
 			{
 				if (!pattern.isEmpty()) pattern = pattern.substring(0, pattern.length() - 1);
@@ -332,6 +331,15 @@ public class AutoCompletion extends PlainDocument
 
 	public boolean isValidChar(char c)
 	{
-		return (c >='א' && c <= 'ת' ) || (c >= '0' && c <= '9') || c == ' ' || c == '"';
+		return (c >='א' && c <= 'ת' ) || (c >= '0' && c <= '9') || (Character.toUpperCase(c) >= 'A' &&
+			Character.toUpperCase(c) <= 'Z') || c == ' ' || c == '"';
+	}
+
+	public static void enable(JComboBox comboBox)
+	{
+		// has to be editable
+		comboBox.setEditable(true);
+		// change the editor's document
+		new AutoCompletion(comboBox);
 	}
 }
