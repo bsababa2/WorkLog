@@ -200,6 +200,26 @@ public class AutoCompletion extends PlainDocument
 			editor.removeMouseMotionListener(editor.getMouseMotionListeners()[0]);
 		}
 
+		length = editor.getMouseListeners().length;
+		for (int i = 0; i < length; i++)
+		{
+			editor.removeMouseListener(editor.getMouseListeners()[0]);
+		}
+		editor.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				comboBox.grabFocus();
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				editor.getCaret().setVisible(false);
+			}
+		});
+
 		if (popupListMouseListener != null)
 		{
 			popup.getList().removeMouseListener(popupListMouseListener);
