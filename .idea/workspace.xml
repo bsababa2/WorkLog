@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="Fixing combo box auto complete">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AutoCompletion.java" afterPath="$PROJECT_DIR$/src/AutoCompletion.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
@@ -90,7 +89,7 @@
       <file leaf-file-name="AutoCompletion.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="191" column="116" selection-start="4745" selection-end="4745" vertical-scroll-proportion="4.5008183" vertical-offset="429" max-vertical-offset="5440">
+            <state line="44" column="170" selection-start="1475" selection-end="1475" vertical-scroll-proportion="1.1129296" vertical-offset="0" max-vertical-offset="5440">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -534,12 +533,16 @@
       <created>1387300674259</created>
       <updated>1387300674259</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fixing combo box auto complete">
+      <created>1387310133251</created>
+      <updated>1387310133251</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -550,7 +553,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39473686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32210526" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
@@ -919,7 +922,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="191" column="116" selection-start="4745" selection-end="4745" vertical-scroll-proportion="4.5008183" vertical-offset="429" max-vertical-offset="5440">
+        <state line="44" column="170" selection-start="1475" selection-end="1475" vertical-scroll-proportion="1.1129296" vertical-offset="0" max-vertical-offset="5440">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
