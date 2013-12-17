@@ -16,7 +16,7 @@ public class AutoCompletion extends PlainDocument
 {
 	private static final String EDITOR_PROP_NAME = "editor";
 	private static final String MODEL_PROP_NAME = "model";
-	private static final Color SELECTION_COLOR = new Color(168, 255, 168);
+	private static final Color SELECTION_COLOR = new Color(202, 255, 201);
 
 	private BasicComboPopup popup;
 	private JComboBox comboBox;
@@ -28,7 +28,7 @@ public class AutoCompletion extends PlainDocument
 	private MouseListener popupListMouseListener;
 
 	private String pattern = "";
-	private Color colorPreserver;
+	private Color initialColor;
 
 	public AutoCompletion(final JComboBox comboBox)
 	{
@@ -101,7 +101,7 @@ public class AutoCompletion extends PlainDocument
 		{
 			public void focusGained(FocusEvent e)
 			{
-				colorPreserver = editor.getBackground();
+				initialColor = editor.getBackground();
 				if (editor.isEnabled())
 				{
 					editor.setCaretPosition(0);
@@ -112,7 +112,7 @@ public class AutoCompletion extends PlainDocument
 			}
 			public void focusLost(FocusEvent e)
 			{
-				editor.setBackground(colorPreserver);
+				editor.setBackground(initialColor);
 				pattern = "";
 			}
 		};

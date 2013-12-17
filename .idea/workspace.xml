@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="Fix autocomplete">
+    <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="Fix autocomplete bugs">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AutoCompletion.java" afterPath="$PROJECT_DIR$/src/AutoCompletion.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -90,7 +90,7 @@
       <file leaf-file-name="AutoCompletion.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="26" selection-start="2934" selection-end="2934" vertical-scroll-proportion="2.3770492" vertical-offset="463" max-vertical-offset="5950">
+            <state line="108" column="23" selection-start="2927" selection-end="2927" vertical-scroll-proportion="0.4262295" vertical-offset="1534" max-vertical-offset="5950">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,7 +129,16 @@
         <entry file="file://$PROJECT_DIR$/src/Customer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="13" column="16" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1071">
-              <folding />
+              <folding>
+                <element signature="e#490#491#0" expanded="false" />
+                <element signature="e#515#516#0" expanded="false" />
+                <element signature="e#552#553#0" expanded="false" />
+                <element signature="e#580#581#0" expanded="false" />
+                <element signature="e#615#616#0" expanded="false" />
+                <element signature="e#642#643#0" expanded="false" />
+                <element signature="e#686#687#0" expanded="false" />
+                <element signature="e#718#719#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -555,7 +564,11 @@
       <created>1387312920099</created>
       <updated>1387312920099</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Fix autocomplete bugs">
+      <created>1387315348329</created>
+      <updated>1387315348329</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -646,7 +659,8 @@
     <MESSAGE value="Fixing remark" />
     <MESSAGE value="Fixing combo box auto complete" />
     <MESSAGE value="Check" />
-    <option name="LAST_COMMIT_MESSAGE" value="Check" />
+    <MESSAGE value="Fix autocomplete bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix autocomplete bugs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -661,13 +675,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="80" selection-start="2018" selection-end="2098" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="11475">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="11" selection-start="1763" selection-end="1763" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="6409" />
@@ -923,7 +930,16 @@
     <entry file="file://$PROJECT_DIR$/src/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="16" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
-          <folding />
+          <folding>
+            <element signature="e#490#491#0" expanded="false" />
+            <element signature="e#515#516#0" expanded="false" />
+            <element signature="e#552#553#0" expanded="false" />
+            <element signature="e#580#581#0" expanded="false" />
+            <element signature="e#615#616#0" expanded="false" />
+            <element signature="e#642#643#0" expanded="false" />
+            <element signature="e#686#687#0" expanded="false" />
+            <element signature="e#718#719#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -934,16 +950,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/beans/PropertyChangeSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="334" column="0" selection-start="12434" selection-end="12434" vertical-scroll-proportion="0.33333334" vertical-offset="5002" max-vertical-offset="8721">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2729" column="17" selection-start="103515" selection-end="103515" vertical-scroll-proportion="0.39526412" vertical-offset="45020" max-vertical-offset="93330">
+        <state line="2728" column="0" selection-start="103459" selection-end="103459" vertical-scroll-proportion="0.33333334" vertical-offset="45037" max-vertical-offset="93330">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="26" selection-start="2934" selection-end="2934" vertical-scroll-proportion="2.3770492" vertical-offset="463" max-vertical-offset="5950">
+        <state line="108" column="23" selection-start="2927" selection-end="2927" vertical-scroll-proportion="0.4262295" vertical-offset="1534" max-vertical-offset="5950">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
