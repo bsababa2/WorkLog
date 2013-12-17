@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboPopup;
-import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.PlainDocument;
@@ -21,10 +20,6 @@ public class AutoCompletion extends PlainDocument
 	private JComboBox comboBox;
 	private ComboBoxModel model;
 	private JTextComponent editor;
-	// flag to indicate if setSelectedItem has been called
-	// subsequent calls to remove/insertString should be ignored
-	private boolean selecting=false;
-	private boolean hitBackspace=false;
 
 	private KeyListener editorKeyListener;
 	private FocusListener editorFocusListener;
@@ -52,12 +47,11 @@ public class AutoCompletion extends PlainDocument
 			public void keyPressed(KeyEvent e)
 			{
 				if (comboBox.isDisplayable()) comboBox.setPopupVisible(true);
-				hitBackspace=false;
 				switch (e.getKeyCode())
 				{
-					// determine if the pressed key is backspace (needed by the remove method)
 					case KeyEvent.VK_BACK_SPACE :
-						hitBackspace=true;
+						deleteByBackspace();
+						e.consume();
 						break;
 					case KeyEvent.VK_DOWN:
 					case KeyEvent.VK_UP:
@@ -68,6 +62,7 @@ public class AutoCompletion extends PlainDocument
 						e.consume();
 						break;
 					// ignore keys
+					case KeyEvent.VK_V:
 					case KeyEvent.VK_A:
 						if (!e.isControlDown())
 						{
@@ -85,6 +80,16 @@ public class AutoCompletion extends PlainDocument
 						{
 							pattern += e.getKeyChar();
 						}
+				}
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+				if (e.getKeyCode() != KeyEvent.VK_ESCAPE && e.getKeyCode() != KeyEvent.VK_ENTER)
+				{
+					addCharToPattern();
+					e.consume();
 				}
 			}
 		};
@@ -220,7 +225,7 @@ public class AutoCompletion extends PlainDocument
 		popupListMouseListener = new MouseAdapter()
 		{
 			@Override
-			public void mousePressed(MouseEvent e)
+			public void mouseReleased(MouseEvent e)
 			{
 				Object selectedValue = popup.getList().getSelectedValue();
 				if (selectedValue != null)
@@ -236,35 +241,26 @@ public class AutoCompletion extends PlainDocument
 		popup.getList().addMouseListener(popupListMouseListener);
 	}
 
-	public void remove(int offs, int len) throws BadLocationException
+	public void deleteByBackspace()
 	{
-		// return immediately when selecting an item
-		if (selecting) return;
-
-		if (hitBackspace)
+		if (editor.getSelectionStart() == editor.getSelectionEnd())
 		{
-			if (editor.getSelectionStart() == editor.getSelectionEnd())
-			{
-				comboBox.getToolkit().beep();
-				return;
-			}
-			if (editor.getCaretPosition() > 0)
-			{
-				if (!pattern.isEmpty()) pattern = pattern.substring(0, pattern.length() - 1);
-				editor.moveCaretPosition(editor.getCaretPosition() - 1);
-			}
-			else
-			{
-				comboBox.getToolkit().beep();
-			}
+			comboBox.getToolkit().beep();
+			return;
+		}
+		if (editor.getCaretPosition() > 0)
+		{
+			if (!pattern.isEmpty()) pattern = pattern.substring(0, pattern.length() - 1);
+			editor.moveCaretPosition(editor.getCaretPosition() - 1);
+		}
+		else
+		{
+			comboBox.getToolkit().beep();
 		}
 	}
 
-	public void insertString(int offs, String str, AttributeSet a) throws BadLocationException
+	public void addCharToPattern()
 	{
-		// return immediately when selecting an item
-		if (selecting) return;
-
 		// lookup and select a matching item
 		Object item = lookupItem(pattern);
 
@@ -303,9 +299,7 @@ public class AutoCompletion extends PlainDocument
 
 	private void setSelectedItem(Object item)
 	{
-		selecting = true;
 		model.setSelectedItem(item);
-		selecting = false;
 	}
 
 	private Object lookupItem(String pattern)

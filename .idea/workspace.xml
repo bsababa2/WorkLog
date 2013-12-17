@@ -90,14 +90,8 @@
       <file leaf-file-name="AutoCompletion.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="73" selection-start="6040" selection-end="6040" vertical-scroll-proportion="0.287796" vertical-offset="3888" max-vertical-offset="5933">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1362#1660#0" expanded="true" />
-                <element signature="e#1655#1656#0" expanded="true" />
-                <element signature="e#5488#5832#0" expanded="true" />
-                <element signature="e#5827#5828#0" expanded="true" />
-              </folding>
+            <state line="2" column="0" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="5746">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -229,6 +223,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="SearchEverywhereHistory" value="" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -290,6 +285,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -315,19 +323,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -513,7 +508,11 @@
       <created>1387215493451</created>
       <updated>1387215493451</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fixing combo box auto complete">
+      <created>1387218348764</created>
+      <updated>1387218348764</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -542,8 +541,8 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842106" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -557,19 +556,19 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842106" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39473686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32210526" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14375" sideWeight="0.67074525" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -618,25 +617,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/JobRecordDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="8" selection-start="0" selection-end="11186" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="6409" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="0" selection-start="0" selection-end="7206" vertical-scroll-proportion="0.0" vertical-offset="2839" max-vertical-offset="5746">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="16" selection-start="0" selection-end="3137" vertical-scroll-proportion="0.0" vertical-offset="2550" max-vertical-offset="2737">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="19" selection-start="2320" selection-end="2320" vertical-scroll-proportion="0.0" vertical-offset="1479" max-vertical-offset="1836">
@@ -768,9 +748,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1622" column="23" selection-start="61823" selection-end="61823" vertical-scroll-proportion="0.33211008" vertical-offset="26271" max-vertical-offset="93330">
-          <folding />
-        </state>
+        <state line="1622" column="23" selection-start="61823" selection-end="61823" vertical-scroll-proportion="0.33211008" vertical-offset="26271" max-vertical-offset="93330" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/DefaultKeyboardFocusManager.java">
@@ -780,9 +758,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/AbstractDocument.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="432" column="15" selection-start="16101" selection-end="16101" vertical-scroll-proportion="0.33333334" vertical-offset="6396" max-vertical-offset="51765">
-          <folding />
-        </state>
+        <state line="432" column="15" selection-start="16101" selection-end="16101" vertical-scroll-proportion="0.33333334" vertical-offset="6396" max-vertical-offset="51765" />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/autocomplete/AbstractAutoCompleteAdaptor.java">
@@ -834,18 +810,6 @@
         <state line="265" column="18" selection-start="8319" selection-end="8319" vertical-scroll-proportion="0.33333334" vertical-offset="3506" max-vertical-offset="19975" />
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/InputEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="55" selection-start="3386" selection-end="3393" vertical-scroll-proportion="0.33333334" vertical-offset="1653" max-vertical-offset="8415" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/KeyEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1628" column="32" selection-start="63037" selection-end="63037" vertical-scroll-proportion="0.48816028" vertical-offset="26762" max-vertical-offset="27829">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1268" column="19" selection-start="42242" selection-end="42242" vertical-scroll-proportion="0.33333334" vertical-offset="19792" max-vertical-offset="169184">
@@ -860,9 +824,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1147" column="16" selection-start="42944" selection-end="42944" vertical-scroll-proportion="0.33333334" vertical-offset="18105" max-vertical-offset="62135">
-          <folding />
-        </state>
+        <state line="1147" column="16" selection-start="42944" selection-end="42944" vertical-scroll-proportion="0.33333334" vertical-offset="18105" max-vertical-offset="62135" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JComboBox.java">
@@ -891,37 +853,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/ComboBoxModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="7" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.478355" vertical-offset="0" max-vertical-offset="924">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/PlainDocument.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="16" selection-start="3604" selection-end="3604" vertical-scroll-proportion="0.33333334" vertical-offset="1330" max-vertical-offset="5134">
-          <folding />
-        </state>
+        <state line="112" column="16" selection-start="3604" selection-end="3604" vertical-scroll-proportion="0.33333334" vertical-offset="1330" max-vertical-offset="5134" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/lang/Character.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5757" column="44" selection-start="203571" selection-end="203571" vertical-scroll-proportion="0.33333334" vertical-offset="97244" max-vertical-offset="119204">
+        <state line="5757" column="44" selection-start="203571" selection-end="203571" vertical-scroll-proportion="0.33333334" vertical-offset="97244" max-vertical-offset="119204" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/jre/lib/rt.jar!/sun/text/normalizer/UnicodeSet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="0.11038961" vertical-offset="0" max-vertical-offset="2108" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/util/regex/UnicodeProp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="5" selection-start="294" selection-end="294" vertical-scroll-proportion="0.33333334" vertical-offset="185" max-vertical-offset="4097" />
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/autocomplete/AutoComplete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="68" selection-start="3020" selection-end="3020" vertical-scroll-proportion="0.33333334" vertical-offset="595" max-vertical-offset="3468" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/InputEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="383" column="19" selection-start="13288" selection-end="13288" vertical-scroll-proportion="1.75" vertical-offset="4862" max-vertical-offset="8415" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/KeyEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="203" column="63" selection-start="8253" selection-end="8253" vertical-scroll-proportion="0.41666666" vertical-offset="2720" max-vertical-offset="27829" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/ComboBoxModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="7" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.5664845" vertical-offset="131" max-vertical-offset="680">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="73" selection-start="6040" selection-end="6040" vertical-scroll-proportion="0.287796" vertical-offset="3888" max-vertical-offset="5933">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1362#1660#0" expanded="true" />
-            <element signature="e#1655#1656#0" expanded="true" />
-            <element signature="e#5488#5832#0" expanded="true" />
-            <element signature="e#5827#5828#0" expanded="true" />
-          </folding>
+        <state line="2" column="0" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="5746">
+          <folding />
         </state>
       </provider>
     </entry>
