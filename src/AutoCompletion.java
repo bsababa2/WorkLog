@@ -8,7 +8,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /*
-
  * Barak Harizi: Auto completion for combo box that searches not only by prefix,
  * but by all the sub strings possible matching the pattern.
  */
