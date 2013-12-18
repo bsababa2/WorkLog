@@ -16,6 +16,7 @@ public class AutoCompletion extends PlainDocument
 {
 	private static final String EDITOR_PROP_NAME = "editor";
 	private static final String MODEL_PROP_NAME = "model";
+	private static final String SPECIAL_CHARS = "`~!@#$%^&*()_-+=[]{}|\\\"':;?/.>,<";
 	private static final Color SELECTION_COLOR = new Color(202, 255, 201);
 
 	private BasicComboPopup popup;
@@ -69,7 +70,7 @@ public class AutoCompletion extends PlainDocument
 					case KeyEvent.VK_A:
 						if (!e.isControlDown())
 						{
-							pattern += e.getKeyChar();
+							addCharToPattern(e.getKeyChar());
 							break;
 						}
 					case KeyEvent.VK_RIGHT :
@@ -81,19 +82,16 @@ public class AutoCompletion extends PlainDocument
 					default:
 						if (isValidChar(e.getKeyChar()))
 						{
-							pattern += e.getKeyChar();
+							addCharToPattern(e.getKeyChar());
 						}
 				}
+				e.consume();
 			}
 
 			@Override
 			public void keyTyped(KeyEvent e)
 			{
-				if (e.getKeyCode() != KeyEvent.VK_ESCAPE && e.getKeyCode() != KeyEvent.VK_ENTER)
-				{
-					addCharToPattern();
-					e.consume();
-				}
+				e.consume();
 			}
 		};
 
@@ -271,8 +269,11 @@ public class AutoCompletion extends PlainDocument
 		}
 	}
 
-	public void addCharToPattern()
+	public void addCharToPattern(char c)
 	{
+		// adds the character to the pattern
+		pattern += c;
+
 		// lookup and select a matching item
 		Object item = lookupItem(pattern);
 
@@ -341,7 +342,7 @@ public class AutoCompletion extends PlainDocument
 
 	public boolean isValidChar(char c)
 	{
-		return (Character.isAlphabetic(c) || Character.isDigit(c) || Character.isSpaceChar(c) || c == '"');
+		return (Character.isLetterOrDigit(c) || Character.isSpaceChar(c) || SPECIAL_CHARS.indexOf(c) != -1);
 	}
 
 	public static void enable(JComboBox comboBox)
