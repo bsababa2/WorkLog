@@ -90,13 +90,9 @@
       <file leaf-file-name="AutoCompletion.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="35" selection-start="2334" selection-end="2334" vertical-scroll-proportion="2.129326" vertical-offset="123" max-vertical-offset="6120">
+            <state line="69" column="86" selection-start="2174" selection-end="2174" vertical-scroll-proportion="0.4025501" vertical-offset="884" max-vertical-offset="5865">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1338#1636#0" expanded="true" />
-                <element signature="e#1631#1632#0" expanded="true" />
-                <element signature="e#5828#6173#0" expanded="true" />
-                <element signature="e#6168#6169#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -238,13 +234,13 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="975" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="308" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="306" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="297" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="295" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="303" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="301" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="982" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="975" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
@@ -567,7 +563,11 @@
       <created>1387316401314</created>
       <updated>1387316401314</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fix autocomplete bugs">
+      <created>1387364506203</created>
+      <updated>1387364506203</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -907,9 +907,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/AbstractDocument.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="581" column="16" selection-start="21107" selection-end="21107" vertical-scroll-proportion="0.33333334" vertical-offset="8929" max-vertical-offset="51765">
-          <folding />
-        </state>
+        <state line="581" column="16" selection-start="21107" selection-end="21107" vertical-scroll-proportion="0.33333334" vertical-offset="8929" max-vertical-offset="51765" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/WorkLogScr.java">
@@ -954,13 +952,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutoCompletion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="35" selection-start="2334" selection-end="2334" vertical-scroll-proportion="2.129326" vertical-offset="123" max-vertical-offset="6120">
+        <state line="69" column="86" selection-start="2174" selection-end="2174" vertical-scroll-proportion="0.4025501" vertical-offset="884" max-vertical-offset="5865">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1338#1636#0" expanded="true" />
-            <element signature="e#1631#1632#0" expanded="true" />
-            <element signature="e#5828#6173#0" expanded="true" />
-            <element signature="e#6168#6169#0" expanded="true" />
           </folding>
         </state>
       </provider>

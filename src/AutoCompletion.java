@@ -73,12 +73,6 @@ public class AutoCompletion extends PlainDocument
 							addCharToPattern(e.getKeyChar());
 							break;
 						}
-					case KeyEvent.VK_RIGHT :
-					case KeyEvent.VK_LEFT :
-					case KeyEvent.VK_DELETE :
-						e.consume();
-						comboBox.getToolkit().beep();
-						break;
 					default:
 						if (isValidChar(e.getKeyChar()))
 						{
