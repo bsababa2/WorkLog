@@ -37,59 +37,19 @@ public class AutoCompletion extends PlainDocument
 		popup = (BasicComboPopup)comboBox.getAccessibleContext().getAccessibleChild(0);
 		model = comboBox.getModel();
 
-		comboBox.addPropertyChangeListener(new PropertyChangeListener()
-		{
-			public void propertyChange(PropertyChangeEvent e)
-			{
-				if (e.getPropertyName().equals(EDITOR_PROP_NAME)) configureEditor((ComboBoxEditor) e.getNewValue());
-				if (e.getPropertyName().equals(MODEL_PROP_NAME)) model = (ComboBoxModel) e.getNewValue();
-			}
-		});
+		comboBox.addPropertyChangeListener(getComboBoxPropListener());
 
-		editorKeyListener = new KeyAdapter()
-		{
-			public void keyPressed(KeyEvent e)
-			{
-				if (comboBox.isDisplayable()) comboBox.setPopupVisible(true);
-				switch (e.getKeyCode())
-				{
-					case KeyEvent.VK_BACK_SPACE :
-						deleteByBackspace();
-						e.consume();
-						break;
-					case KeyEvent.VK_DOWN:
-					case KeyEvent.VK_UP:
-						if (comboBox.isPopupVisible())
-						{
-							setPopupListSelectedItemByKeyEvent(e);
-						}
-						e.consume();
-						break;
-					// ignore keys
-					case KeyEvent.VK_V:
-					case KeyEvent.VK_A:
-						if (!e.isControlDown())
-						{
-							addCharToPattern(e.getKeyChar());
-							break;
-						}
-					default:
-						if (isValidChar(e.getKeyChar()))
-						{
-							addCharToPattern(e.getKeyChar());
-						}
-				}
-				e.consume();
-			}
+		editorKeyListener = getEditorKeyAdapter(comboBox);
+		editorFocusListener = getEditorFocusAdapter();
+		configureEditor(comboBox.getEditor());
 
-			@Override
-			public void keyTyped(KeyEvent e)
-			{
-				e.consume();
-			}
-		};
+		// Handle initially selected object
+		if (comboBox.getSelectedItem() != null) setText(comboBox.getSelectedItem().toString());
+	}
 
-		editorFocusListener = new FocusAdapter()
+	private FocusAdapter getEditorFocusAdapter()
+	{
+		return new FocusAdapter()
 		{
 			public void focusGained(FocusEvent e)
 			{
@@ -97,7 +57,7 @@ public class AutoCompletion extends PlainDocument
 				if (editor.isEnabled())
 				{
 					editor.setCaretPosition(0);
-					editor.getCaret().setVisible(false);
+					hideCaret();
 					editor.setBackground(SELECTION_COLOR);
 					pattern = "";
 				}
@@ -108,11 +68,67 @@ public class AutoCompletion extends PlainDocument
 				pattern = "";
 			}
 		};
+	}
 
-		configureEditor(comboBox.getEditor());
+	private KeyAdapter getEditorKeyAdapter(final JComboBox comboBox)
+	{
+		return new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				if (comboBox.isDisplayable()) comboBox.setPopupVisible(true);
+				switch (e.getKeyCode())
+				{
+					case KeyEvent.VK_BACK_SPACE :
+						deleteByBackspace();
+						e.consume();
+						return;
+					case KeyEvent.VK_DOWN:
+					case KeyEvent.VK_UP:
+						if (comboBox.isPopupVisible())
+						{
+							setPopupListSelectedItemByKeyEvent(e);
+						}
+						e.consume();
+						return;
+					// ignore keys
+					case KeyEvent.VK_V:
+					case KeyEvent.VK_A:
+						if (!e.isControlDown())
+						{
+							addCharToPattern(e.getKeyChar());
+							return;
+						}
+					default:
+						if (isValidChar(e.getKeyChar()))
+						{
+							addCharToPattern(e.getKeyChar());
+						}
+				}
+				if (e.getKeyCode() != KeyEvent.VK_ESCAPE && e.getKeyCode() != KeyEvent.VK_ENTER)
+				{
+					e.consume();
+				}
+			}
 
-		// Handle initially selected object
-		if (comboBox.getSelectedItem() != null) setText(comboBox.getSelectedItem().toString());
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+				e.consume();
+			}
+		};
+	}
+
+	private PropertyChangeListener getComboBoxPropListener()
+	{
+		return new PropertyChangeListener()
+		{
+			public void propertyChange(PropertyChangeEvent e)
+			{
+				if (e.getPropertyName().equals(EDITOR_PROP_NAME)) configureEditor((ComboBoxEditor) e.getNewValue());
+				if (e.getPropertyName().equals(MODEL_PROP_NAME)) model = (ComboBoxModel) e.getNewValue();
+			}
+		};
 	}
 
 	private void setPopupListSelectedItemByKeyEvent(KeyEvent keyEvent)
@@ -123,6 +139,7 @@ public class AutoCompletion extends PlainDocument
 			// If the key pressed is DOWN
 			if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
 			{
+				selectedIndex = (selectedIndex  == model.getSize() - 1) ? 0 : selectedIndex;
 				for (int i = selectedIndex + 1; i < model.getSize(); i++)
 				{
 					if (isCurrentItemMatchesPattern(i)) return;
@@ -136,7 +153,7 @@ public class AutoCompletion extends PlainDocument
 			// The key pressed is UP
 			else
 			{
-				selectedIndex = (selectedIndex  == -1) ? model.getSize() : selectedIndex;
+				selectedIndex = (selectedIndex  == 0) ? model.getSize() : selectedIndex;
 				for (int i = selectedIndex - 1; i >= 0; i--)
 				{
 					if (isCurrentItemMatchesPattern(i)) return;
@@ -150,6 +167,12 @@ public class AutoCompletion extends PlainDocument
 		}
 		else
 		{
+			if (selectedIndex == -1)
+			{
+				comboBox.setSelectedIndex(keyEvent.getKeyCode() == KeyEvent.VK_DOWN ? 0 : model.getSize() - 1);
+				return;
+			}
+
 			if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
 			{
 				comboBox.setSelectedIndex((selectedIndex == model.getSize() - 1) ? 0 : selectedIndex + 1);
@@ -168,7 +191,7 @@ public class AutoCompletion extends PlainDocument
 		// current item contains the pattern
 		if (currentItem != null && currentItem.toString().contains(pattern))
 		{
-			setSelectedItem(currentItem);
+			model.setSelectedItem(currentItem);
 			setText(currentItem.toString());
 			highlightByPattern(currentItem);
 			return true;
@@ -196,16 +219,14 @@ public class AutoCompletion extends PlainDocument
 
 	private void handleMouseEvents()
 	{
-   	int length = editor.getMouseMotionListeners().length;
-		for (int i = 0; i < length; i++)
+		for (MouseMotionListener mouseMotionListener : editor.getMouseMotionListeners())
 		{
-			editor.removeMouseMotionListener(editor.getMouseMotionListeners()[0]);
+			editor.removeMouseMotionListener(mouseMotionListener);
 		}
 
-		length = editor.getMouseListeners().length;
-		for (int i = 0; i < length; i++)
+		for (MouseListener mouseListener : editor.getMouseListeners())
 		{
-			editor.removeMouseListener(editor.getMouseListeners()[0]);
+			editor.removeMouseListener(mouseListener);
 		}
 		editor.addMouseListener(new MouseAdapter()
 		{
@@ -218,7 +239,7 @@ public class AutoCompletion extends PlainDocument
 			@Override
 			public void mouseReleased(MouseEvent e)
 			{
-				editor.getCaret().setVisible(false);
+				hideCaret();
 			}
 		});
 
@@ -235,7 +256,7 @@ public class AutoCompletion extends PlainDocument
 				if (selectedValue != null)
 				{
 					pattern = "";
-					setSelectedItem(selectedValue);
+					model.setSelectedItem(selectedValue);
 					setText(selectedValue.toString());
 					editor.setCaretPosition(0);
 					e.consume();
@@ -245,16 +266,16 @@ public class AutoCompletion extends PlainDocument
 		popup.getList().addMouseListener(popupListMouseListener);
 	}
 
+	private void hideCaret()
+	{
+		editor.getCaret().setVisible(false);
+	}
+
 	public void deleteByBackspace()
 	{
-		if (editor.getSelectionStart() == editor.getSelectionEnd())
+		if (!pattern.isEmpty())
 		{
-			comboBox.getToolkit().beep();
-			return;
-		}
-		if (editor.getCaretPosition() > 0)
-		{
-			if (!pattern.isEmpty()) pattern = pattern.substring(0, pattern.length() - 1);
+		 	pattern = pattern.substring(0, pattern.length() - 1);
 			editor.moveCaretPosition(editor.getCaretPosition() - 1);
 		}
 		else
@@ -273,7 +294,7 @@ public class AutoCompletion extends PlainDocument
 
 		if (item != null)
 		{
-			setSelectedItem(item);
+			model.setSelectedItem(item);
 			setText(item.toString());
 			highlightByPattern(item);
 		}
@@ -302,11 +323,6 @@ public class AutoCompletion extends PlainDocument
 		{
 			throw new RuntimeException(e.toString());
 		}
-	}
-
-	private void setSelectedItem(Object item)
-	{
-		model.setSelectedItem(item);
 	}
 
 	private Object lookupItem(String pattern)
