@@ -15,7 +15,7 @@ public class AutoCompletion
 	private static final String EDITOR_PROP_NAME = "editor";
 	private static final String MODEL_PROP_NAME = "model";
 	private static final String SPECIAL_CHARS = "`~!@#$%^&*()_-+=[]{}|\\\"':;?/.>,<";
-	private static final Color SELECTION_COLOR = new Color(202, 255, 201);
+	private static final Color FOCUS_COLOR = new Color(202, 255, 201);
 
 	private BasicComboPopup popup;
 	private JComboBox comboBox;
@@ -53,13 +53,13 @@ public class AutoCompletion
 				{
 					editor.setCaretPosition(0);
 					hideCaret();
-					editor.setBackground(SELECTION_COLOR);
+					changeEditorBackground(FOCUS_COLOR);
 					pattern = "";
 				}
 			}
 			public void focusLost(FocusEvent e)
 			{
-				editor.setBackground(initialColor);
+				changeEditorBackground(initialColor);
 				pattern = "";
 			}
 		};
@@ -207,6 +207,22 @@ public class AutoCompletion
 			editor.addKeyListener(editorKeyListener);
 			editor.addFocusListener(editorFocusListener);
 			handleMouseEvents();
+		}
+	}
+
+	private void changeEditorBackground(Color c)
+	{
+		PropertyChangeListener[] savedPropertyChangeListeners = editor.getPropertyChangeListeners();
+		for (PropertyChangeListener listener : savedPropertyChangeListeners)
+		{
+			editor.removePropertyChangeListener(listener);
+		}
+
+		editor.setBackground(c);
+
+		for (PropertyChangeListener listener : savedPropertyChangeListeners)
+		{
+			editor.addPropertyChangeListener(listener);
 		}
 	}
 
