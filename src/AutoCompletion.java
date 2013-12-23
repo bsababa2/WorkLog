@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboPopup;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
-import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -12,7 +10,7 @@ import java.beans.PropertyChangeListener;
  * Barak Harizi: Auto completion for combo box that searches not only by prefix,
  * but by all the sub strings possible matching the pattern.
  */
-public class AutoCompletion extends PlainDocument
+public class AutoCompletion
 {
 	private static final String EDITOR_PROP_NAME = "editor";
 	private static final String MODEL_PROP_NAME = "model";
@@ -42,9 +40,6 @@ public class AutoCompletion extends PlainDocument
 		editorKeyListener = getEditorKeyAdapter(comboBox);
 		editorFocusListener = getEditorFocusAdapter();
 		configureEditor(comboBox.getEditor());
-
-		// Handle initially selected object
-		if (comboBox.getSelectedItem() != null) setText(comboBox.getSelectedItem().toString());
 	}
 
 	private FocusAdapter getEditorFocusAdapter()
@@ -192,7 +187,6 @@ public class AutoCompletion extends PlainDocument
 		if (currentItem != null && currentItem.toString().contains(pattern))
 		{
 			model.setSelectedItem(currentItem);
-			setText(currentItem.toString());
 			highlightByPattern(currentItem);
 			return true;
 		}
@@ -212,7 +206,6 @@ public class AutoCompletion extends PlainDocument
 			editor = (JTextComponent) newEditor.getEditorComponent();
 			editor.addKeyListener(editorKeyListener);
 			editor.addFocusListener(editorFocusListener);
-			editor.setDocument(this);
 			handleMouseEvents();
 		}
 	}
@@ -257,7 +250,6 @@ public class AutoCompletion extends PlainDocument
 				{
 					pattern = "";
 					model.setSelectedItem(selectedValue);
-					setText(selectedValue.toString());
 					editor.setCaretPosition(0);
 					e.consume();
 				}
@@ -286,21 +278,17 @@ public class AutoCompletion extends PlainDocument
 
 	public void addCharToPattern(char c)
 	{
-		// adds the character to the pattern
-		pattern += c;
-
 		// lookup and select a matching item
-		Object item = lookupItem(pattern);
+		Object item = lookupItem(pattern + c);
 
 		if (item != null)
 		{
+			pattern += c;
 			model.setSelectedItem(item);
-			setText(item.toString());
 			highlightByPattern(item);
 		}
 		else
 		{
-			pattern = pattern.substring(0, pattern.length() - 1);
 			comboBox.getToolkit().beep();
 		}
 	}
@@ -309,20 +297,6 @@ public class AutoCompletion extends PlainDocument
 	{
 		int indexPattern = item.toString().indexOf(pattern);
 		editor.select(indexPattern, indexPattern+pattern.length());
-	}
-
-	private void setText(String text)
-	{
-		try
-		{
-			// remove all text and insert the completed string
-			super.remove(0, getLength());
-			super.insertString(0, text, null);
-		}
-		catch (BadLocationException e)
-		{
-			throw new RuntimeException(e.toString());
-		}
 	}
 
 	private Object lookupItem(String pattern)
