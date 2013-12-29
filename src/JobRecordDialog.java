@@ -239,13 +239,13 @@ public class JobRecordDialog extends JDialog
 					catch (Exception e1)
 					{
 						Utils.showExceptionMsg(JobRecordDialog.this, e1);
-						e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+						e1.printStackTrace();
 					}
 				}
 			}
 		});
 
-		jobDescField.addFocusListener(getFocusAdapter(jobDescField, DEFAULT_JOB_DESC_TEXT));
+		jobDescField.addFocusListener(getFocusAdapter(jobDescField, DEFAULT_JOB_DESC_TEXT, false));
 		jobDescField.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -253,15 +253,23 @@ public class JobRecordDialog extends JDialog
 			{
 				if (e.getKeyChar() == KeyEvent.VK_TAB)
 				{
-					priceField.requestFocus();
+					if (e.isShiftDown())
+					{
+						customerCombo.grabFocus();
+					}
+					else
+					{
+						priceField.requestFocus();
+					}
 					e.consume();
 				}
 			}
 		});
+		jobDescField.addMouseListener(getDefaultTextMouseAdapter(jobDescField, DEFAULT_JOB_DESC_TEXT));
 
-		priceField.addFocusListener(getFocusAdapter(priceField, "0"));
+		priceField.addFocusListener(getFocusAdapter(priceField, "0", true));
 
-		remarksField.addFocusListener(getFocusAdapter(remarksField, DEFAULT_REMARKS_TEXT));
+		remarksField.addFocusListener(getFocusAdapter(remarksField, DEFAULT_REMARKS_TEXT, false));
 		remarksField.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -269,11 +277,19 @@ public class JobRecordDialog extends JDialog
 			{
 				if (e.getKeyChar() == KeyEvent.VK_TAB)
 				{
-					feedButton.requestFocus();
+					if (e.isShiftDown())
+					{
+						priceField.grabFocus();
+					}
+					else
+					{
+						feedButton.grabFocus();
+					}
 					e.consume();
 				}
 			}
 		});
+		remarksField.addMouseListener(getDefaultTextMouseAdapter(remarksField, DEFAULT_REMARKS_TEXT));
 
 		feedButton.addActionListener(new ActionListener()
 		{
@@ -338,14 +354,36 @@ public class JobRecordDialog extends JDialog
 		});
 	}
 
-	private FocusAdapter getFocusAdapter(final JTextComponent textComponent, final String defaultText)
+	private MouseAdapter getDefaultTextMouseAdapter(final JTextComponent textComponent, final String defaultText)
+	{
+		return new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				if (textComponent.getText().equals(defaultText))
+				{
+					textComponent.setText("");
+				}
+			}
+		};
+	}
+
+	private FocusAdapter getFocusAdapter(final JTextComponent textComponent, final String defaultText, final boolean isPriceField)
 	{
 		return new FocusAdapter()
 		{
 			@Override
 			public void focusGained(FocusEvent e)
 			{
-				if (jobToUpdate == null) textComponent.selectAll();
+				if (isPriceField)
+				{
+					textComponent.selectAll();
+				}
+				else
+				{
+					if (!textComponent.getText().isEmpty()) textComponent.setCaretPosition(textComponent.getText().length());
+				}
 			}
 
 			@Override
