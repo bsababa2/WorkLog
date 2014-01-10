@@ -1,3 +1,9 @@
+package app.screens;
+
+import app.db.DBManager;
+import app.entities.Customer;
+import app.entities.Job;
+import app.utils.Utils;
 import com.sun.deploy.panel.NumberDocument;
 import org.jdesktop.swingx.*;
 

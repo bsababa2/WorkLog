@@ -1,3 +1,7 @@
+package app.utils;
+
+import app.db.DBManager;
+import app.entities.Customer;
 import jxl.Cell;
 import jxl.biff.EmptyCell;
 import jxl.read.biff.BlankCell;
@@ -76,7 +80,7 @@ public class Utils
 
 	public static Image scaleImage(String imageName, int width, int height)
 	{
-		Image image = Toolkit.getDefaultToolkit().getImage(WorkLogScr.class.getResource(imageName));
+		Image image = Toolkit.getDefaultToolkit().getImage(Utils.class.getResource(imageName));
 		return image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	}
 

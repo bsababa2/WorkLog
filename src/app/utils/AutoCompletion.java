@@ -1,3 +1,5 @@
+package app.utils;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.text.JTextComponent;

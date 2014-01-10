@@ -1,3 +1,5 @@
+package app.entities;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Barak

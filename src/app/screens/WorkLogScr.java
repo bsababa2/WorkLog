@@ -1,3 +1,9 @@
+package app.screens;
+
+import app.db.DBManager;
+import app.entities.Customer;
+import app.entities.Job;
+import app.utils.Utils;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -75,14 +81,14 @@ public class WorkLogScr extends JXFrame
 	private JXTextField workField = new JXTextField();
 	private JXButton multipleAddButton = new JXButton("הוספה מרובה");
 	private JXButton removeButton = new JXButton("מחק רשומה");
-	private JXButton printButton = new JXButton("הדפס טבלה", new ImageIcon(Utils.scaleImage("print.png", 25 ,25)));
-	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", new ImageIcon(Utils.scaleImage("excel.png", 25 ,25)));
+	private JXButton printButton = new JXButton("הדפס טבלה", new ImageIcon(Utils.scaleImage("/images/print.png", 25, 25)));
+	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", new ImageIcon(Utils.scaleImage("/images/excel.png", 25, 25)));
 
 	public WorkLogScr() throws HeadlessException
 	{
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("tools.png")));
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tools.png")));
 		this.setTitle("יומן עבודות נועם");
 		Utils.setSoftSize(this, new Dimension(1200, 800));
 		this.setLocationRelativeTo(null);
@@ -100,7 +106,7 @@ public class WorkLogScr extends JXFrame
 		JXPanel helloPanel = new JXPanel();
 		Utils.setLineLayout(helloPanel);
 		Utils.addStandardRigid(helloPanel);
-		helloPanel.add(new JXLabel(new ImageIcon(Utils.scaleImage("dad.png", 50, 50))));
+		helloPanel.add(new JXLabel(new ImageIcon(Utils.scaleImage("/images/dad.png", 50, 50))));
 		Utils.addStandardRigid(helloPanel);
 		JXLabel helloLabel = new JXLabel("שלום נועם, התאריך היום");
 		helloLabel.setFont(DEFAULT_TITLE_FONT);

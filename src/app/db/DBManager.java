@@ -1,3 +1,8 @@
+package app.db;
+
+import app.entities.Customer;
+import app.entities.Job;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.*;

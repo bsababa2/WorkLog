@@ -1,3 +1,5 @@
+package app.entities;
+
 import java.util.Date;
 
 /**
