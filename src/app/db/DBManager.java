@@ -30,6 +30,7 @@ public class DBManager
 		Class.forName("org.h2.Driver");
 		BufferedReader reader = new BufferedReader(new FileReader(DB_LOC_FILE));
 		connectionUrl = connectionUrl + reader.readLine();
+		reader.close();
 	}
 
 	public static DBManager getSingleton() throws Exception
