@@ -4,6 +4,7 @@ import app.db.DBManager;
 import app.entities.Customer;
 import app.entities.Job;
 import app.utils.Utils;
+import com.alee.laf.WebLookAndFeel;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -41,9 +42,9 @@ import java.util.List;
 public class WorkLogScr extends JXFrame
 {
 	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(100, 25);
-	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
+	public static Dimension DEFAULT_DATE_SIZE = new Dimension(110, 25);
 	public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
-	public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 25);
+	public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
 	public static Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
 	public static Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
 	public static Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
@@ -51,21 +52,6 @@ public class WorkLogScr extends JXFrame
 	public static Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
 	public static Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
 	public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
-
-	static
-	{
-		UIManager.put("ComboBox.background", new ColorUIResource(UIManager.getColor("TextField.background")));
-		UIManager.put("ComboBox.font", new FontUIResource(DEFAULT_TEXT_FONT));
-		UIManager.put("TextField.font", new FontUIResource(DEFAULT_TEXT_FONT));
-		UIManager.put("TextArea.font", new FontUIResource(DEFAULT_TEXT_FONT));
-		UIManager.put("Label.font", new FontUIResource(DEFAULT_LABEL_FONT));
-		UIManager.put("Button.font", new FontUIResource(DEFAULT_LABEL_FONT));
-		UIManager.put("OptionPane.okButtonText", "אישור");
-		UIManager.put("OptionPane.cancelButtonText", "ביטול");
-		UIManager.put("FileChooser.cancelButtonText", "ביטול");
-		UIManager.put("FileChooser.directoryOpenButtonText", "פתח");
-		Locale.setDefault(new Locale("he", "IL"));
-	}
 
 	private JXTable workTable = new JXTable(new WorkTableModel());
 	private JXLabel currentDateLabel = new JXLabel();
@@ -535,9 +521,9 @@ public class WorkLogScr extends JXFrame
 		}
 		else
 		{
-			for (int i = 0; i < mustCells.length; i++)
+			for (int mustCell : mustCells)
 			{
-				if (Utils.isCellEmpty(cells[mustCells[i]]))
+				if (Utils.isCellEmpty(cells[mustCell]))
 				{
 					throw new Exception("אחד או יותר מהשדות ההכרחיים חסר!");
 				}
@@ -716,8 +702,25 @@ public class WorkLogScr extends JXFrame
 		}
 	}
 
+	private static void updateUIMangerAndLocale()
+	{
+		UIManager.put("ComboBox.background", new ColorUIResource(UIManager.getColor("TextField.background")));
+		UIManager.put("ComboBox.font", new FontUIResource(DEFAULT_TEXT_FONT));
+		UIManager.put("TextField.font", new FontUIResource(DEFAULT_TEXT_FONT));
+		UIManager.put("TextArea.font", new FontUIResource(DEFAULT_TEXT_FONT));
+		UIManager.put("Label.font", new FontUIResource(DEFAULT_LABEL_FONT));
+		UIManager.put("Button.font", new FontUIResource(DEFAULT_LABEL_FONT));
+		UIManager.put("OptionPane.okButtonText", "אישור");
+		UIManager.put("OptionPane.cancelButtonText", "ביטול");
+		UIManager.put("FileChooser.cancelButtonText", "ביטול");
+		UIManager.put("FileChooser.directoryOpenButtonText", "פתח");
+		Locale.setDefault(new Locale("he", "IL"));
+	}
+
 	public static void main(String args[])
 	{
+		WebLookAndFeel.install();
+		updateUIMangerAndLocale();
 		new WorkLogScr();
 	}
 }
