@@ -9,6 +9,7 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import org.jdesktop.swingx.*;
+import org.jdesktop.swingx.painter.MattePainter;
 import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
 import javax.print.attribute.HashPrintRequestAttributeSet;
@@ -52,6 +53,8 @@ public class WorkLogScr extends JXFrame
 	public static Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
 	public static Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
 	public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
+	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
+
 
 	private JXTable workTable = new JXTable(new WorkTableModel());
 	private JXLabel currentDateLabel = new JXLabel();
@@ -125,6 +128,7 @@ public class WorkLogScr extends JXFrame
 		Utils.addStandardRigid(filterPanel);
 
 		JXTitledPanel filterTitledPanel = new JXTitledPanel("סינון");
+		filterTitledPanel.setTitlePainter(TITLE_PAINTER);
 		filterTitledPanel.setTitleFont(DEFAULT_TITLE_FONT);
 		Utils.setPageLayout(filterTitledPanel);
 		Utils.addTinyRigid(filterTitledPanel);
@@ -134,6 +138,7 @@ public class WorkLogScr extends JXFrame
 		JScrollPane tableScrollPane = new JScrollPane(workTable);
 
 		JXTitledPanel tableTitledPanel = new JXTitledPanel("רישומי עבודות");
+		tableTitledPanel.setTitlePainter(TITLE_PAINTER);
 		tableTitledPanel.setTitleFont(DEFAULT_TITLE_FONT);
 		tableTitledPanel.add(tableScrollPane);
 
@@ -714,6 +719,7 @@ public class WorkLogScr extends JXFrame
 		UIManager.put("OptionPane.cancelButtonText", "ביטול");
 		UIManager.put("FileChooser.cancelButtonText", "ביטול");
 		UIManager.put("FileChooser.directoryOpenButtonText", "פתח");
+		UIManager.put("JTitledPanel.title.foreground", "black");
 		Locale.setDefault(new Locale("he", "IL"));
 	}
 
