@@ -59,7 +59,8 @@ public class JobRecordDialog extends JDialog
 		try
 		{
 			initComponents();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			Utils.showExceptionMsg(this, e);
 			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

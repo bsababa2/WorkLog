@@ -22,6 +22,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.basic.BasicMenuUI;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.*;
@@ -135,6 +136,7 @@ public class WorkLogScr extends JXFrame
 		filterTitledPanel.add(filterPanel);
 		Utils.addSmallRigid(filterTitledPanel);
 
+		workTable.setDefaultRenderer(Object.class, new WorkTableRenderer());
 		JScrollPane tableScrollPane = new JScrollPane(workTable);
 
 		JXTitledPanel tableTitledPanel = new JXTitledPanel("רישומי עבודות");
@@ -191,15 +193,27 @@ public class WorkLogScr extends JXFrame
 		monthBack.add(Calendar.MONTH, -1);
 		fromDatePicker.setDate(monthBack.getTime());
 
-		workTable.setDefaultRenderer(Object.class, new WorkTableRenderer());
-
-		currentDateLabel.setText(DateFormat.getDateTimeInstance
-			(DateFormat.SHORT, DateFormat.SHORT).format(Calendar.getInstance().getTime()));
-
+		initMenuBar();
 		initSizesAndFonts();
 		initEventHandlers();
 		initHelloTimer();
 		initComponentsFromDB();
+	}
+
+	private void initMenuBar()
+	{
+		JMenuBar menuBar = new JMenuBar();
+		JMenu inventoryMenu = new JMenu("מלאי");
+		inventoryMenu.setFont(DEFAULT_LABEL_FONT);
+		JMenuItem itemsMenuItem = new JMenuItem("פריטים");
+		itemsMenuItem.setFont(DEFAULT_LABEL_FONT);
+		inventoryMenu.add(itemsMenuItem);
+		inventoryMenu.setUI(new BasicMenuUI());
+		inventoryMenu.updateUI();
+
+		menuBar.add(inventoryMenu);
+
+		this.setJMenuBar(menuBar);
 	}
 
 	private void initEventHandlers()
@@ -375,6 +389,9 @@ public class WorkLogScr extends JXFrame
 
 	private void initHelloTimer()
 	{
+		currentDateLabel.setText(DateFormat.getDateTimeInstance
+			(DateFormat.SHORT, DateFormat.SHORT).format(Calendar.getInstance().getTime()));
+
 		Timer helloTimer = new Timer(60000, new ActionListener()
 		{
 			@Override
