@@ -91,7 +91,7 @@ public class Utils
 
 	public static int getRealRow(int row, JTable table)
 	{
-		return row == -1 ? row :    table.getRowSorter().convertRowIndexToModel(row);
+		return row == -1 ? row : table.getRowSorter().convertRowIndexToModel(row);
 	}
 
 	public static void initCustomerCombo(JComboBox customerCombo, boolean displayAllValues) throws Exception

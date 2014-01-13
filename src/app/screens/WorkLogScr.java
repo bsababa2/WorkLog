@@ -4,6 +4,7 @@ import app.db.DBManager;
 import app.entities.Customer;
 import app.entities.Job;
 import app.utils.Utils;
+import app.utils.WorkTableModel;
 import com.alee.laf.WebLookAndFeel;
 import jxl.Cell;
 import jxl.Sheet;
@@ -17,13 +18,10 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.*;
 import javax.swing.Timer;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicMenuUI;
-import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.print.PrinterException;
@@ -57,7 +55,8 @@ public class WorkLogScr extends JXFrame
 	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
 
 
-	private JXTable workTable = new JXTable(new WorkTableModel());
+	private WorkTableModel workTableModel = new WorkTableModel();
+	private JXTable workTable = new JXTable(workTableModel);
 	private JXLabel currentDateLabel = new JXLabel();
 	private JXLabel fromDateLabel = new JXLabel("מתאריך:");
 	private JXDatePicker fromDatePicker = new JXDatePicker(Locale.getDefault());
@@ -137,6 +136,8 @@ public class WorkLogScr extends JXFrame
 		Utils.addSmallRigid(filterTitledPanel);
 
 		workTable.setDefaultRenderer(Object.class, new WorkTableRenderer());
+		workTable.getTableHeader().setReorderingAllowed(false);
+		workTableModel.setRowHeightWrapper(workTable);
 		JScrollPane tableScrollPane = new JScrollPane(workTable);
 
 		JXTitledPanel tableTitledPanel = new JXTitledPanel("רישומי עבודות");
@@ -202,15 +203,24 @@ public class WorkLogScr extends JXFrame
 
 	private void initMenuBar()
 	{
-		JMenuBar menuBar = new JMenuBar();
-		JMenu inventoryMenu = new JMenu("מלאי");
-		inventoryMenu.setFont(DEFAULT_LABEL_FONT);
 		JMenuItem itemsMenuItem = new JMenuItem("פריטים");
 		itemsMenuItem.setFont(DEFAULT_LABEL_FONT);
+		itemsMenuItem.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				new InventoryScreen(WorkLogScr.this).setVisible(true);
+			}
+		});
+
+		JMenu inventoryMenu = new JMenu("מלאי");
 		inventoryMenu.add(itemsMenuItem);
+		inventoryMenu.setFont(DEFAULT_LABEL_FONT);
 		inventoryMenu.setUI(new BasicMenuUI());
 		inventoryMenu.updateUI();
 
+		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(inventoryMenu);
 
 		this.setJMenuBar(menuBar);
@@ -227,7 +237,7 @@ public class WorkLogScr extends JXFrame
 
 				if (e.getClickCount() >= 2 && realSelectedRow != -1)
 				{
-					Job jobToUpdate = ((WorkTableModel) workTable.getModel()).getCurrentJobList().get(realSelectedRow);
+					Job jobToUpdate = workTableModel.getCurrentEntityList().get(realSelectedRow);
 					JobRecordDialog recordDialog = new JobRecordDialog(WorkLogScr.this,jobToUpdate);
 
 					if (recordDialog.isFinished() && !jobToUpdate.equals(recordDialog.getReturnedJob()))
@@ -235,18 +245,16 @@ public class WorkLogScr extends JXFrame
 						try
 						{
 							DBManager.getSingleton().updateJob(recordDialog.getReturnedJob());
-							((WorkTableModel)workTable.getModel()).getCurrentJobList().set(realSelectedRow,
-								recordDialog.getReturnedJob());
-							((WorkTableModel)workTable.getModel()).getPreservedJobList().set(realSelectedRow,
-								recordDialog.getReturnedJob());
-							((WorkTableModel)workTable.getModel()).fireTableDataChanged();
-						} catch (Exception e1)
+							workTableModel.getCurrentEntityList().set(realSelectedRow, recordDialog.getReturnedJob());
+							workTableModel.getInitialEntityList().set(realSelectedRow, recordDialog.getReturnedJob());
+							workTableModel.fireTableRowsUpdated(realSelectedRow, realSelectedRow);
+						}
+						catch (Exception e1)
 						{
 							Utils.showExceptionMsg(WorkLogScr.this, e1);
 							e1.printStackTrace();
 						}
 					}
-
 				}
 			}
 		});
@@ -267,8 +275,8 @@ public class WorkLogScr extends JXFrame
 			{
 				try
 				{
-					((WorkTableModel)workTable.getModel()).setPreservedJobList
-						(DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
+					workTableModel.setInitialEntityList(
+						DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
 					doFilter();
 				}
 				catch (Exception e1)
@@ -293,9 +301,9 @@ public class WorkLogScr extends JXFrame
 						return;
 					}
 
-					((WorkTableModel)workTable.getModel()).getCurrentJobList().add(0, job);
-					((WorkTableModel)workTable.getModel()).getPreservedJobList().add(0, job);
-					((WorkTableModel) workTable.getModel()).fireTableDataChanged();
+					workTableModel.getCurrentEntityList().add(0, job);
+					workTableModel.getInitialEntityList().add(0, job);
+					workTableModel.fireTableRowsInserted(0, 0);
 					jobRecordDialog = new JobRecordDialog(WorkLogScr.this, null);
 				}
 			}
@@ -312,15 +320,20 @@ public class WorkLogScr extends JXFrame
 				{
 					List<Job> removedJobs = new ArrayList<Job>();
 
-					for (int i = 0; i < selectedRows.length; i++)
+					for (int selectedRow : selectedRows)
 					{
-						Job job = ((WorkTableModel)workTable.getModel()).getCurrentJobList().get(Utils.getRealRow(selectedRows[i], workTable));
+						Job job = workTableModel.getCurrentEntityList().get(Utils.getRealRow(selectedRow, workTable));
 						DBManager.getSingleton().removeJob(job.getId());
 						removedJobs.add(job);
 					}
 
-					((WorkTableModel)workTable.getModel()).getCurrentJobList().removeAll(removedJobs);
-					((WorkTableModel) workTable.getModel()).fireTableDataChanged();
+					workTableModel.getInitialEntityList().removeAll(removedJobs);
+					workTableModel.getCurrentEntityList().removeAll(removedJobs);
+					for (int selectedRow : selectedRows)
+					{
+						int realSelectedRow = Utils.getRealRow(selectedRow, workTable);
+						workTableModel.fireTableRowsDeleted(realSelectedRow, realSelectedRow);
+					}
 				}
 				catch (Exception e1)
 				{
@@ -517,8 +530,8 @@ public class WorkLogScr extends JXFrame
 			job.setId(DBManager.getSingleton().addJob(job));
 		}
 
-		((WorkTableModel)workTable.getModel()).getCurrentJobList().addAll(jobs);
-		((WorkTableModel)workTable.getModel()).fireTableDataChanged();
+		workTableModel.getCurrentEntityList().addAll(jobs);
+		workTableModel.fireTableDataChanged();
 		Utils.initCustomerCombo(customerCombo, true);
 
 		Utils.showInfoMsg(this, "הנתונים נטענו בהצלחה!");
@@ -557,7 +570,7 @@ public class WorkLogScr extends JXFrame
 
 	private void doFilter()
 	{
-		List<Job> preservedJobList = ((WorkTableModel)workTable.getModel()).getPreservedJobList();
+		List<Job> preservedJobList = workTableModel.getInitialEntityList();
 		List<Job> filteredJobList = new ArrayList<Job>();
 		for (Job job : preservedJobList)
 		{
@@ -574,103 +587,14 @@ public class WorkLogScr extends JXFrame
 			}
 		}
 
-		((WorkTableModel)workTable.getModel()).setCurrentJobList(filteredJobList);
+		workTableModel.setCurrentEntityList(filteredJobList);
 	}
 
 	private void initComponentsFromDB() throws Exception
 	{
 		Utils.initCustomerCombo(customerCombo, true);
-		((WorkTableModel)workTable.getModel()).setPreservedJobList
+		workTableModel.setInitialEntityList
 			(DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
-	}
-
-	private class WorkTableModel extends AbstractTableModel
-	{
-		private static final int DATE_COL = 0;
-		private static final int CUSTOMER_COL = 1;
-		private static final int JOBS_DESCR_COL = 2;
-		private static final int PRICE_COL = 3;
-		private static final int REMARKS_COL = 4;
-
-		private final String[] COLUMN_NAMES = new String[]{"תאריך", "לקוח", "תיאור עבודה שנעשתה", "מחיר", "הערות"};
-
-		private List<Job> currentJobList = new ArrayList<Job>();
-		private List<Job> preservedJobList = new ArrayList<Job>();
-
-		private WorkTableModel()
-		{
-			addTableModelListener(new TableModelListener()
-			{
-				@Override
-				public void tableChanged(TableModelEvent e)
-				{
-					int colLen = workTable.getColumnModel().getColumn(workTable.convertColumnIndexToModel(JOBS_DESCR_COL)).getWidth();
-					for (int i = 0; i < getRowCount(); i++)
-					{
-						int realRow = Utils.getRealRow(i, workTable);
-						int textLen = workTable.getFontMetrics(DEFAULT_TEXT_FONT).stringWidth(getValueAt(realRow, JOBS_DESCR_COL).toString());
-						if (textLen > colLen) workTable.setRowHeight(realRow, (textLen/colLen + 1) * workTable.getRowHeight());
-					}
-				}
-			});
-		}
-
-		private List<Job> getPreservedJobList()
-		{
-			return preservedJobList;
-		}
-
-		private void setPreservedJobList(List<Job> preservedJobList)
-		{
-			this.preservedJobList = preservedJobList;
-			this.currentJobList = new ArrayList<Job>(preservedJobList);
-			this.fireTableDataChanged();
-		}
-
-		public void setCurrentJobList(List<Job> currentJobList)
-		{
-			this.currentJobList = currentJobList;
-			this.fireTableDataChanged();
-		}
-
-		private List<Job> getCurrentJobList()
-		{
-			return currentJobList;
-		}
-
-		@Override
-		public String getColumnName(int column)
-		{
-			return COLUMN_NAMES[column];
-		}
-
-		@Override
-		public int getRowCount()
-		{
-			return currentJobList.size();
-		}
-
-		@Override
-		public int getColumnCount()
-		{
-			return COLUMN_NAMES.length;
-		}
-
-		@Override
-		public Object getValueAt(int rowIndex, int columnIndex)
-		{
-			Job job = currentJobList.get(rowIndex);
-
-			switch (columnIndex)
-			{
-				case DATE_COL: return job.getJobDate();
-				case CUSTOMER_COL: return job.getCustomer();
-				case JOBS_DESCR_COL: return job.getJobDescription();
-				case PRICE_COL: return job.getPrice();
-				case REMARKS_COL: return job.getRemarks();
-				default: return null;
-			}
-		}
 	}
 
 	private class WorkTableRenderer extends DefaultTableRenderer
@@ -686,14 +610,13 @@ public class WorkLogScr extends JXFrame
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
 		{
-			int realColumn = table.convertColumnIndexToModel(column);
 			int realRow = Utils.getRealRow(row, table);
 
-			if (realColumn == WorkTableModel.DATE_COL)
+			if (column == WorkTableModel.DATE_COL)
 			{
 				value = DateFormat.getDateInstance().format(value);
 			}
-			else if (realColumn == WorkTableModel.PRICE_COL)
+			else if (column == WorkTableModel.PRICE_COL)
 			{
 				value = NumberFormat.getCurrencyInstance().format(value);
 			}
@@ -711,11 +634,11 @@ public class WorkLogScr extends JXFrame
 				component = textArea;
 			}
 
-			if (((WorkTableModel)table.getModel()).getCurrentJobList().get(realRow).isNewRecord())
+			if (workTableModel.getCurrentEntityList().get(realRow).isNewRecord())
 			{
 				component.setBackground(isSelected ? NEW_RECORD_SELECTED_COLOR : NEW_RECORD_COLOR);
 			}
-			else if (((WorkTableModel)table.getModel()).getCurrentJobList().get(realRow).isUpdated())
+			else if (workTableModel.getCurrentEntityList().get(realRow).isUpdated())
 			{
 				component.setBackground(isSelected ? UPDATED_RECORD_SELECTED_COLOR : UPDATED_RECORD_COLOR);
 			}

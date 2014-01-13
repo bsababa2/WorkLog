@@ -7,12 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d27edd39-ca13-44c6-86d7-30773b46306b" name="Default" comment="Fix autocomplete bugs">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/swingx-all-1.6.4.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/weblaf-1.25.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/weblaf_1_25.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorkLog.iml" afterPath="$PROJECT_DIR$/WorkLog.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/entities/ColumnToFieldMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/utils/EntityTableModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/entities/Inventory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/screens/InventoryScreen.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/entities/Profile.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/entities/ProfileType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/utils/RowWrapTableModelListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/app/utils/WorkTableModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/entities/Job.java" afterPath="$PROJECT_DIR$/src/app/entities/Job.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/utils/Utils.java" afterPath="$PROJECT_DIR$/src/app/utils/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/screens/WorkLogScr.java" afterPath="$PROJECT_DIR$/src/app/screens/WorkLogScr.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/swingx_all_1_6_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/swingx_all_1_6_4.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WorkLog.iws" />
@@ -73,7 +78,23 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/DefaultRowSorter.java" line="810" class="javax.swing.DefaultRowSorter" package="javax.swing">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -86,7 +107,40 @@
       <file leaf-file-name="WorkLogScr.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/screens/WorkLogScr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="722" column="13" selection-start="23315" selection-end="23315" vertical-scroll-proportion="1.534384" vertical-offset="10047" max-vertical-offset="11288">
+            <state line="642" column="23" selection-start="20788" selection-end="20788" vertical-scroll-proportion="6.148784" vertical-offset="6616" max-vertical-offset="11560">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8278#8434#0" expanded="true" />
+                <element signature="e#8429#8430#0" expanded="true" />
+                <element signature="e#8800#9816#0" expanded="true" />
+                <element signature="e#9811#9812#0" expanded="true" />
+                <element signature="e#9847#9946#0" expanded="true" />
+                <element signature="e#9941#9942#0" expanded="true" />
+                <element signature="e#9988#10451#0" expanded="true" />
+                <element signature="e#10446#10447#0" expanded="true" />
+                <element signature="e#10493#11055#0" expanded="true" />
+                <element signature="e#11050#11051#0" expanded="true" />
+                <element signature="e#11092#12049#0" expanded="true" />
+                <element signature="e#12044#12045#0" expanded="true" />
+                <element signature="e#12085#12520#0" expanded="true" />
+                <element signature="e#12515#12516#0" expanded="true" />
+                <element signature="e#12566#12821#0" expanded="true" />
+                <element signature="e#12816#12817#0" expanded="true" />
+                <element signature="e#12859#12972#0" expanded="true" />
+                <element signature="e#12967#12968#0" expanded="true" />
+                <element signature="e#13008#13187#0" expanded="true" />
+                <element signature="e#13182#13183#0" expanded="true" />
+                <element signature="e#13408#13683#0" expanded="true" />
+                <element signature="e#13678#13679#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RowWrapTableModelListener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/utils/RowWrapTableModelListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="34" selection-start="922" selection-end="922" vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="1054">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,28 +148,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobRecordDialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/screens/JobRecordDialog.java">
+      <file leaf-file-name="WorkTableModel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/utils/WorkTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="197" column="35" selection-start="6742" selection-end="6742" vertical-scroll-proportion="0.0" vertical-offset="2884" max-vertical-offset="6171">
-              <folding />
+            <state line="37" column="33" selection-start="986" selection-end="986" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="799">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutoCompletion.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/utils/AutoCompletion.java">
+      <file leaf-file-name="ColumnToFieldMapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/entities/ColumnToFieldMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="21" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="1231" max-vertical-offset="6001">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/db/DBManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="79" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5712">
+            <state line="7" column="48" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding />
             </state>
           </provider>
@@ -124,17 +171,19 @@
       <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/utils/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="31" selection-start="914" selection-end="914" vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1785">
+            <state line="93" column="0" selection-start="2428" selection-end="2428" vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="1785">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Job.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/entities/Job.java">
+      <file leaf-file-name="EntityTableModel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/utils/EntityTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="16" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1955">
-              <folding />
+            <state line="29" column="14" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1156">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -179,6 +228,19 @@
         <option value="$PROJECT_DIR$/src/screens/WorkLogScr.java" />
         <option value="$PROJECT_DIR$/src/app/db/DBManager.java" />
         <option value="$PROJECT_DIR$/src/app/utils/AutoCompletion.java" />
+        <option value="$PROJECT_DIR$/src/app/entities/ProfileType.java" />
+        <option value="$PROJECT_DIR$/src/app/entities/Profile.java" />
+        <option value="$PROJECT_DIR$/src/app/entities/Inventory.java" />
+        <option value="$PROJECT_DIR$/src/app/screens/JobRecordDialog.java" />
+        <option value="$PROJECT_DIR$/src/app/screens/InventoryScreen.java" />
+        <option value="$PROJECT_DIR$/src/app/utils/ColumnToFieldMapper.java" />
+        <option value="$PROJECT_DIR$/src/app/entities/ColumnToFieldMapper.java" />
+        <option value="$PROJECT_DIR$/src/app/entities/Job.java" />
+        <option value="$PROJECT_DIR$/src/app/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/app/utils/EntityTableModel.java" />
+        <option value="$PROJECT_DIR$/src/app/utils/RowWrappingTableModelListener.java" />
+        <option value="$PROJECT_DIR$/src/app/utils/WorkTableModel.java" />
+        <option value="$PROJECT_DIR$/src/app/utils/RowWrapTableModelListener.java" />
         <option value="$PROJECT_DIR$/src/app/screens/WorkLogScr.java" />
       </list>
     </option>
@@ -215,18 +277,14 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="WorkLog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -263,7 +321,77 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WorkLog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WorkLog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="screens" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WorkLog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WorkLog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WorkLog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WorkLog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,19 +506,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -416,6 +531,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -646,7 +774,15 @@
       <created>1387367162059</created>
       <updated>1387367162059</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Change title panels color">
+      <created>1389456388837</created>
+      <updated>1389456388837</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Adding menu and redesign code">
+      <created>1389459602632</created>
+      <updated>1389459602632</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -654,7 +790,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21898597" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21790724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -681,25 +817,25 @@
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21790724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842106" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279396" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39473686" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.403452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32210526" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3193096" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.6006674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14375" sideWeight="0.67074525" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18743344" sideWeight="0.67074525" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -738,7 +874,9 @@
     <MESSAGE value="Fixing combo box auto complete" />
     <MESSAGE value="Check" />
     <MESSAGE value="Fix autocomplete bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix autocomplete bugs" />
+    <MESSAGE value="Change title panels color" />
+    <MESSAGE value="Adding menu and redesign code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding menu and redesign code" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -753,142 +891,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/table/AbstractTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="16" selection-start="4178" selection-end="4178" vertical-scroll-proportion="0.33211008" vertical-offset="1927" max-vertical-offset="5440" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/event/TableModelEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="15" selection-start="6024" selection-end="6024" vertical-scroll-proportion="3.5577981" vertical-offset="645" max-vertical-offset="2720" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/DefaultKeyboardFocusManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="888" column="0" selection-start="37734" selection-end="37782" vertical-scroll-proportion="0.33333334" vertical-offset="14233" max-vertical-offset="22508" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/autocomplete/AbstractAutoCompleteAdaptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="20" selection-start="4162" selection-end="4162" vertical-scroll-proportion="0.6944444" vertical-offset="1105" max-vertical-offset="1717" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/DefaultCaret.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="13" selection-start="4312" selection-end="4312" vertical-scroll-proportion="0.4262295" vertical-offset="1007" max-vertical-offset="31450" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/Caret.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="17" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.33333334" vertical-offset="242" max-vertical-offset="3128" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/basic/BasicComboPopup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="792" column="16" selection-start="25967" selection-end="25967" vertical-scroll-proportion="0.0" vertical-offset="12682" max-vertical-offset="21539" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/basic/BasicTreeUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2707" column="25" selection-start="94363" selection-end="94363" vertical-scroll-proportion="1.1666666" vertical-offset="44098" max-vertical-offset="76398" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/basic/BasicListUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2426" column="25" selection-start="90801" selection-end="90801" vertical-scroll-proportion="0.4025501" vertical-offset="40341" max-vertical-offset="48382" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/basic/BasicPopupMenuUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="18" selection-start="8319" selection-end="8319" vertical-scroll-proportion="0.33333334" vertical-offset="3506" max-vertical-offset="19975" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/basic/BasicComboBoxUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1120" column="24" selection-start="36876" selection-end="36876" vertical-scroll-proportion="0.0" vertical-offset="18241" max-vertical-offset="33014" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1147" column="16" selection-start="42944" selection-end="42944" vertical-scroll-proportion="0.33333334" vertical-offset="18105" max-vertical-offset="62135" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JComboBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="616" column="0" selection-start="20748" selection-end="20748" vertical-scroll-proportion="0.33333334" vertical-offset="9405" max-vertical-offset="39984">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/PlainDocument.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="16" selection-start="3604" selection-end="3604" vertical-scroll-proportion="0.33333334" vertical-offset="1330" max-vertical-offset="5134" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/lang/Character.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5757" column="44" selection-start="203571" selection-end="203571" vertical-scroll-proportion="0.33333334" vertical-offset="97244" max-vertical-offset="119204" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/jre/lib/rt.jar!/sun/text/normalizer/UnicodeSet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="0.11038961" vertical-offset="0" max-vertical-offset="2108" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/util/regex/UnicodeProp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="5" selection-start="294" selection-end="294" vertical-scroll-proportion="0.33333334" vertical-offset="185" max-vertical-offset="4097" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/autocomplete/AutoComplete.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="68" selection-start="3020" selection-end="3020" vertical-scroll-proportion="0.33333334" vertical-offset="595" max-vertical-offset="3468" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/InputEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="383" column="19" selection-start="13288" selection-end="13288" vertical-scroll-proportion="1.75" vertical-offset="4862" max-vertical-offset="8415" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/KeyEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="63" selection-start="8253" selection-end="8253" vertical-scroll-proportion="0.41666666" vertical-offset="2720" max-vertical-offset="27829" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/ComboBoxModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="7" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.5664845" vertical-offset="131" max-vertical-offset="680" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="611" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/AbstractDocument.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="581" column="16" selection-start="21107" selection-end="21107" vertical-scroll-proportion="0.33333334" vertical-offset="8929" max-vertical-offset="51765" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/beans/PropertyChangeSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="334" column="0" selection-start="12434" selection-end="12434" vertical-scroll-proportion="0.33333334" vertical-offset="5002" max-vertical-offset="8721" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/text/JTextComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="302" column="22" selection-start="11534" selection-end="11534" vertical-scroll-proportion="0.33333334" vertical-offset="3727" max-vertical-offset="83929">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1814" column="27" selection-start="62593" selection-end="62605" vertical-scroll-proportion="0.0" vertical-offset="28768" max-vertical-offset="169184">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1474" column="16" selection-start="56034" selection-end="56034" vertical-scroll-proportion="0.33206832" vertical-offset="23795" max-vertical-offset="93330">
@@ -901,107 +903,44 @@
         <state line="12" column="33" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="19295" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/entities/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="16" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/db/DBManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="79" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5712">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/Painter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="24" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.0" vertical-offset="488" max-vertical-offset="1530">
-          <folding />
-        </state>
+        <state line="56" column="24" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.0" vertical-offset="488" max-vertical-offset="1530" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/weblaf-1.25.jar!/com/alee/laf/WebLookAndFeel.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="-5.6035857" vertical-offset="2898" max-vertical-offset="3400">
-          <folding />
-        </state>
+        <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="-5.6035857" vertical-offset="2898" max-vertical-offset="3400" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/swingx-all-1.6.4.jar!/org/jdesktop/swingx/JXTitledPanel.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="9" selection-start="736" selection-end="736" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
-          <folding>
-            <element signature="e#0#2393#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/painter/AbstractAreaPainter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="17" selection-start="4068" selection-end="4068" vertical-scroll-proportion="0.0" vertical-offset="1185" max-vertical-offset="4097">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/painter/MattePainter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="23" selection-start="3265" selection-end="3265" vertical-scroll-proportion="0.65464896" vertical-offset="794" max-vertical-offset="1683">
-          <folding />
-        </state>
+        <state line="18" column="9" selection-start="736" selection-end="736" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105" />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/plaf/TitledPanelUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="22" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.32258064" vertical-offset="0" max-vertical-offset="595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/JXTitledPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="24" selection-start="5221" selection-end="5221" vertical-scroll-proportion="0.44592032" vertical-offset="2247" max-vertical-offset="4658">
-          <folding>
-            <element signature="e#8506#8507#0" expanded="true" />
-            <element signature="e#8541#8542#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="32" column="22" selection-start="1114" selection-end="1114" vertical-scroll-proportion="0.32258064" vertical-offset="0" max-vertical-offset="595" />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/plaf/basic/BasicTitledPanelUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="0" selection-start="7761" selection-end="7761" vertical-scroll-proportion="0.33206832" vertical-offset="2239" max-vertical-offset="5168">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/utils/AutoCompletion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="21" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="1231" max-vertical-offset="6001">
-          <folding />
-        </state>
+        <state line="190" column="0" selection-start="7761" selection-end="7761" vertical-scroll-proportion="0.33206832" vertical-offset="2239" max-vertical-offset="5168" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/OptionPaneUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="22" selection-start="389" selection-end="389" vertical-scroll-proportion="0.3548387" vertical-offset="17" max-vertical-offset="544">
-          <folding />
-        </state>
+        <state line="35" column="22" selection-start="389" selection-end="389" vertical-scroll-proportion="0.3548387" vertical-offset="17" max-vertical-offset="544" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/weblaf-1.25.jar!/com/alee/laf/optionpane/WebOptionPaneUI.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="21" selection-start="174" selection-end="174" vertical-scroll-proportion="0.067729086" vertical-offset="51" max-vertical-offset="578">
-          <folding />
-        </state>
+        <state line="6" column="21" selection-start="174" selection-end="174" vertical-scroll-proportion="0.067729086" vertical-offset="51" max-vertical-offset="578" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/basic/BasicButtonUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="0" selection-start="3147" selection-end="3147" vertical-scroll-proportion="0.0" vertical-offset="1117" max-vertical-offset="7429">
-          <folding />
-        </state>
+        <state line="114" column="0" selection-start="3147" selection-end="3147" vertical-scroll-proportion="0.0" vertical-offset="1117" max-vertical-offset="7429" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/UIManager.java">
@@ -1013,37 +952,12 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/weblaf-1.25.jar!/com/alee/laf/optionpane/WebOptionPane.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <folding />
-        </state>
+        <state line="6" column="13" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/../weblaf-src-1.25.zip!/src/com/alee/laf/optionpane/WebOptionPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="39" selection-start="956" selection-end="956" vertical-scroll-proportion="0.22580644" vertical-offset="51" max-vertical-offset="1343">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/entities/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="16" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1955">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/screens/JobRecordDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="35" selection-start="6742" selection-end="6742" vertical-scroll-proportion="0.0" vertical-offset="2884" max-vertical-offset="6171">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="31" selection-start="914" selection-end="914" vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1785">
-          <folding />
-        </state>
+        <state line="28" column="39" selection-start="956" selection-end="956" vertical-scroll-proportion="0.22580644" vertical-offset="51" max-vertical-offset="1343" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/Dialog.java">
@@ -1060,11 +974,330 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/screens/WorkLogScr.java">
+    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/JXTitledPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="722" column="13" selection-start="23315" selection-end="23315" vertical-scroll-proportion="1.534384" vertical-offset="10047" max-vertical-offset="11288">
+        <state line="89" column="18" selection-start="2791" selection-end="2791" vertical-scroll-proportion="-0.055028465" vertical-offset="1015" max-vertical-offset="4624">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/Paint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="17" selection-start="1122" selection-end="1122" vertical-scroll-proportion="-1.032258" vertical-offset="986" max-vertical-offset="1513">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/GradientPaint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="170" column="11" selection-start="5882" selection-end="5882" vertical-scroll-proportion="0.33206832" vertical-offset="2256" max-vertical-offset="4267">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/painter/AbstractAreaPainter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="243" column="57" selection-start="9385" selection-end="9386" vertical-scroll-proportion="0.53692615" vertical-offset="3267" max-vertical-offset="4097">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/painter/MattePainter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="46" selection-start="2023" selection-end="2023" vertical-scroll-proportion="0.33206832" vertical-offset="301" max-vertical-offset="1683">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/plaf/PainterUIResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="32" selection-start="1450" selection-end="1451" vertical-scroll-proportion="0.06451613" vertical-offset="221" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/entities/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="16" selection-start="328" selection-end="328" vertical-scroll-proportion="0.36480686" vertical-offset="0" max-vertical-offset="1105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/db/DBManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="79" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5712">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/entities/ProfileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="22" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <folding>
+            <element signature="e#240#241#0" expanded="false" />
+            <element signature="e#256#257#0" expanded="false" />
+            <element signature="e#287#288#0" expanded="false" />
+            <element signature="e#306#307#0" expanded="false" />
+            <element signature="e#336#337#0" expanded="false" />
+            <element signature="e#355#356#0" expanded="false" />
+            <element signature="e#395#396#0" expanded="false" />
+            <element signature="e#420#421#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/entities/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="3" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+          <folding>
+            <element signature="e#313#314#0" expanded="false" />
+            <element signature="e#344#345#0" expanded="false" />
+            <element signature="e#363#364#0" expanded="false" />
+            <element signature="e#397#398#0" expanded="false" />
+            <element signature="e#415#416#0" expanded="false" />
+            <element signature="e#458#459#0" expanded="false" />
+            <element signature="e#481#482#0" expanded="false" />
+            <element signature="e#511#512#0" expanded="false" />
+            <element signature="e#530#531#0" expanded="false" />
+            <element signature="e#570#571#0" expanded="false" />
+            <element signature="e#595#596#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/entities/Inventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="3" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+          <folding>
+            <element signature="e#378#379#0" expanded="false" />
+            <element signature="e#394#395#0" expanded="false" />
+            <element signature="e#425#426#0" expanded="false" />
+            <element signature="e#444#445#0" expanded="false" />
+            <element signature="e#477#478#0" expanded="false" />
+            <element signature="e#498#499#0" expanded="false" />
+            <element signature="e#543#544#0" expanded="false" />
+            <element signature="e#572#573#0" expanded="false" />
+            <element signature="e#602#603#0" expanded="false" />
+            <element signature="e#624#625#0" expanded="false" />
+            <element signature="e#667#668#0" expanded="false" />
+            <element signature="e#698#699#0" expanded="false" />
+            <element signature="e#751#752#0" expanded="false" />
+            <element signature="e#795#796#0" expanded="false" />
+            <element signature="e#824#825#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/MenuItemUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="22" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <folding>
+            <element signature="e#0#481#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JMenuItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="11" selection-start="3663" selection-end="3663" vertical-scroll-proportion="1.8804554" vertical-offset="471" max-vertical-offset="15436">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/plaf/basic/BasicMenuUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="13" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10268">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../weblaf-src-1.25.zip!/src/com/alee/laf/menu/WebMenuItemUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="13" selection-start="1497" selection-end="1497" vertical-scroll-proportion="0.0" vertical-offset="7729" max-vertical-offset="9605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/screens/JobRecordDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="4" selection-start="1896" selection-end="2053" vertical-scroll-proportion="0.0" vertical-offset="389" max-vertical-offset="6188">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/screens/InventoryScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="50" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/table/DefaultTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="13" selection-start="1597" selection-end="1597" vertical-scroll-proportion="-3.345351" vertical-offset="2358" max-vertical-offset="11662">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/entities/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="168" column="50" selection-start="3614" selection-end="3614" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2227">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="352" column="12" selection-start="15925" selection-end="15925" vertical-scroll-proportion="0.33206832" vertical-offset="5418" max-vertical-offset="9911">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/utils/AutoCompletion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="417" selection-end="417" vertical-scroll-proportion="-8.064516" vertical-offset="4488" max-vertical-offset="6001">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/event/TableModelEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="28" selection-start="2287" selection-end="2287" vertical-scroll-proportion="0.33206832" vertical-offset="607" max-vertical-offset="2720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/entities/ColumnToFieldMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="48" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="0" selection-start="2428" selection-end="2428" vertical-scroll-proportion="0.0" vertical-offset="1156" max-vertical-offset="1785">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/utils/EntityTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="14" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="1156">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/RowSorter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="273" column="25" selection-start="10523" selection-end="10523" vertical-scroll-proportion="0.0" vertical-offset="3837" max-vertical-offset="6834">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/DefaultRowSorter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1127" column="37" selection-start="37902" selection-end="37902" vertical-scroll-proportion="0.0" vertical-offset="18814" max-vertical-offset="22848">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/sort/DefaultSortController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="374" column="0" selection-start="11465" selection-end="11465" vertical-scroll-proportion="0.0" vertical-offset="5435" max-vertical-offset="6273">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/SizeSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="329" column="30" selection-start="10380" selection-end="10380" vertical-scroll-proportion="3.8463" vertical-offset="3175" max-vertical-offset="6630">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/event/EventListenerList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="176" column="74" selection-start="5760" selection-end="5760" vertical-scroll-proportion="0.04174573" vertical-offset="2511" max-vertical-offset="4573">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/table/AbstractTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="16" selection-start="4178" selection-end="4178" vertical-scroll-proportion="0.33206832" vertical-offset="1933" max-vertical-offset="5440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/JTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4369" column="16" selection-start="169694" selection-end="169694" vertical-scroll-proportion="0.0" vertical-offset="72177" max-vertical-offset="160786">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ideaLibSources/swingx-all-1.6.4-sources.jar!/org/jdesktop/swingx/JXTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1563" column="24" selection-start="55095" selection-end="55095" vertical-scroll-proportion="0.67741936" vertical-offset="24038" max-vertical-offset="73440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/utils/WorkTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="33" selection-start="986" selection-end="986" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="799">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/utils/RowWrapTableModelListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="34" selection-start="922" selection-end="922" vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="1054">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/screens/WorkLogScr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="642" column="23" selection-start="20788" selection-end="20788" vertical-scroll-proportion="6.148784" vertical-offset="6616" max-vertical-offset="11560">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8278#8434#0" expanded="true" />
+            <element signature="e#8429#8430#0" expanded="true" />
+            <element signature="e#8800#9816#0" expanded="true" />
+            <element signature="e#9811#9812#0" expanded="true" />
+            <element signature="e#9847#9946#0" expanded="true" />
+            <element signature="e#9941#9942#0" expanded="true" />
+            <element signature="e#9988#10451#0" expanded="true" />
+            <element signature="e#10446#10447#0" expanded="true" />
+            <element signature="e#10493#11055#0" expanded="true" />
+            <element signature="e#11050#11051#0" expanded="true" />
+            <element signature="e#11092#12049#0" expanded="true" />
+            <element signature="e#12044#12045#0" expanded="true" />
+            <element signature="e#12085#12520#0" expanded="true" />
+            <element signature="e#12515#12516#0" expanded="true" />
+            <element signature="e#12566#12821#0" expanded="true" />
+            <element signature="e#12816#12817#0" expanded="true" />
+            <element signature="e#12859#12972#0" expanded="true" />
+            <element signature="e#12967#12968#0" expanded="true" />
+            <element signature="e#13008#13187#0" expanded="true" />
+            <element signature="e#13182#13183#0" expanded="true" />
+            <element signature="e#13408#13683#0" expanded="true" />
+            <element signature="e#13678#13679#0" expanded="true" />
           </folding>
         </state>
       </provider>

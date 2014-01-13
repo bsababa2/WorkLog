@@ -1,5 +1,7 @@
 package app.entities;
 
+import app.utils.WorkTableModel;
+
 import java.util.Date;
 
 /**
@@ -9,7 +11,7 @@ import java.util.Date;
  * Time: 20:29
  * To change this template use File | Settings | File Templates.
  */
-public class Job
+public class Job implements ColumnToFieldMapper
 {
 	private int id;
 	private Date jobDate;
@@ -153,5 +155,19 @@ public class Job
 	public void setUpdated(boolean updated)
 	{
 		isUpdated = updated;
+	}
+
+	@Override
+	public Object getFieldValueByColumnIndex(int column)
+	{
+		switch (column)
+		{
+			case WorkTableModel.DATE_COL: return this.getJobDate();
+			case WorkTableModel.CUSTOMER_COL: return this.getCustomer();
+			case WorkTableModel.JOBS_DESCR_COL: return this.getJobDescription();
+			case WorkTableModel.PRICE_COL: return this.getPrice();
+			case WorkTableModel.REMARKS_COL: return this.getRemarks();
+			default: return null;
+		}
 	}
 }
