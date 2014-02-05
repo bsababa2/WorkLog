@@ -59,7 +59,7 @@ public class JobRecordDialog extends JDialog
 	{
 		super(owner, true);
 		this.setTitle("הוספת רשומה חדשה");
-		Utils.setSoftSize(this, new Dimension(450, 350));
+		Utils.setSoftSize(this, new Dimension(450, 430));
 		this.setLocationRelativeTo(owner);
 		this.jobToUpdate = jobToUpdate;
 
@@ -70,46 +70,24 @@ public class JobRecordDialog extends JDialog
 		catch (Exception e)
 		{
 			Utils.showExceptionMsg(this, e);
-			e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+			e.printStackTrace();
 			this.dispose();
 		}
 
-		JXPanel datePanel = new JXPanel();
-		Utils.setLineLayout(datePanel);
-		Utils.addSmallRigid(datePanel);
-		datePanel.add(dateLabel);
-		Utils.addStandardRigid(datePanel);
-		datePanel.add(datePicker);
-		datePanel.add(Box.createHorizontalGlue());
+		GroupPanel datePanel = new GroupPanel(5, Box.createHorizontalStrut(5), dateLabel, datePicker);
 
-		JXPanel customerPanel = new JXPanel();
-		Utils.setLineLayout(customerPanel);
-		Utils.addSmallRigid(customerPanel);
-		customerPanel.add(customerLabel);
-		Utils.addStandardRigid(customerPanel);
-		customerPanel.add(customerCombo);
-		Utils.addStandardRigid(customerPanel);
-		customerPanel.add(addNewCustomerButton);
-		Utils.addStandardRigid(customerPanel);
-		customerPanel.add(updateCustomerButton);
-		Utils.addStandardRigid(customerPanel);
-		customerPanel.add(Box.createHorizontalGlue());
+		GroupPanel customerPanel = new GroupPanel(5, Box.createHorizontalStrut(5), customerLabel, customerCombo,
+			addNewCustomerButton, updateCustomerButton);
 
 		GroupPanel workPanel = new GroupPanel(GroupingType.fillMiddle, Box.createHorizontalStrut(5),
-			new WebScrollPane(jobDescField).setPreferredHeight(200), Box.createHorizontalStrut(5));
+			new WebScrollPane(jobDescField).setPreferredHeight(100), Box.createHorizontalStrut(5));
 
-		JXPanel pricePanel = new JXPanel();
-		Utils.setLineLayout(pricePanel);
-		Utils.addSmallRigid(pricePanel);
-		pricePanel.add(priceLabel);
-		Utils.addStandardRigid(pricePanel);
-		pricePanel.add(priceField);
-		Utils.addStandardRigid(pricePanel);
-		pricePanel.add(new JXLabel("ש\"ח"));
-		pricePanel.add(Box.createHorizontalGlue());
+		GroupPanel pricePanel = new GroupPanel(5, Box.createHorizontalStrut(5), priceLabel, priceField, new JXLabel("ש\"ח"));
 
 		GroupPanel remarksPanel = new GroupPanel(GroupingType.fillMiddle, Box.createHorizontalStrut(5),
-			new WebScrollPane(remarksField).setPreferredHeight(200), Box.createHorizontalStrut(5));
+			new WebScrollPane(remarksField).setPreferredHeight(100), Box.createHorizontalStrut(5));
+
+//		GroupPanel mainPanel = new GroupPanel(10, false, Box.createVerticalStrut(10), datePanel, customerPanel, workPanel, pricePanel, remarksPanel);
 
 		JXPanel mainPanel = new JXPanel();
 		Utils.setPageLayout(mainPanel);
@@ -174,8 +152,7 @@ public class JobRecordDialog extends JDialog
 	private void initSizesAndFonts()
 	{
 		Dimension comboDimension = new Dimension(DEFAULT_DATE_SIZE);
-		comboDimension.width = comboDimension.width - 10;
-		Utils.setSoftSize(customerCombo, comboDimension);
+		Utils.setSoftSize(customerCombo, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(datePicker, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(priceField, DEFAULT_PRICE_SIZE);
 		Utils.setSoftSize(feedButton, WorkLogScr.DEFAULT_BUTTON_SIZE);
