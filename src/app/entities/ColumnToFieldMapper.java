@@ -5,5 +5,7 @@ package app.entities;
  */
 public interface ColumnToFieldMapper
 {
+	int getId();
+
 	Object getFieldValueByColumnIndex(int column);
 }

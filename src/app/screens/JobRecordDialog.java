@@ -4,15 +4,22 @@ import app.db.DBManager;
 import app.entities.Customer;
 import app.entities.Job;
 import app.utils.Utils;
+import com.alee.extended.date.WebDateField;
+import com.alee.extended.panel.GroupPanel;
+import com.alee.extended.panel.GroupingType;
+import com.alee.laf.scroll.WebScrollPane;
+import com.alee.laf.text.WebTextArea;
 import com.sun.deploy.panel.NumberDocument;
-import org.jdesktop.swingx.*;
+import org.jdesktop.swingx.JXButton;
+import org.jdesktop.swingx.JXComboBox;
+import org.jdesktop.swingx.JXLabel;
+import org.jdesktop.swingx.JXPanel;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
-import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,7 +30,7 @@ import java.util.Locale;
  */
 public class JobRecordDialog extends JDialog
 {
-	public static Dimension DEFAULT_DATE_SIZE = new Dimension(200, 25);
+	public static Dimension DEFAULT_DATE_SIZE = new Dimension(180, 25);
 	public static Dimension DEFAULT_PRICE_SIZE = new Dimension(150, 25);
 	public static Dimension DEFAULT_LABEL_SIZE = new Dimension(50, 25);
 	public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(75, 25);
@@ -32,12 +39,12 @@ public class JobRecordDialog extends JDialog
 	public static String DEFAULT_REMARKS_TEXT = "הערות..";
 
 	private JXLabel dateLabel = new JXLabel("בתאריך:");
-	private JXDatePicker datePicker = new JXDatePicker(Calendar.getInstance().getTime(), Locale.getDefault());
+	private WebDateField datePicker = new WebDateField(Calendar.getInstance().getTime());
 	private JXLabel customerLabel = new JXLabel("לקוח:");
 	private JXComboBox customerCombo = new JXComboBox();
 	private JXButton addNewCustomerButton = new JXButton("הוספה");
 	private JXButton updateCustomerButton = new JXButton("עדכון");
-	private JTextArea jobDescField = new JTextArea(DEFAULT_JOB_DESC_TEXT);
+	private WebTextArea jobDescField = new WebTextArea(DEFAULT_JOB_DESC_TEXT);
 	private JXLabel priceLabel = new JXLabel("מחיר:");
 	private JTextField priceField = new JTextField();
 	private JTextArea remarksField = new JTextArea(DEFAULT_REMARKS_TEXT);
@@ -88,12 +95,8 @@ public class JobRecordDialog extends JDialog
 		Utils.addStandardRigid(customerPanel);
 		customerPanel.add(Box.createHorizontalGlue());
 
-		JXPanel workPanel = new JXPanel();
-		Utils.setLineLayout(workPanel);
-		Utils.addSmallRigid(workPanel);
-		workPanel.add(jobDescField);
-		Utils.addSmallRigid(workPanel);
-		workPanel.add(Box.createHorizontalGlue());
+		GroupPanel workPanel = new GroupPanel(GroupingType.fillMiddle, Box.createHorizontalStrut(5),
+			new WebScrollPane(jobDescField).setPreferredHeight(200), Box.createHorizontalStrut(5));
 
 		JXPanel pricePanel = new JXPanel();
 		Utils.setLineLayout(pricePanel);
@@ -105,12 +108,8 @@ public class JobRecordDialog extends JDialog
 		pricePanel.add(new JXLabel("ש\"ח"));
 		pricePanel.add(Box.createHorizontalGlue());
 
-		JXPanel remarksPanel = new JXPanel();
-		Utils.setLineLayout(remarksPanel);
-		Utils.addSmallRigid(remarksPanel);
-		remarksPanel.add(remarksField);
-		Utils.addSmallRigid(remarksPanel);
-		remarksPanel.add(Box.createHorizontalGlue());
+		GroupPanel remarksPanel = new GroupPanel(GroupingType.fillMiddle, Box.createHorizontalStrut(5),
+			new WebScrollPane(remarksField).setPreferredHeight(200), Box.createHorizontalStrut(5));
 
 		JXPanel mainPanel = new JXPanel();
 		Utils.setPageLayout(mainPanel);
@@ -142,8 +141,6 @@ public class JobRecordDialog extends JDialog
 	{
 		priceField.setDocument(new NumberDocument());
 		priceField.setText("0");
-		jobDescField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		remarksField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		jobDescField.setLineWrap(true);
 		jobDescField.setWrapStyleWord(true);
 		remarksField.setLineWrap(true);
@@ -151,6 +148,8 @@ public class JobRecordDialog extends JDialog
 
 		addNewCustomerButton.setFocusable(false);
 		updateCustomerButton.setFocusable(false);
+
+		datePicker.setDateFormat(WorkLogScr.defaultDateFormat);
 
 		initSizesAndFonts();
 		initEventHandlers();
@@ -177,7 +176,7 @@ public class JobRecordDialog extends JDialog
 		Dimension comboDimension = new Dimension(DEFAULT_DATE_SIZE);
 		comboDimension.width = comboDimension.width - 10;
 		Utils.setSoftSize(customerCombo, comboDimension);
-		Utils.setSoftSize(datePicker, DEFAULT_DATE_SIZE);
+		Utils.setHardSize(datePicker, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(priceField, DEFAULT_PRICE_SIZE);
 		Utils.setSoftSize(feedButton, WorkLogScr.DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(finishButton, WorkLogScr.DEFAULT_BUTTON_SIZE);
@@ -186,6 +185,7 @@ public class JobRecordDialog extends JDialog
 		Utils.setHardSize(priceLabel, DEFAULT_LABEL_SIZE);
 		Utils.setSoftSize(addNewCustomerButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(updateCustomerButton, DEFAULT_BUTTON_SIZE);
+
 		datePicker.setFont(WorkLogScr.DEFAULT_TEXT_FONT);
 	}
 

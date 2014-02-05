@@ -11,6 +11,8 @@ import javax.swing.event.TableModelListener;
  */
 public class RowWrapTableModelListener implements TableModelListener
 {
+	public static final int DEFAULT_ROW_HEIGHT = 25;
+
 	private int colToFollow;
 	private JTable table;
 
@@ -49,8 +51,19 @@ public class RowWrapTableModelListener implements TableModelListener
 
 	private void setRowHeightByColLength(int colLength, int rowIndex)
 	{
-		int textLen = table.getFontMetrics(WorkLogScr.DEFAULT_TEXT_FONT).stringWidth
-			(table.getValueAt(rowIndex, WorkTableModel.JOBS_DESCR_COL).toString());
-		if (textLen > colLength) table.setRowHeight(rowIndex, (textLen/ colLength + 1) * table.getRowHeight());
+		int linesInRow = 0;
+		String cellText = table.getValueAt(rowIndex, WorkTableModel.JOBS_DESCR_COL).toString();
+		String[] lines = cellText.split("\n");
+		for (String line : lines)
+		{
+			linesInRow++;
+			int textLen = table.getFontMetrics(WorkLogScr.DEFAULT_TEXT_FONT).stringWidth(line);
+			if (textLen > colLength)
+			{
+				linesInRow += (textLen/ colLength + 1);
+			}
+		}
+
+		table.setRowHeight(rowIndex, linesInRow * DEFAULT_ROW_HEIGHT);
 	}
 }

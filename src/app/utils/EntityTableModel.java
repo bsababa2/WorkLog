@@ -69,4 +69,35 @@ public abstract class EntityTableModel<T extends ColumnToFieldMapper> extends Ab
 		T entity = currentEntityList.get(rowIndex);
 		return entity.getFieldValueByColumnIndex(columnIndex);
 	}
+
+	public void updateRow(int row, T updatedEntity)
+	{
+		this.getCurrentEntityList().set(row, updatedEntity);
+
+		for (int i = 0; i < this.getInitialEntityList().size(); i++)
+		{
+			if (this.getInitialEntityList().get(i).getId() == updatedEntity.getId())
+			{
+				this.getInitialEntityList().set(i, updatedEntity);
+				this.fireTableRowsUpdated(row, row);
+
+				return;
+			}
+		}
+	}
+
+	public void addRow(T entity)
+	{
+		this.getCurrentEntityList().add(0, entity);
+		this.getInitialEntityList().add(0, entity);
+		this.fireTableRowsInserted(0, 0);
+	}
+
+	public void removeRows(List<T> entities)
+	{
+		this.getInitialEntityList().removeAll(entities);
+		this.getCurrentEntityList().removeAll(entities);
+
+		this.fireTableDataChanged();
+	}
 }

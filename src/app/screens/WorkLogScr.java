@@ -3,8 +3,10 @@ package app.screens;
 import app.db.DBManager;
 import app.entities.Customer;
 import app.entities.Job;
+import app.utils.RowWrapTableModelListener;
 import app.utils.Utils;
 import app.utils.WorkTableModel;
+import com.alee.extended.date.WebDateField;
 import com.alee.laf.WebLookAndFeel;
 import jxl.Cell;
 import jxl.Sheet;
@@ -42,7 +44,7 @@ import java.util.List;
 public class WorkLogScr extends JXFrame
 {
 	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(100, 25);
-	public static Dimension DEFAULT_DATE_SIZE = new Dimension(110, 25);
+	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
 	public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
 	public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
 	public static Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
@@ -53,19 +55,19 @@ public class WorkLogScr extends JXFrame
 	public static Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
 	public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
 	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
-
+	public static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
 
 	private WorkTableModel workTableModel = new WorkTableModel();
 	private JXTable workTable = new JXTable(workTableModel);
 	private JXLabel currentDateLabel = new JXLabel();
 	private JXLabel fromDateLabel = new JXLabel("מתאריך:");
-	private JXDatePicker fromDatePicker = new JXDatePicker(Locale.getDefault());
+	private WebDateField fromDatePicker = new WebDateField();
 	private JXLabel toDateLabel = new JXLabel("עד תאריך:");
 	private JXButton filterDatesButton = new JXButton("סנן תאריכים");
 	private JXLabel customerLabel = new JXLabel("לקוח:");
 	private JXComboBox customerCombo = new JXComboBox();
 	private JXButton resetButton = new JXButton("נקה חיפוש");
-	private JXDatePicker toDatePicker = new JXDatePicker(Calendar.getInstance().getTime(), Locale.getDefault());
+	private WebDateField toDatePicker = new WebDateField(Calendar.getInstance().getTime());
 	private JXLabel workLabel = new JXLabel("עבודה שנעשתה:");
 	private JXTextField workField = new JXTextField();
 	private JXButton multipleAddButton = new JXButton("הוספה מרובה");
@@ -189,16 +191,23 @@ public class WorkLogScr extends JXFrame
 
 	private void initComponents() throws Exception
 	{
-		// Set the from date picker to be a month back
-		Calendar monthBack = Calendar.getInstance();
-		monthBack.add(Calendar.MONTH, -1);
-		fromDatePicker.setDate(monthBack.getTime());
-
+		initDateComponents();
 		initMenuBar();
 		initSizesAndFonts();
 		initEventHandlers();
 		initHelloTimer();
 		initComponentsFromDB();
+	}
+
+	private void initDateComponents()
+	{
+		// Set the from date picker to be a month back
+		Calendar monthBack = Calendar.getInstance();
+		monthBack.add(Calendar.MONTH, -1);
+		fromDatePicker.setDate(monthBack.getTime());
+
+		fromDatePicker.setDateFormat(defaultDateFormat);
+		toDatePicker.setDateFormat(defaultDateFormat);
 	}
 
 	private void initMenuBar()
@@ -245,9 +254,7 @@ public class WorkLogScr extends JXFrame
 						try
 						{
 							DBManager.getSingleton().updateJob(recordDialog.getReturnedJob());
-							workTableModel.getCurrentEntityList().set(realSelectedRow, recordDialog.getReturnedJob());
-							workTableModel.getInitialEntityList().set(realSelectedRow, recordDialog.getReturnedJob());
-							workTableModel.fireTableRowsUpdated(realSelectedRow, realSelectedRow);
+							workTableModel.updateRow(realSelectedRow, recordDialog.getReturnedJob());
 						}
 						catch (Exception e1)
 						{
@@ -301,9 +308,7 @@ public class WorkLogScr extends JXFrame
 						return;
 					}
 
-					workTableModel.getCurrentEntityList().add(0, job);
-					workTableModel.getInitialEntityList().add(0, job);
-					workTableModel.fireTableRowsInserted(0, 0);
+					workTableModel.addRow(job);
 					jobRecordDialog = new JobRecordDialog(WorkLogScr.this, null);
 				}
 			}
@@ -327,13 +332,7 @@ public class WorkLogScr extends JXFrame
 						removedJobs.add(job);
 					}
 
-					workTableModel.getInitialEntityList().removeAll(removedJobs);
-					workTableModel.getCurrentEntityList().removeAll(removedJobs);
-					for (int selectedRow : selectedRows)
-					{
-						int realSelectedRow = Utils.getRealRow(selectedRow, workTable);
-						workTableModel.fireTableRowsDeleted(realSelectedRow, realSelectedRow);
-					}
+					workTableModel.removeRows(removedJobs);
 				}
 				catch (Exception e1)
 				{
@@ -422,8 +421,8 @@ public class WorkLogScr extends JXFrame
 	private void initSizesAndFonts()
 	{
 		Utils.setSoftSize(customerCombo, DEFAULT_COMBO_SIZE);
-		Utils.setSoftSize(fromDatePicker, DEFAULT_DATE_SIZE);
-		Utils.setSoftSize(toDatePicker, DEFAULT_DATE_SIZE);
+		Utils.setHardSize(fromDatePicker, DEFAULT_DATE_SIZE);
+		Utils.setHardSize(toDatePicker, DEFAULT_DATE_SIZE);
 		Utils.setSoftSize(workField, DEFAULT_WORKFILED_SIZE);
 		Utils.setSoftSize(filterDatesButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(multipleAddButton, DEFAULT_BUTTON_SIZE);
@@ -447,6 +446,7 @@ public class WorkLogScr extends JXFrame
 		workTable.getColumn(WorkTableModel.REMARKS_COL).setMinWidth(100);
 		workTable.getColumn(WorkTableModel.REMARKS_COL).setPreferredWidth(100);
 		workTable.getColumn(WorkTableModel.REMARKS_COL).setMaxWidth(200);
+		workTable.setRowHeight(RowWrapTableModelListener.DEFAULT_ROW_HEIGHT);
 	}
 
 	private void importFromExcel() throws Exception
@@ -466,7 +466,6 @@ public class WorkLogScr extends JXFrame
 			return;
 		}
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 		boolean isProblemOccured = false;
 		StringBuilder problematicRows = new StringBuilder("בעיה ביבוא של העבודות הבאות:").append("\n");
 		Workbook workbook;
@@ -489,7 +488,7 @@ public class WorkLogScr extends JXFrame
 						if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
 						{
 							Customer customer = new Customer(cells[customerIndex].getContents());
-							Date jobDate = dateFormat.parse(cells[dateIndex].getContents());
+							Date jobDate = defaultDateFormat.parse(cells[dateIndex].getContents());
 							String jobDescr = cells[jobDescIndex].getContents();
 							double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
 							String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
