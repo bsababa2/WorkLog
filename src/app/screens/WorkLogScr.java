@@ -57,7 +57,7 @@ public class WorkLogScr extends JXFrame
 	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
 	public static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
 
-	private WorkTableModel workTableModel = new WorkTableModel();
+	private WorkTableModel workTableModel = new WorkTableModel(this);
 	private JXTable workTable = new JXTable(workTableModel);
 	private JXLabel currentDateLabel = new JXLabel();
 	private JXLabel fromDateLabel = new JXLabel("מתאריך:");
@@ -70,6 +70,7 @@ public class WorkLogScr extends JXFrame
 	private WebDateField toDatePicker = new WebDateField(Calendar.getInstance().getTime());
 	private JXLabel workLabel = new JXLabel("עבודה שנעשתה:");
 	private JXTextField workField = new JXTextField();
+	private JXLabel totalPriceLabel = new JXLabel();
 	private JXButton multipleAddButton = new JXButton("הוספה מרובה");
 	private JXButton removeButton = new JXButton("מחק רשומה");
 	private JXButton printButton = new JXButton("הדפס טבלה", new ImageIcon(Utils.scaleImage("/images/print.png", 25, 25)));
@@ -164,22 +165,29 @@ public class WorkLogScr extends JXFrame
 		printAndExcelImportButtonsPanel.add(importFromExcelButton);
 		Utils.addStandardRigid(printAndExcelImportButtonsPanel);
 
-		JXPanel lineButtonsPanel = new JXPanel();
-		lineButtonsPanel.setLayout(new BorderLayout());
-		lineButtonsPanel.add(editButtonsPanel, BorderLayout.EAST);
-		lineButtonsPanel.add(printAndExcelImportButtonsPanel, BorderLayout.WEST);
+		JXPanel totalPricePanel = new JXPanel();
+		totalPricePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		totalPricePanel.add(totalPriceLabel);
+		totalPricePanel.add(Box.createHorizontalStrut(10));
 
-		JXPanel pageButtonPanel = new JXPanel();
-		Utils.setPageLayout(pageButtonPanel);
-		Utils.addStandardRigid(pageButtonPanel);
-		pageButtonPanel.add(lineButtonsPanel);
-		Utils.addStandardRigid(pageButtonPanel);
+		JXPanel borderButtonsPanel = new JXPanel();
+		borderButtonsPanel.setLayout(new BorderLayout());
+		borderButtonsPanel.add(editButtonsPanel, BorderLayout.EAST);
+		borderButtonsPanel.add(printAndExcelImportButtonsPanel, BorderLayout.WEST);
+
+		JXPanel southPanel = new JXPanel();
+		Utils.setPageLayout(southPanel);
+		Utils.addStandardRigid(southPanel);
+		southPanel.add(totalPricePanel);
+		Utils.addStandardRigid(southPanel);
+		southPanel.add(borderButtonsPanel);
+		Utils.addStandardRigid(southPanel);
 
 		JXPanel mainPanel = new JXPanel();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(filterTitledPanel, BorderLayout.NORTH);
 		mainPanel.add(tableTitledPanel, BorderLayout.CENTER);
-		mainPanel.add(pageButtonPanel, BorderLayout.SOUTH);
+		mainPanel.add(southPanel, BorderLayout.SOUTH);
 
 		this.getContentPane().setLayout(new BorderLayout());
 		this.getContentPane().add(helloPanel, BorderLayout.NORTH);
@@ -432,6 +440,7 @@ public class WorkLogScr extends JXFrame
 		Utils.setSoftSize(importFromExcelButton, new Dimension(150, 25));
 		fromDatePicker.setFont(DEFAULT_TEXT_FONT);
 		toDatePicker.setFont(DEFAULT_TEXT_FONT);
+		totalPriceLabel.setFont(new Font("Arial", Font.BOLD, 16));
 
 		workTable.getTableHeader().setFont(DEFAULT_LABEL_FONT);
 		workTable.getColumn(WorkTableModel.DATE_COL).setMaxWidth(85);
@@ -529,6 +538,7 @@ public class WorkLogScr extends JXFrame
 			job.setId(DBManager.getSingleton().addJob(job));
 		}
 
+		workTableModel.getInitialEntityList().addAll(jobs);
 		workTableModel.getCurrentEntityList().addAll(jobs);
 		workTableModel.fireTableDataChanged();
 		Utils.initCustomerCombo(customerCombo, true);
@@ -594,6 +604,17 @@ public class WorkLogScr extends JXFrame
 		Utils.initCustomerCombo(customerCombo, true);
 		workTableModel.setInitialEntityList
 			(DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
+	}
+
+	public void initTotalPrice()
+	{
+		double price = 0;
+		for (int i = 0; i < workTableModel.getRowCount(); i++)
+		{
+			price += (Double)workTableModel.getValueAt(i, WorkTableModel.PRICE_COL);
+		}
+
+		totalPriceLabel.setText("המחיר כולל: " + NumberFormat.getCurrencyInstance().format(price));
 	}
 
 	private class WorkTableRenderer extends DefaultTableRenderer
