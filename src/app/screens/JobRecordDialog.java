@@ -151,7 +151,6 @@ public class JobRecordDialog extends JDialog
 
 	private void initSizesAndFonts()
 	{
-		Dimension comboDimension = new Dimension(DEFAULT_DATE_SIZE);
 		Utils.setSoftSize(customerCombo, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(datePicker, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(priceField, DEFAULT_PRICE_SIZE);

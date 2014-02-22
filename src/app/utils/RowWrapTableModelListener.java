@@ -60,7 +60,7 @@ public class RowWrapTableModelListener implements TableModelListener
 			int textLen = table.getFontMetrics(WorkLogScr.DEFAULT_TEXT_FONT).stringWidth(line);
 			if (textLen > colLength)
 			{
-				linesInRow += (textLen/ colLength + 1);
+				linesInRow += textLen/ colLength;
 			}
 		}
 
