@@ -56,6 +56,7 @@ public class WorkLogScr extends JXFrame
 	public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
 	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
 	public static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
+	private static String VERSION = "1.00";
 
 	private WorkTableModel workTableModel = new WorkTableModel(this);
 	private JXTable workTable = new JXTable(workTableModel);
@@ -81,7 +82,7 @@ public class WorkLogScr extends JXFrame
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tools.png")));
-		this.setTitle("יומן עבודות נועם");
+		this.setTitle("יומן עבודות נועם "+VERSION);
 		Utils.setSoftSize(this, new Dimension(1200, 800));
 		this.setLocationRelativeTo(null);
 
