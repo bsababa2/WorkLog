@@ -39,7 +39,6 @@ import java.util.List;
  * User: Barak
  * Date: 27/09/13
  * Time: 01:55
- * Test Noam
  */
 public class WorkLogScr extends JXFrame
 {
