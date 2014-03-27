@@ -1,9 +1,11 @@
 package app.entities;
 
+import app.utils.InventoryTableModel;
+
 /**
  * Created by Barak on 11/01/14.
  */
-public class Inventory
+public class Inventory implements ColumnToFieldMapper
 {
 	private int id;
 	private Profile profile;
@@ -56,5 +58,18 @@ public class Inventory
 	public void setRemarks(String remarks)
 	{
 		this.remarks = remarks;
+	}
+
+	@Override
+	public Object getFieldValueByColumnIndex(int column)
+	{
+		switch (column)
+		{
+			case InventoryTableModel.PROFILE_TYPE_COL: return this.getProfile().getType();
+			case InventoryTableModel.PROFILE_COL: return this.getProfile();
+			case InventoryTableModel.QUANTITY_COL: return this.getQuantity();
+			case InventoryTableModel.REMARKS_COL: return this.getRemarks();
+			default: return null;
+		}
 	}
 }

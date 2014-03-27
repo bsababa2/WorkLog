@@ -1,6 +1,6 @@
 package app.screens;
 
-
+import app.utils.InventoryTableModel;
 import app.utils.Utils;
 
 import javax.swing.*;
@@ -11,6 +11,9 @@ import java.awt.*;
  */
 public class InventoryScreen extends JDialog
 {
+	private JTable inventoryTable;
+	private InventoryTableModel inventoryTableModel;
+
 	public InventoryScreen(JFrame owner)
 	{
 		super(owner, true);
