@@ -7,5 +7,5 @@ public interface ColumnToFieldMapper
 {
 	int getId();
 
-	Object getFieldValueByColumnIndex(int column);
+	Object getFieldValueByColumnIndex(String columnName);
 }

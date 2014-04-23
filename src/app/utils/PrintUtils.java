@@ -1,0 +1,257 @@
+package app.utils;
+
+/**
+ * Created by Barak on 21/04/2014.
+ */
+
+import org.jfree.report.*;
+import org.jfree.report.elementfactory.DateFieldElementFactory;
+import org.jfree.report.elementfactory.LabelElementFactory;
+import org.jfree.report.elementfactory.StaticShapeElementFactory;
+import org.jfree.report.elementfactory.TextFieldElementFactory;
+import org.jfree.report.function.PageOfPagesFunction;
+import org.jfree.report.modules.gui.base.PreviewDialog;
+import org.jfree.report.style.ElementStyleSheet;
+import org.jfree.report.style.FontDefinition;
+import org.jfree.ui.FloatDimension;
+import org.jfree.util.Log;
+
+import javax.swing.*;
+import javax.swing.table.TableModel;
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.print.PageFormat;
+import java.text.SimpleDateFormat;
+
+public class PrintUtils
+{
+	public static final FontDefinition TITLE_FONT = new FontDefinition("ARIAL", 20, true, false, false, false);
+	public static final FontDefinition CELL_ITEM_FONT = new FontDefinition("ARIAL", 14, false, false, false, false);
+
+	static
+	{
+		JFreeReportBoot.getInstance().start();
+	}
+
+	public static void printTable(JFrame owner, JTable tb, String title, double[] columnPercentageWidth)
+	{
+		EntityTableModel tm;
+		float columnsWidth[];
+		float columnPos[];
+		int titleWidth = owner.getFontMetrics(TITLE_FONT.getFont()).stringWidth(title) + 5;
+
+		try
+		{
+			tm = ((EntityTableModel) tb.getModel()).clone();
+		} catch (CloneNotSupportedException e)
+		{
+			e.printStackTrace();
+			return;
+		}
+		tm.reverseColumns();
+		final JFreeReport report = new JFreeReport();
+		report.setName(title);
+		PageFormat format = new PageFormat();
+		format.setOrientation(PageFormat.LANDSCAPE);
+		report.setPageDefinition(new SimplePageDefinition(format));
+		columnsWidth = new float[tm.getColumnCount()];
+		columnPos = new float[tm.getColumnCount()];
+		for (int i = 0; i < tm.getColumnCount(); i++)
+		{
+			columnsWidth[i] = (float) (report.getPageDefinition().getWidth() * columnPercentageWidth[i]);
+		}
+		columnPos[0] = 0;
+		for (int i = 1; i < tm.getColumnCount(); i++)
+		{
+			columnPos[i] = columnsWidth[i - 1] + columnPos[i - 1];
+		}
+
+		createReportHeader(title, titleWidth, tm, columnsWidth, columnPos, report);
+		initPageHeader(title, report);
+		initPageFooter(report);
+		initReportFooter(report);
+
+		initReportDataItems(tm, getCellMaxWidth(owner, tm, columnsWidth), columnsWidth, columnPos, report);
+
+		try
+		{
+			final PreviewDialog preview = new PreviewDialog(report, owner, true);
+			preview.setSize(800, 800);
+			preview.setLocationRelativeTo(null);
+			preview.setVisible(true);
+		} catch (ReportProcessingException e)
+		{
+			Log.error("Failed to generate report ", e);
+		}
+	}
+
+	private static int getCellMaxWidth(JFrame owner, EntityTableModel tableModel, float[] columnsWidth)
+	{
+		int cellMaxWidth = 0;
+		FontMetrics fontMetrics = owner.getFontMetrics(CELL_ITEM_FONT.getFont());
+
+		int jobCol = tableModel.findColumn(WorkTableModel.JOBS_DESCR_COL);
+		for (int i = 0; i < tableModel.getRowCount(); i++)
+		{
+			int width = fontMetrics.stringWidth(tableModel.getValueAt(i, jobCol).toString());
+			if (cellMaxWidth < width) cellMaxWidth = width;
+		}
+
+		cellMaxWidth += 5;
+		return (int)Math.ceil(cellMaxWidth/columnsWidth[jobCol]) * 18;
+	}
+
+	private static void createReportHeader(String title, int titleWidth, TableModel tm, float[] columnWidth, float[] columnPos, JFreeReport report)
+	{
+		final ReportHeader header = new ReportHeader();
+		header.setName("Report-Header");
+		header.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new Dimension(0, 58));
+		header.getStyle().setFontDefinitionProperty(TITLE_FONT);
+
+		final LabelElementFactory factory = new LabelElementFactory();
+		factory.setName("Report-Header-Label");
+		float center = report.getPageDefinition().getWidth() / 2;
+		factory.setAbsolutePosition(new Point2D.Float(center - titleWidth / 2, 0));
+		factory.setMinimumSize(new Dimension(titleWidth, 24));
+		factory.setHorizontalAlignment(ElementAlignment.CENTER);
+		factory.setVerticalAlignment(ElementAlignment.MIDDLE);
+		factory.setText(title);
+		header.addElement(factory.createElement());
+
+		factory.setFontSize(16);
+		factory.setHorizontalAlignment(ElementAlignment.CENTER);
+		factory.setVerticalAlignment(ElementAlignment.MIDDLE);
+
+		int headerHeight = 30;
+		for (int i = 0; i < tm.getColumnCount(); i++)
+		{
+			factory.setName("Column" + String.valueOf(i));
+			factory.setMinimumSize(new FloatDimension(columnWidth[i], headerHeight));
+			factory.setAbsolutePosition(new Point2D.Float(columnPos[i], headerHeight));
+			factory.setText(tm.getColumnName(i));
+			header.addElement(factory.createElement());
+			header.addElement(getHeaderShapeElement(columnPos[i]));
+		}
+		header.addElement(getHeaderShapeElement(report.getPageDefinition().getWidth() - 1));
+		header.addElement(getHorizontalLine(28));
+		header.addElement(getHorizontalLine(28 + headerHeight));
+		report.setReportHeader(header);
+	}
+
+	private static ShapeElement getHeaderShapeElement(float x)
+	{
+		return StaticShapeElementFactory.createRectangleShapeElement(null, null, new BasicStroke(1),
+			new Rectangle((int) x, 28, 1, 30), true, false);
+	}
+
+	private static void initPageHeader(String title, JFreeReport report)
+	{
+		//CreatePageHeader()
+		final PageHeader pHeader = new PageHeader();
+		pHeader.getStyle().setFontDefinitionProperty(TITLE_FONT);
+		pHeader.setName("Page-pHeader");
+		final LabelElementFactory rhFactory = getLabelElementFactory();
+		rhFactory.setVerticalAlignment(ElementAlignment.TOP);
+		rhFactory.setText(title);
+		pHeader.addElement(rhFactory.createElement());
+		pHeader.addElement(getHorizontalLine(24));
+		pHeader.setDisplayOnFirstPage(false);
+		report.setPageHeader(pHeader);
+	}
+
+	private static void initPageFooter(JFreeReport report)
+	{
+		//CreatePageFooter
+		final PageFooter pageFooter = new PageFooter();
+		pageFooter.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new FloatDimension(0, 24));
+		LabelElementFactory pgFactory = getLabelElementFactory();
+		pgFactory.setVerticalAlignment(ElementAlignment.BOTTOM);
+		pageFooter.setName("Page-Footer");
+
+		final PageOfPagesFunction pageFunction = new PageOfPagesFunction();
+		pageFunction.setName("pageXofY");
+		pageFunction.setFormat("page {0} of {1}");
+		report.addExpression(pageFunction);
+
+		final TextFieldElementFactory elementFactory = new TextFieldElementFactory();
+		elementFactory.setAbsolutePosition(new Point2D.Float(0, 4));
+		elementFactory.setMinimumSize(new FloatDimension(-100, 18));
+		elementFactory.setVerticalAlignment(ElementAlignment.MIDDLE);
+		elementFactory.setHorizontalAlignment(ElementAlignment.RIGHT);
+		elementFactory.setFieldname("pageXofY");
+		pageFooter.addElement(elementFactory.createElement());
+		report.setPageFooter(pageFooter);
+	}
+
+	private static void initReportFooter(JFreeReport report)
+	{
+		//CreateReportFooter();
+		final ReportFooter footer = new ReportFooter();
+		footer.setName("Report-Footer");
+		footer.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new FloatDimension(0, 48));
+		footer.getStyle().setFontDefinitionProperty(new FontDefinition("ARIAL", 12, true, false, false, false));
+
+		final LabelElementFactory rfFactory = getLabelElementFactory();
+		rfFactory.setVerticalAlignment(ElementAlignment.BOTTOM);
+		rfFactory.setText("");
+		footer.addElement(rfFactory.createElement());
+		report.setReportFooter(footer);
+	}
+
+	private static void initReportDataItems(TableModel tm, int cellMaxHeight, float[] columnsWidth, float[] columnPos, JFreeReport report)
+	{
+		final ItemBand items = report.getItemBand();
+		items.getStyle().setFontDefinitionProperty(CELL_ITEM_FONT);
+		items.setName("Items");
+		TextFieldElementFactory tfFactory = new TextFieldElementFactory();
+		initTextCellElementFactory(tfFactory);
+		for (int i = 0; i < tm.getColumnCount(); i++)
+		{
+			if (tm.getColumnName(i).equals(WorkTableModel.DATE_COL))
+			{
+				tfFactory = new DateFieldElementFactory();
+				initTextCellElementFactory(tfFactory);
+				((DateFieldElementFactory) tfFactory).setFormat(new SimpleDateFormat("dd/MM/yyyy"));
+			}
+
+			tfFactory.setName(tm.getColumnName(i));
+			tfFactory.setMinimumSize(new FloatDimension(columnsWidth[i] - 4, cellMaxHeight));
+			tfFactory.setAbsolutePosition(new Point2D.Float(columnPos[i], 0));
+			tfFactory.setFieldname(tm.getColumnName(i));
+			items.addElement(tfFactory.createElement());
+			items.addElement(getVerticalLine(columnPos[i]));
+		}
+
+		items.addElement(getVerticalLine(report.getPageDefinition().getWidth()));
+		items.addElement(getHorizontalLine(cellMaxHeight));
+
+		report.setData(tm);
+	}
+
+	private static void initTextCellElementFactory(TextFieldElementFactory textFieldElementFactory)
+	{
+		textFieldElementFactory.setColor(Color.black);
+		textFieldElementFactory.setNullString("");
+		textFieldElementFactory.setHorizontalAlignment(ElementAlignment.CENTER);
+		textFieldElementFactory.setVerticalAlignment(ElementAlignment.MIDDLE);
+	}
+
+	private static LabelElementFactory getLabelElementFactory()
+	{
+		final LabelElementFactory factory = new LabelElementFactory();
+		factory.setAbsolutePosition(new Point2D.Float(0, 0));
+		factory.setMinimumSize(new FloatDimension(-100, 24));
+		factory.setHorizontalAlignment(ElementAlignment.CENTER);
+		return factory;
+	}
+
+	private static ShapeElement getHorizontalLine(float pos)
+	{
+		return StaticShapeElementFactory.createHorizontalLine("", Color.black, new BasicStroke(1), pos);
+	}
+
+	private static ShapeElement getVerticalLine(float pos)
+	{
+		return StaticShapeElementFactory.createVerticalLine("", Color.black, new BasicStroke(1), pos);
+	}
+}

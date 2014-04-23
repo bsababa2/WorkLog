@@ -158,16 +158,13 @@ public class Job implements ColumnToFieldMapper
 	}
 
 	@Override
-	public Object getFieldValueByColumnIndex(int column)
+	public Object getFieldValueByColumnIndex(String columnName)
 	{
-		switch (column)
-		{
-			case WorkTableModel.DATE_COL: return this.getJobDate();
-			case WorkTableModel.CUSTOMER_COL: return this.getCustomer();
-			case WorkTableModel.JOBS_DESCR_COL: return this.getJobDescription();
-			case WorkTableModel.PRICE_COL: return this.getPrice();
-			case WorkTableModel.REMARKS_COL: return this.getRemarks();
-			default: return null;
-		}
+		if (columnName.equals(WorkTableModel.DATE_COL)) return this.getJobDate();
+		if (columnName.equals(WorkTableModel.CUSTOMER_COL)) return this.getCustomer();
+		if (columnName.equals(WorkTableModel.JOBS_DESCR_COL)) return this.getJobDescription();
+		if (columnName.equals(WorkTableModel.PRICE_COL)) return this.getPrice();
+		if (columnName.equals(WorkTableModel.REMARKS_COL)) return this.getRemarks();
+		return null;
 	}
 }

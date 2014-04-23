@@ -3,6 +3,7 @@ package app.screens;
 import app.db.DBManager;
 import app.entities.Customer;
 import app.entities.Job;
+import app.utils.PrintUtils;
 import app.utils.RowWrapTableModelListener;
 import app.utils.Utils;
 import app.utils.WorkTableModel;
@@ -15,9 +16,6 @@ import org.jdesktop.swingx.*;
 import org.jdesktop.swingx.painter.MattePainter;
 import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -26,7 +24,6 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicMenuUI;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -355,17 +352,7 @@ public class WorkLogScr extends JXFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				try
-				{
-					PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
-					set.add(OrientationRequested.LANDSCAPE);
-					workTable.print(JTable.PrintMode.FIT_WIDTH, null, null, true, set, true);
-				}
-				catch (PrinterException e1)
-				{
-					Utils.showExceptionMsg(WorkLogScr.this, e1);
-					e1.printStackTrace();
-				}
+				printTable();
 			}
 		});
 
@@ -405,6 +392,33 @@ public class WorkLogScr extends JXFrame
 				doFilter();
 			}
 		});
+	}
+
+	private void printTable()
+	{
+//		try
+//		{
+//			PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
+//			set.add(OrientationRequested.LANDSCAPE);
+//			workTable.print(JTable.PrintMode.FIT_WIDTH, null, null, true, set, true);
+//		}
+//		catch (PrinterException e1)
+//		{
+//			Utils.showExceptionMsg(this, e1);
+//			e1.printStackTrace();
+//		}
+
+		String reportTitle = "ריכוז עבודות עבור ";
+		if (customerCombo.getSelectedItem().equals(Customer.ALL_VALUES))
+		{
+			reportTitle += "תאריכים " +fromDatePicker.getText() + " - " + toDatePicker.getText();
+		}
+		else
+		{
+			reportTitle += "לקוח: " + customerCombo.getSelectedItem().toString();
+		}
+
+		PrintUtils.printTable(this, workTable, reportTitle, new double[]{0.16, 0.08, 0.52, 0.12, 0.12});
 	}
 
 	private void initHelloTimer()
@@ -609,9 +623,10 @@ public class WorkLogScr extends JXFrame
 	public void initTotalPrice()
 	{
 		double price = 0;
+		int priceCol = workTableModel.findColumn(WorkTableModel.PRICE_COL);
 		for (int i = 0; i < workTableModel.getRowCount(); i++)
 		{
-			price += (Double)workTableModel.getValueAt(i, WorkTableModel.PRICE_COL);
+			price += (Double)workTableModel.getValueAt(i, priceCol);
 		}
 
 		totalPriceLabel.setText("המחיר כולל: " + NumberFormat.getCurrencyInstance().format(price));
@@ -620,6 +635,10 @@ public class WorkLogScr extends JXFrame
 	private class WorkTableRenderer extends DefaultTableRenderer
 	{
 		private JTextArea textArea = new JTextArea();
+
+		private int dateCol = workTableModel.findColumn(WorkTableModel.DATE_COL);
+		private int priceCol = workTableModel.findColumn(WorkTableModel.PRICE_COL);
+		private int jobsCol = workTableModel.findColumn(WorkTableModel.JOBS_DESCR_COL);
 
 		private WorkTableRenderer()
 		{
@@ -632,11 +651,11 @@ public class WorkLogScr extends JXFrame
 		{
 			int realRow = Utils.getRealRow(row, table);
 
-			if (column == WorkTableModel.DATE_COL)
+			if (column == dateCol)
 			{
 				value = DateFormat.getDateInstance().format(value);
 			}
-			else if (column == WorkTableModel.PRICE_COL)
+			else if (column == priceCol)
 			{
 				value = NumberFormat.getCurrencyInstance().format(value);
 			}
@@ -645,7 +664,7 @@ public class WorkLogScr extends JXFrame
 
 			component.setFont(DEFAULT_TEXT_FONT);
 
-			if (column == WorkTableModel.JOBS_DESCR_COL)
+			if (column == jobsCol)
 			{
 				textArea.setText(value.toString());
 				textArea.setBackground(component.getBackground());

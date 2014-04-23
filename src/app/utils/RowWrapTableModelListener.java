@@ -52,7 +52,8 @@ public class RowWrapTableModelListener implements TableModelListener
 	private void setRowHeightByColLength(int colLength, int rowIndex)
 	{
 		int linesInRow = 0;
-		String cellText = table.getValueAt(rowIndex, WorkTableModel.JOBS_DESCR_COL).toString();
+		int jobColumn = ((EntityTableModel)table.getModel()).findColumn(WorkTableModel.JOBS_DESCR_COL);
+		String cellText = table.getValueAt(rowIndex, jobColumn).toString();
 		String[] lines = cellText.split("\n");
 		for (String line : lines)
 		{

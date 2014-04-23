@@ -67,7 +67,7 @@ public abstract class EntityTableModel<T extends ColumnToFieldMapper> extends Ab
 	public Object getValueAt(int rowIndex, int columnIndex)
 	{
 		T entity = currentEntityList.get(rowIndex);
-		return entity.getFieldValueByColumnIndex(columnIndex);
+		return entity.getFieldValueByColumnIndex(getColumnName(columnIndex));
 	}
 
 	public void updateRow(int row, T updatedEntity)
@@ -100,4 +100,17 @@ public abstract class EntityTableModel<T extends ColumnToFieldMapper> extends Ab
 
 		this.fireTableDataChanged();
 	}
+
+	public void reverseColumns()
+	{
+		String[] reversedColumnNames = new String[columnNames.length];
+		for (int i = 0; i < columnNames.length; i++)
+		{
+			reversedColumnNames[i] = columnNames[columnNames.length - 1 - i];
+		}
+
+		columnNames = reversedColumnNames;
+	}
+
+	public abstract EntityTableModel<T> clone() throws CloneNotSupportedException;
 }

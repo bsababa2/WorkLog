@@ -11,17 +11,17 @@ import javax.swing.event.TableModelListener;
  */
 public class WorkTableModel extends EntityTableModel<Job>
 {
-	public static final int DATE_COL = 0;
-	public static final int CUSTOMER_COL = 1;
-	public static final int JOBS_DESCR_COL = 2;
-	public static final int PRICE_COL = 3;
-	public static final int REMARKS_COL = 4;
+	public static final String DATE_COL = "תאריך";
+	public static final String CUSTOMER_COL = "לקוח";
+	public static final String JOBS_DESCR_COL = "תיאור עבודה שנעשתה";
+	public static final String PRICE_COL = "מחיר";
+	public static final String REMARKS_COL = "הערות";
 
 	private WorkLogScr workLogScr;
 
 	public WorkTableModel(WorkLogScr workLogScr)
 	{
-		super(new String[]{"תאריך", "לקוח", "תיאור עבודה שנעשתה", "מחיר", "הערות"});
+		super(new String[]{DATE_COL, CUSTOMER_COL, JOBS_DESCR_COL, PRICE_COL, REMARKS_COL});
 		this.workLogScr = workLogScr;
 	}
 
@@ -33,7 +33,7 @@ public class WorkTableModel extends EntityTableModel<Job>
 			this.removeTableModelListener(listener);
 		}
 
-		this.addTableModelListener(new RowWrapTableModelListener(JOBS_DESCR_COL, table));
+		this.addTableModelListener(new RowWrapTableModelListener(findColumn(JOBS_DESCR_COL), table));
 
 		for (TableModelListener listener : savedListeners)
 		{
@@ -67,5 +67,14 @@ public class WorkTableModel extends EntityTableModel<Job>
 	{
 		super.fireTableRowsDeleted(firstRow, lastRow);
 		workLogScr.initTotalPrice();
+	}
+
+	@Override
+	public EntityTableModel<Job> clone() throws CloneNotSupportedException
+	{
+		WorkTableModel workTableModel = new WorkTableModel(workLogScr);
+		workTableModel.setInitialEntityList(getInitialEntityList());
+		workTableModel.setCurrentEntityList(getCurrentEntityList());
+		return workTableModel;
 	}
 }

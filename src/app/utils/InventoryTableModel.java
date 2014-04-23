@@ -16,4 +16,10 @@ public class InventoryTableModel extends EntityTableModel<Inventory>
 	{
 		super(new String[]{"סוג", "יצרן", "כמות", "הערות"});
 	}
+
+	@Override
+	public EntityTableModel<Inventory> clone() throws CloneNotSupportedException
+	{
+		return null;
+	}
 }
