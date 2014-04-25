@@ -39,6 +39,7 @@ import java.util.List;
  */
 public class WorkLogScr extends JXFrame
 {
+	private static String VERSION = "1.1";
 	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(120, 25);
 	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
 	public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
@@ -52,7 +53,6 @@ public class WorkLogScr extends JXFrame
 	public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
 	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
 	public static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
-	private static String VERSION = "1.00";
 
 	private WorkTableModel workTableModel = new WorkTableModel(this);
 	private JXTable workTable = new JXTable(workTableModel);
@@ -418,7 +418,8 @@ public class WorkLogScr extends JXFrame
 			reportTitle += "לקוח: " + customerCombo.getSelectedItem().toString();
 		}
 
-		PrintUtils.printTable(this, workTable, reportTitle, new double[]{0.16, 0.08, 0.52, 0.12, 0.12});
+		PrintUtils.printTable(this, workTable, reportTitle, totalPriceLabel.getText(),
+			new double[]{0.16, 0.1, 0.5, 0.12, 0.12});
 	}
 
 	private void initHelloTimer()
@@ -629,7 +630,7 @@ public class WorkLogScr extends JXFrame
 			price += (Double)workTableModel.getValueAt(i, priceCol);
 		}
 
-		totalPriceLabel.setText("המחיר כולל: " + NumberFormat.getCurrencyInstance().format(price));
+		totalPriceLabel.setText("מחיר כולל: " + NumberFormat.getCurrencyInstance().format(price));
 	}
 
 	private class WorkTableRenderer extends DefaultTableRenderer

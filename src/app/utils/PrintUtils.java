@@ -5,10 +5,7 @@ package app.utils;
  */
 
 import org.jfree.report.*;
-import org.jfree.report.elementfactory.DateFieldElementFactory;
-import org.jfree.report.elementfactory.LabelElementFactory;
-import org.jfree.report.elementfactory.StaticShapeElementFactory;
-import org.jfree.report.elementfactory.TextFieldElementFactory;
+import org.jfree.report.elementfactory.*;
 import org.jfree.report.function.PageOfPagesFunction;
 import org.jfree.report.modules.gui.base.PreviewDialog;
 import org.jfree.report.style.ElementStyleSheet;
@@ -21,11 +18,13 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.print.PageFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 
 public class PrintUtils
 {
 	public static final FontDefinition TITLE_FONT = new FontDefinition("ARIAL", 20, true, false, false, false);
+	public static final FontDefinition FOOTER_FONT = new FontDefinition("ARIAL", 16, true, false, false, false);
 	public static final FontDefinition CELL_ITEM_FONT = new FontDefinition("ARIAL", 14, false, false, false, false);
 	public static final int HEADER_HEIGHT = 30;
 	public static final int COLUMN_HEADER_HEIGHT = 30;
@@ -35,7 +34,7 @@ public class PrintUtils
 		JFreeReportBoot.getInstance().start();
 	}
 
-	public static void printTable(JFrame owner, JTable tb, String title, double[] columnPercentageWidth)
+	public static void printTable(JFrame owner, JTable tb, String title, String reportFooterText, double[] columnPercentageWidth)
 	{
 		EntityTableModel tm;
 		float columnsWidth[];
@@ -71,7 +70,7 @@ public class PrintUtils
 		createReportHeader(title, titleWidth, tm, columnsWidth, columnPos, report);
 		initPageHeader(title, titleWidth, report);
 		initPageFooter(report);
-		initReportFooter(report);
+		initReportFooter(report, reportFooterText);
 
 		initReportDataItems(tm, getCellMaxWidth(owner, tm, columnsWidth), columnsWidth, columnPos, report);
 
@@ -186,16 +185,16 @@ public class PrintUtils
 		report.setPageFooter(pageFooter);
 	}
 
-	private static void initReportFooter(JFreeReport report)
+	private static void initReportFooter(JFreeReport report, String reportFooterText)
 	{
 		final ReportFooter footer = new ReportFooter();
 		footer.setName("Report-Footer");
-		footer.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new FloatDimension(0, 48));
-		footer.getStyle().setFontDefinitionProperty(new FontDefinition("ARIAL", 12, true, false, false, false));
+		footer.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new FloatDimension(0, 50));
+		footer.getStyle().setFontDefinitionProperty(FOOTER_FONT);
 
 		final LabelElementFactory rfFactory = getLabelElementFactory();
 		rfFactory.setVerticalAlignment(ElementAlignment.BOTTOM);
-		rfFactory.setText("");
+		rfFactory.setText(reportFooterText);
 		footer.addElement(rfFactory.createElement());
 		report.setReportFooter(footer);
 	}
@@ -215,7 +214,17 @@ public class PrintUtils
 				initTextCellElementFactory(tfFactory);
 				((DateFieldElementFactory) tfFactory).setFormat(new SimpleDateFormat("dd/MM/yyyy"));
 			}
-
+			else if (tm.getColumnName(i).equals(WorkTableModel.PRICE_COL))
+			{
+				tfFactory = new NumberFieldElementFactory();
+				initTextCellElementFactory(tfFactory);
+				((NumberFieldElementFactory) tfFactory).setFormat(NumberFormat.getCurrencyInstance());
+			}
+			else
+			{
+				tfFactory = new TextFieldElementFactory();
+				initTextCellElementFactory(tfFactory);
+			}
 			tfFactory.setName(tm.getColumnName(i));
 			tfFactory.setMinimumSize(new FloatDimension(columnsWidth[i] - 4, cellMaxHeight));
 			tfFactory.setAbsolutePosition(new Point2D.Float(columnPos[i], 0));
