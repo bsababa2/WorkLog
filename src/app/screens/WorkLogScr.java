@@ -256,22 +256,7 @@ public class WorkLogScr extends JXFrame
 
 				if (e.getClickCount() >= 2 && realSelectedRow != -1)
 				{
-					Job jobToUpdate = workTableModel.getCurrentEntityList().get(realSelectedRow);
-					JobRecordDialog recordDialog = new JobRecordDialog(WorkLogScr.this,jobToUpdate);
-
-					if (recordDialog.isFinished() && !jobToUpdate.equals(recordDialog.getReturnedJob()))
-					{
-						try
-						{
-							DBManager.getSingleton().updateJob(recordDialog.getReturnedJob());
-							workTableModel.updateRow(realSelectedRow, recordDialog.getReturnedJob());
-						}
-						catch (Exception e1)
-						{
-							Utils.showExceptionMsg(WorkLogScr.this, e1);
-							e1.printStackTrace();
-						}
-					}
+					updateRow(realSelectedRow);
 				}
 			}
 		});
@@ -326,15 +311,7 @@ public class WorkLogScr extends JXFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				try
-				{
-					importFromExcel();
-				}
-				catch (Exception e1)
-				{
-					Utils.showExceptionMsg(WorkLogScr.this, e1);
-					e1.printStackTrace();
-				}
+				importFromExcel();
 			}
 		});
 
@@ -355,6 +332,26 @@ public class WorkLogScr extends JXFrame
 				reset();
 			}
 		});
+	}
+
+	private void updateRow(int realSelectedRow)
+	{
+		Job jobToUpdate = workTableModel.getCurrentEntityList().get(realSelectedRow);
+		JobRecordDialog recordDialog = new JobRecordDialog(this,jobToUpdate);
+
+		if (recordDialog.isFinished() && !jobToUpdate.equals(recordDialog.getReturnedJob()))
+		{
+			try
+			{
+				DBManager.getSingleton().updateJob(recordDialog.getReturnedJob());
+				workTableModel.updateRow(realSelectedRow, recordDialog.getReturnedJob());
+			}
+			catch (Exception e1)
+			{
+				Utils.showExceptionMsg(this, e1);
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	private void filterByDates()
@@ -498,7 +495,26 @@ public class WorkLogScr extends JXFrame
 		workTable.setRowHeight(RowWrapTableModelListener.DEFAULT_ROW_HEIGHT);
 	}
 
-	private void importFromExcel() throws Exception
+	private void importFromExcel()
+	{
+		try
+		{
+			final JFileChooser chooser = getExcelFileChooser();
+			// If no file has been selected
+			if (chooser.getSelectedFile() == null) return;
+
+			List<Job> jobs = new ArrayList<Job>();
+			File inputWorkbook = chooser.getSelectedFile();
+			extractJobsFromExcelFile(jobs, inputWorkbook);
+		}
+		catch (Exception e1)
+		{
+			Utils.showExceptionMsg(WorkLogScr.this, e1);
+			e1.printStackTrace();
+		}
+	}
+
+	private JFileChooser getExcelFileChooser()
 	{
 		final JFileChooser chooser = new JFileChooser();
 		chooser.setCurrentDirectory(chooser.getFileSystemView().getParentDirectory(new File("C:\\")).getParentFile());
@@ -506,65 +522,11 @@ public class WorkLogScr extends JXFrame
 		chooser.setFileFilter(new FileNameExtensionFilter("Excel document (*.xls)", "xls"));
 		chooser.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		chooser.showDialog(WorkLogScr.this, "טען");
+		return chooser;
+	}
 
-		List<Job> jobs = new ArrayList<Job>();
-		File inputWorkbook = chooser.getSelectedFile();
-
-		if (chooser.getSelectedFile() == null)
-		{
-			return;
-		}
-
-		boolean isProblemOccured = false;
-		StringBuilder problematicRows = new StringBuilder("בעיה ביבוא של העבודות הבאות:").append("\n");
-		Workbook workbook;
-		try
-		{
-			workbook = Workbook.getWorkbook(inputWorkbook);
-			for (Sheet sheet : workbook.getSheets())
-			{
-				for (int row = 1; row < sheet.getRows(); row++)
-				{
-					Cell[] cells = sheet.getRow(row);
-					int customerIndex = 0;
-					int dateIndex = 1;
-					int jobDescIndex = 2;
-					int priceIndex = 3;
-					int remarksIndex = 4;
-
-					try
-					{
-						if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
-						{
-							Customer customer = new Customer(cells[customerIndex].getContents());
-							Date jobDate = defaultDateFormat.parse(cells[dateIndex].getContents());
-							String jobDescr = cells[jobDescIndex].getContents();
-							double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
-							String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
-							jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
-						}
-					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
-						problematicRows.append("בגיליון ").append(sheet.getName()).append(" בשורה מס' ").append(row).append("\n");
-						isProblemOccured = true;
-					}
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			Utils.showExceptionMsg(this, e);
-			e.printStackTrace();
-		}
-
-		if (isProblemOccured)
-		{
-			Utils.showErrorMsg(WorkLogScr.this, problematicRows.toString());
-			return;
-		}
-
+	private void processImportedJobs(List<Job> jobs) throws Exception
+	{
 		for (Job job : jobs)
 		{
 			Customer customer = DBManager.getSingleton().getCustomerByName(job.getCustomer().getName());
@@ -584,6 +546,52 @@ public class WorkLogScr extends JXFrame
 		Utils.initCustomerCombo(customerCombo, true);
 
 		Utils.showInfoMsg(this, "הנתונים נטענו בהצלחה!");
+	}
+
+	private void extractJobsFromExcelFile(List<Job> jobs, File inputWorkbook) throws Exception
+	{
+		boolean isProblemOccured = false;
+		StringBuilder problematicRows = new StringBuilder("בעיה ביבוא של העבודות הבאות:").append("\n");
+		Workbook workbook = Workbook.getWorkbook(inputWorkbook);
+		for (Sheet sheet : workbook.getSheets())
+		{
+			for (int row = 1; row < sheet.getRows(); row++)
+			{
+				Cell[] cells = sheet.getRow(row);
+				int customerIndex = 0;
+				int dateIndex = 1;
+				int jobDescIndex = 2;
+				int priceIndex = 3;
+				int remarksIndex = 4;
+
+				try
+				{
+					if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
+					{
+						Customer customer = new Customer(cells[customerIndex].getContents());
+						Date jobDate = defaultDateFormat.parse(cells[dateIndex].getContents());
+						String jobDescr = cells[jobDescIndex].getContents();
+						double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
+						String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
+						jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+					}
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+					problematicRows.append("בגיליון ").append(sheet.getName()).append(" בשורה מס' ").append(row).append("\n");
+					isProblemOccured = true;
+				}
+			}
+		}
+
+		if (isProblemOccured)
+		{
+			Utils.showErrorMsg(WorkLogScr.this, problematicRows.toString());
+			return;
+		}
+
+		processImportedJobs(jobs);
 	}
 
 	private boolean checkCellsValidity(Cell[] cells, int[] mustCells) throws Exception
