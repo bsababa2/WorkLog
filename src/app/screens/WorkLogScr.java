@@ -9,6 +9,7 @@ import app.utils.Utils;
 import app.utils.WorkTableModel;
 import com.alee.extended.date.WebDateField;
 import com.alee.laf.WebLookAndFeel;
+import com.alee.utils.swing.DocumentChangeListener;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -18,12 +19,16 @@ import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.event.DocumentEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicMenuUI;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -271,10 +276,10 @@ public class WorkLogScr extends JXFrame
 			}
 		});
 
-		workField.addKeyListener(new KeyAdapter()
+		workField.getDocument().addDocumentListener(new DocumentChangeListener()
 		{
 			@Override
-			public void keyTyped(KeyEvent e)
+			public void documentChanged(DocumentEvent documentEvent)
 			{
 				doFilter();
 			}
@@ -285,17 +290,7 @@ public class WorkLogScr extends JXFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				try
-				{
-					workTableModel.setInitialEntityList(
-						DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
-					doFilter();
-				}
-				catch (Exception e1)
-				{
-					Utils.showExceptionMsg(WorkLogScr.this, e1);
-					e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-				}
+				filterByDates();
 			}
 		});
 
@@ -304,18 +299,7 @@ public class WorkLogScr extends JXFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				JobRecordDialog jobRecordDialog = new JobRecordDialog(WorkLogScr.this, null);
-				while (!jobRecordDialog.isFinished())
-				{
-					Job job  = jobRecordDialog.getReturnedJob();
-					if (job == null)
-					{
-						return;
-					}
-
-					workTableModel.addRow(job);
-					jobRecordDialog = new JobRecordDialog(WorkLogScr.this, null);
-				}
+				addRows();
 			}
 		});
 
@@ -324,26 +308,7 @@ public class WorkLogScr extends JXFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				int[] selectedRows = workTable.getSelectedRows();
-				if (selectedRows.length == 0) return;
-				try
-				{
-					List<Job> removedJobs = new ArrayList<Job>();
-
-					for (int selectedRow : selectedRows)
-					{
-						Job job = workTableModel.getCurrentEntityList().get(Utils.getRealRow(selectedRow, workTable));
-						DBManager.getSingleton().removeJob(job.getId());
-						removedJobs.add(job);
-					}
-
-					workTableModel.removeRows(removedJobs);
-				}
-				catch (Exception e1)
-				{
-					Utils.showExceptionMsg(WorkLogScr.this, e1);
-					e1.printStackTrace();
-				}
+				removeRows();
 			}
 		});
 
@@ -387,11 +352,71 @@ public class WorkLogScr extends JXFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				workField.setText("");
-				customerCombo.setSelectedIndex(0);
-				doFilter();
+				reset();
 			}
 		});
+	}
+
+	private void filterByDates()
+	{
+		try
+		{
+			workTableModel.setInitialEntityList(
+				DBManager.getSingleton().getJobsByDates(fromDatePicker.getDate(), toDatePicker.getDate()));
+			doFilter();
+		}
+		catch (Exception e1)
+		{
+			Utils.showExceptionMsg(this, e1);
+			e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+		}
+	}
+
+	private void addRows()
+	{
+		JobRecordDialog jobRecordDialog = new JobRecordDialog(this, null);
+		while (!jobRecordDialog.isFinished())
+		{
+			Job job  = jobRecordDialog.getReturnedJob();
+			if (job == null)
+			{
+				return;
+			}
+
+			workTableModel.addRow(job);
+			jobRecordDialog = new JobRecordDialog(this, null);
+		}
+	}
+
+	private void removeRows()
+	{
+		int[] selectedRows = workTable.getSelectedRows();
+		if (selectedRows.length == 0) return;
+		try
+		{
+			List<Job> removedJobs = new ArrayList<Job>();
+
+			for (int selectedRow : selectedRows)
+			{
+				Job job = workTableModel.getCurrentEntityList().get(Utils.getRealRow(selectedRow, workTable));
+				DBManager.getSingleton().removeJob(job.getId());
+				removedJobs.add(job);
+			}
+
+			workTableModel.removeRows(removedJobs);
+		}
+		catch (Exception e1)
+		{
+			Utils.showExceptionMsg(this, e1);
+			e1.printStackTrace();
+		}
+	}
+
+	private void reset()
+	{
+		workField.setText("");
+		customerCombo.setSelectedIndex(0);
+		doFilter();
 	}
 
 	private void printTable()
