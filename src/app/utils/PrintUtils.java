@@ -69,7 +69,7 @@ public class PrintUtils
 		}
 
 		createReportHeader(title, titleWidth, tm, columnsWidth, columnPos, report);
-		initPageHeader(title, report);
+		initPageHeader(title, titleWidth, report);
 		initPageFooter(report);
 		initReportFooter(report);
 
@@ -110,14 +110,8 @@ public class PrintUtils
 		header.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new Dimension(0, HEADER_HEIGHT + COLUMN_HEADER_HEIGHT));
 		header.getStyle().setFontDefinitionProperty(TITLE_FONT);
 
-		final LabelElementFactory factory = new LabelElementFactory();
+		final LabelElementFactory factory = getHeaderLabelElementFactory(title, titleWidth, report);
 		factory.setName("Report-Header-Label");
-		float center = report.getPageDefinition().getWidth() / 2;
-		factory.setAbsolutePosition(new Point2D.Float(center - titleWidth / 2, 0));
-		factory.setMinimumSize(new Dimension(titleWidth, HEADER_HEIGHT));
-		factory.setHorizontalAlignment(ElementAlignment.CENTER);
-		factory.setVerticalAlignment(ElementAlignment.MIDDLE);
-		factory.setText(title);
 		header.addElement(factory.createElement());
 
 		factory.setFontSize(16);
@@ -139,21 +133,30 @@ public class PrintUtils
 		report.setReportHeader(header);
 	}
 
+	private static LabelElementFactory getHeaderLabelElementFactory(String title, int titleWidth, JFreeReport report)
+	{
+		final LabelElementFactory factory = new LabelElementFactory();
+		float center = report.getPageDefinition().getWidth() / 2;
+		factory.setAbsolutePosition(new Point2D.Float(center - titleWidth / 2, 0));
+		factory.setMinimumSize(new Dimension(titleWidth, HEADER_HEIGHT));
+		factory.setHorizontalAlignment(ElementAlignment.CENTER);
+		factory.setVerticalAlignment(ElementAlignment.MIDDLE);
+		factory.setText(title);
+		return factory;
+	}
+
 	private static ShapeElement getHeaderShapeElement(float x)
 	{
 		return StaticShapeElementFactory.createRectangleShapeElement(null, null, new BasicStroke(1),
 			new Rectangle((int) x, HEADER_HEIGHT, 1, COLUMN_HEADER_HEIGHT), true, false);
 	}
 
-	private static void initPageHeader(String title, JFreeReport report)
+	private static void initPageHeader(String title, int titleWidth, JFreeReport report)
 	{
-		//CreatePageHeader()
 		final PageHeader pHeader = new PageHeader();
 		pHeader.getStyle().setFontDefinitionProperty(TITLE_FONT);
 		pHeader.setName("Page-pHeader");
-		final LabelElementFactory rhFactory = getLabelElementFactory();
-		rhFactory.setVerticalAlignment(ElementAlignment.TOP);
-		rhFactory.setText(title);
+		final LabelElementFactory rhFactory = getHeaderLabelElementFactory(title, titleWidth, report);
 		pHeader.addElement(rhFactory.createElement());
 		pHeader.addElement(getHorizontalLine(HEADER_HEIGHT));
 		pHeader.setDisplayOnFirstPage(false);
@@ -162,7 +165,6 @@ public class PrintUtils
 
 	private static void initPageFooter(JFreeReport report)
 	{
-		//CreatePageFooter
 		final PageFooter pageFooter = new PageFooter();
 		pageFooter.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new FloatDimension(0, 24));
 		LabelElementFactory pgFactory = getLabelElementFactory();
@@ -186,7 +188,6 @@ public class PrintUtils
 
 	private static void initReportFooter(JFreeReport report)
 	{
-		//CreateReportFooter();
 		final ReportFooter footer = new ReportFooter();
 		footer.setName("Report-Footer");
 		footer.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new FloatDimension(0, 48));
