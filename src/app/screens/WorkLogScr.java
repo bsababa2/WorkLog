@@ -84,7 +84,7 @@ public class WorkLogScr extends JXFrame
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tools.png")));
 		this.setTitle("יומן עבודות נועם "+VERSION);
-		Utils.setSoftSize(this, new Dimension(1200, 800));
+		Utils.setSoftSize(this, new Dimension(1200, 700));
 		this.setLocationRelativeTo(null);
 
 		try
