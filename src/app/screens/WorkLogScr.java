@@ -74,7 +74,8 @@ public class WorkLogScr extends JXFrame
 	private JXTextField workField = new JXTextField();
 	private JXLabel totalPriceLabel = new JXLabel();
 	private JXButton multipleAddButton = new JXButton("הוספה מרובה");
-	private JXButton removeButton = new JXButton("מחק רשומה");
+	private JXButton removeRowButton = new JXButton("מחק רשומה");
+	private JXButton removeCustomerButton = new JXButton("מחק לקוח");
 	private JXButton printButton = new JXButton("הדפס טבלה", new ImageIcon(Utils.scaleImage("/images/print.png", 25, 25)));
 	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", new ImageIcon(Utils.scaleImage("/images/excel.png", 25, 25)));
 
@@ -83,7 +84,7 @@ public class WorkLogScr extends JXFrame
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tools.png")));
-		this.setTitle("יומן עבודות נועם "+VERSION);
+		this.setTitle("יומן עבודות נועם " + VERSION);
 		Utils.setSoftSize(this, new Dimension(1200, 700));
 		this.setLocationRelativeTo(null);
 
@@ -155,7 +156,9 @@ public class WorkLogScr extends JXFrame
 		Utils.addStandardRigid(editButtonsPanel);
 		editButtonsPanel.add(multipleAddButton);
 		Utils.addStandardRigid(editButtonsPanel);
-		editButtonsPanel.add(removeButton);
+		editButtonsPanel.add(removeRowButton);
+		Utils.addStandardRigid(editButtonsPanel);
+		editButtonsPanel.add(removeCustomerButton);
 		editButtonsPanel.add(Box.createHorizontalGlue());
 
 		JXPanel printAndExcelImportButtonsPanel = new JXPanel();
@@ -288,12 +291,21 @@ public class WorkLogScr extends JXFrame
 			}
 		});
 
-		removeButton.addActionListener(new ActionListener()
+		removeRowButton.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				removeRows();
+			}
+		});
+
+		removeCustomerButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				removeCustomer();
 			}
 		});
 
@@ -332,6 +344,29 @@ public class WorkLogScr extends JXFrame
 				reset();
 			}
 		});
+	}
+
+	private void removeCustomer()
+	{
+		try
+		{
+			Customer customer = (Customer) JOptionPane.showInputDialog(this, "בחר לקוח שהינך רוצה להסיר:",
+				"מחיקת לקוח", JOptionPane.QUESTION_MESSAGE, null, DBManager.getSingleton().getCustomers().toArray(), null);
+
+			if (customer == null) return;
+
+			if (Utils.showWarnMsg(this, "שים לב, הסרת הלקוח תגרור הסרה של הרשומות המקושרות אליו.\n" +
+				"האם הינך בטוח להמשיך בפעולה?") == JOptionPane.NO_OPTION) return;
+
+			DBManager.getSingleton().invalidateCustomer(customer);
+			((DefaultComboBoxModel)customerCombo.getModel()).removeElement(customer);
+			filterByDates();
+		}
+		catch (Exception e1)
+		{
+			Utils.showExceptionMsg(this, e1);
+			e1.printStackTrace();
+		}
 	}
 
 	private void updateRow(int realSelectedRow)
@@ -471,7 +506,8 @@ public class WorkLogScr extends JXFrame
 		Utils.setSoftSize(workField, DEFAULT_WORKFILED_SIZE);
 		Utils.setSoftSize(filterDatesButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(multipleAddButton, DEFAULT_BUTTON_SIZE);
-		Utils.setSoftSize(removeButton, DEFAULT_BUTTON_SIZE);
+		Utils.setSoftSize(removeRowButton, DEFAULT_BUTTON_SIZE);
+		Utils.setSoftSize(removeCustomerButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(resetButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(printButton, new Dimension(150, 25));
 		Utils.setSoftSize(importFromExcelButton, new Dimension(150, 25));
@@ -533,7 +569,7 @@ public class WorkLogScr extends JXFrame
 			if (customer == null)
 			{
 				customer = job.getCustomer();
-				customer.setId(DBManager.getSingleton().addCustomer(job.getCustomer()));
+				customer.setId(DBManager.getSingleton().addCustomer(customer));
 			}
 
 			job.setCustomer(customer);

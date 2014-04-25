@@ -38,6 +38,11 @@ public class Utils
 		return JOptionPane.showInputDialog(component, msg, title, JOptionPane.PLAIN_MESSAGE);
 	}
 
+	public static int showWarnMsg(Component component, String msg)
+	{
+		  return JOptionPane.showConfirmDialog(component, msg, "אזהרה", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+	}
+
 	public static void setLineLayout(JPanel panel)
 	{
 		panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
