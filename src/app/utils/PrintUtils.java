@@ -27,6 +27,8 @@ public class PrintUtils
 {
 	public static final FontDefinition TITLE_FONT = new FontDefinition("ARIAL", 20, true, false, false, false);
 	public static final FontDefinition CELL_ITEM_FONT = new FontDefinition("ARIAL", 14, false, false, false, false);
+	public static final int HEADER_HEIGHT = 30;
+	public static final int COLUMN_HEADER_HEIGHT = 30;
 
 	static
 	{
@@ -76,7 +78,7 @@ public class PrintUtils
 		try
 		{
 			final PreviewDialog preview = new PreviewDialog(report, owner, true);
-			preview.setSize(800, 800);
+			preview.setSize(800, 700);
 			preview.setLocationRelativeTo(null);
 			preview.setVisible(true);
 		} catch (ReportProcessingException e)
@@ -105,14 +107,14 @@ public class PrintUtils
 	{
 		final ReportHeader header = new ReportHeader();
 		header.setName("Report-Header");
-		header.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new Dimension(0, 58));
+		header.getStyle().setStyleProperty(ElementStyleSheet.MINIMUMSIZE, new Dimension(0, HEADER_HEIGHT + COLUMN_HEADER_HEIGHT));
 		header.getStyle().setFontDefinitionProperty(TITLE_FONT);
 
 		final LabelElementFactory factory = new LabelElementFactory();
 		factory.setName("Report-Header-Label");
 		float center = report.getPageDefinition().getWidth() / 2;
 		factory.setAbsolutePosition(new Point2D.Float(center - titleWidth / 2, 0));
-		factory.setMinimumSize(new Dimension(titleWidth, 24));
+		factory.setMinimumSize(new Dimension(titleWidth, HEADER_HEIGHT));
 		factory.setHorizontalAlignment(ElementAlignment.CENTER);
 		factory.setVerticalAlignment(ElementAlignment.MIDDLE);
 		factory.setText(title);
@@ -122,26 +124,25 @@ public class PrintUtils
 		factory.setHorizontalAlignment(ElementAlignment.CENTER);
 		factory.setVerticalAlignment(ElementAlignment.MIDDLE);
 
-		int headerHeight = 30;
 		for (int i = 0; i < tm.getColumnCount(); i++)
 		{
 			factory.setName("Column" + String.valueOf(i));
-			factory.setMinimumSize(new FloatDimension(columnWidth[i], headerHeight));
-			factory.setAbsolutePosition(new Point2D.Float(columnPos[i], headerHeight));
+			factory.setAbsolutePosition(new Point2D.Float(columnPos[i], HEADER_HEIGHT));
+			factory.setMinimumSize(new FloatDimension(columnWidth[i], COLUMN_HEADER_HEIGHT));
 			factory.setText(tm.getColumnName(i));
 			header.addElement(factory.createElement());
 			header.addElement(getHeaderShapeElement(columnPos[i]));
 		}
 		header.addElement(getHeaderShapeElement(report.getPageDefinition().getWidth() - 1));
-		header.addElement(getHorizontalLine(28));
-		header.addElement(getHorizontalLine(28 + headerHeight));
+		header.addElement(getHorizontalLine(HEADER_HEIGHT));
+		header.addElement(getHorizontalLine(HEADER_HEIGHT + COLUMN_HEADER_HEIGHT));
 		report.setReportHeader(header);
 	}
 
 	private static ShapeElement getHeaderShapeElement(float x)
 	{
 		return StaticShapeElementFactory.createRectangleShapeElement(null, null, new BasicStroke(1),
-			new Rectangle((int) x, 28, 1, 30), true, false);
+			new Rectangle((int) x, HEADER_HEIGHT, 1, COLUMN_HEADER_HEIGHT), true, false);
 	}
 
 	private static void initPageHeader(String title, JFreeReport report)
@@ -154,7 +155,7 @@ public class PrintUtils
 		rhFactory.setVerticalAlignment(ElementAlignment.TOP);
 		rhFactory.setText(title);
 		pHeader.addElement(rhFactory.createElement());
-		pHeader.addElement(getHorizontalLine(24));
+		pHeader.addElement(getHorizontalLine(HEADER_HEIGHT));
 		pHeader.setDisplayOnFirstPage(false);
 		report.setPageHeader(pHeader);
 	}
