@@ -200,6 +200,9 @@ public class WorkLogScr extends JXFrame
 		this.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 
 		this.setVisible(true);
+
+		// Have to be done after screen is visible, in order to set row height accordingly
+		workTableModel.fireTableDataChanged();
 	}
 
 	private void initComponents() throws Exception
