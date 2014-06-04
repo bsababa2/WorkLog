@@ -24,10 +24,11 @@ import java.text.SimpleDateFormat;
 public class PrintUtils
 {
 	public static final FontDefinition TITLE_FONT = new FontDefinition("ARIAL", 20, true, false, false, false);
-	public static final FontDefinition FOOTER_FONT = new FontDefinition("ARIAL", 16, true, false, false, false);
-	public static final FontDefinition CELL_ITEM_FONT = new FontDefinition("ARIAL", 14, false, false, false, false);
+	public static final FontDefinition FOOTER_FONT = new FontDefinition("ARIAL", 14, true, false, false, false);
+	public static final FontDefinition CELL_ITEM_FONT = new FontDefinition("ARIAL", 12, false, false, false, false);
 	public static final int HEADER_HEIGHT = 30;
 	public static final int COLUMN_HEADER_HEIGHT = 30;
+	public static final int ROW_HEIGHT = 13;
 
 	static
 	{
@@ -72,7 +73,7 @@ public class PrintUtils
 		initPageFooter(report);
 		initReportFooter(report, reportFooterText);
 
-		initReportDataItems(tm, getCellMaxWidth(owner, tm, columnsWidth), columnsWidth, columnPos, report);
+		initReportDataItems(tm, getCellMaxHeight(owner, tm, columnsWidth), columnsWidth, columnPos, report);
 
 		try
 		{
@@ -86,7 +87,7 @@ public class PrintUtils
 		}
 	}
 
-	private static int getCellMaxWidth(JFrame owner, EntityTableModel tableModel, float[] columnsWidth)
+	private static int getCellMaxHeight(JFrame owner, EntityTableModel tableModel, float[] columnsWidth)
 	{
 		int cellMaxWidth = 0;
 		FontMetrics fontMetrics = owner.getFontMetrics(CELL_ITEM_FONT.getFont());
@@ -99,7 +100,7 @@ public class PrintUtils
 		}
 
 		cellMaxWidth += 5;
-		return (int)Math.ceil(cellMaxWidth/columnsWidth[jobCol]) * 18;
+		return (int)Math.ceil(cellMaxWidth/columnsWidth[jobCol]) * ROW_HEIGHT;
 	}
 
 	private static void createReportHeader(String title, int titleWidth, TableModel tm, float[] columnWidth, float[] columnPos, JFreeReport report)
