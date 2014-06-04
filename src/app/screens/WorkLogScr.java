@@ -44,7 +44,7 @@ import java.util.List;
  */
 public class WorkLogScr extends JXFrame
 {
-	private static String VERSION = "1.1";
+	private static String VERSION = "1.2";
 	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(120, 25);
 	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
 	public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
