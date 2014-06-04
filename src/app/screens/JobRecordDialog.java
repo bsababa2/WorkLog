@@ -182,8 +182,10 @@ public class JobRecordDialog extends JDialog
 							throw new Exception("הלקוח כבר קיים!");
 						}
 
-						DBManager.getSingleton().addCustomer(new Customer(name));
+						Customer customer = new Customer(name);
+						customer.setId(DBManager.getSingleton().addCustomer(customer));
 						Utils.initCustomerCombo(customerCombo, false);
+						customerCombo.setSelectedItem(customer);
 					}
 					catch (Exception e1)
 					{

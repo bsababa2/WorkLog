@@ -410,13 +410,19 @@ public class WorkLogScr extends JXFrame
 		while (!jobRecordDialog.isFinished())
 		{
 			Job job  = jobRecordDialog.getReturnedJob();
-			if (job == null)
-			{
-				return;
-			}
+			if (job == null) break;
 
 			workTableModel.addRow(job);
 			jobRecordDialog = new JobRecordDialog(this, null);
+		}
+
+		try
+		{
+			Utils.initCustomerCombo(customerCombo, true);
+		}
+		catch (Exception e)
+		{
+			Utils.showExceptionMsg(this, e);
 		}
 	}
 
