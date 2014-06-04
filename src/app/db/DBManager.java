@@ -223,7 +223,7 @@ public class DBManager
 			if (rs.next())
 			{
 				id = rs.getInt("NEW_ID");
-				ps = conn.prepareStatement("INSERT INTO CUSTOMERS VALUES(?, ?)");
+				ps = conn.prepareStatement("INSERT INTO CUSTOMERS VALUES(?, ?, 'Y')");
 				ps.setInt(1, id);
 				ps.setString(2, customer.getName());
 				ps.executeUpdate();
