@@ -708,7 +708,7 @@ public class WorkLogScr extends JXFrame
 			price += (Double)workTableModel.getValueAt(i, priceCol);
 		}
 
-		totalPriceLabel.setText("מחיר כולל: " + NumberFormat.getCurrencyInstance().format(price));
+		totalPriceLabel.setText("סה\"כ: " + NumberFormat.getCurrencyInstance().format(price));
 	}
 
 	private class WorkTableRenderer extends DefaultTableRenderer
