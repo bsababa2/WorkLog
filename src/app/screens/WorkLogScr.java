@@ -47,7 +47,7 @@ public class WorkLogScr extends JXFrame
 	private static final String VERSION = "1.2";
 	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(120, 25);
 	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
-	public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
+	public static Dimension DEFAULT_WORKFIELD_SIZE = new Dimension(250, 25);
 	public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
 	public static Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
 	public static Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
@@ -458,18 +458,6 @@ public class WorkLogScr extends JXFrame
 
 	private void printTable()
 	{
-//		try
-//		{
-//			PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
-//			set.add(OrientationRequested.LANDSCAPE);
-//			workTable.print(JTable.PrintMode.FIT_WIDTH, null, null, true, set, true);
-//		}
-//		catch (PrinterException e1)
-//		{
-//			Utils.showExceptionMsg(this, e1);
-//			e1.printStackTrace();
-//		}
-
 		String reportTitle = "ריכוז עבודות עבור ";
 		if (customerCombo.getSelectedItem().equals(Customer.ALL_VALUES))
 		{
@@ -505,10 +493,9 @@ public class WorkLogScr extends JXFrame
 
 	private void initSizesAndFonts()
 	{
-		Utils.setSoftSize(customerCombo, DEFAULT_COMBO_SIZE);
 		Utils.setHardSize(fromDatePicker, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(toDatePicker, DEFAULT_DATE_SIZE);
-		Utils.setSoftSize(workField, DEFAULT_WORKFILED_SIZE);
+		Utils.setSoftSize(workField, DEFAULT_WORKFIELD_SIZE);
 		Utils.setSoftSize(filterDatesButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(multipleAddButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(removeRowButton, DEFAULT_BUTTON_SIZE);
