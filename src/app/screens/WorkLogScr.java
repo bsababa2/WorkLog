@@ -21,7 +21,6 @@ import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicMenuUI;
 import java.awt.*;
@@ -45,19 +44,19 @@ import java.util.List;
 public class WorkLogScr extends JXFrame
 {
 	private static final String VERSION = "1.2";
-	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(120, 25);
-	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
-	public static Dimension DEFAULT_WORKFIELD_SIZE = new Dimension(250, 25);
-	public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
-	public static Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
-	public static Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
-	public static Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
-	public static Color NEW_RECORD_COLOR = new Color(217,242,138);
-	public static Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
-	public static Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
-	public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
-	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
-	public static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
+	public static final Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
+	public static final Dimension DEFAULT_WORK_FIELD_SIZE = new Dimension(250, 25);
+	public static final Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
+	public static final Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
+	public static final Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
+	public static final Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
+	public static final Color COMBO_SELECTED_TEXT_COLOR = new Color(89, 179, 228);
+	public static final Color NEW_RECORD_COLOR = new Color(217,242,138);
+	public static final Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
+	public static final Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
+	public static final Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
+	public static final MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
+	public static final SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
 
 	private WorkTableModel workTableModel = new WorkTableModel(this);
 	private JXTable workTable = new JXTable(workTableModel);
@@ -104,6 +103,9 @@ public class WorkLogScr extends JXFrame
 		helloPanel.add(helloLabel);
 		Utils.addSmallRigid(helloPanel);
 		helloPanel.add(currentDateLabel);
+
+
+		((JTextField)customerCombo.getEditor().getEditorComponent()).setSelectionColor(COMBO_SELECTED_TEXT_COLOR);
 
 		JXPanel filterPanel = new JXPanel();
 		Utils.setLineLayout(filterPanel);
@@ -495,7 +497,7 @@ public class WorkLogScr extends JXFrame
 	{
 		Utils.setHardSize(fromDatePicker, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(toDatePicker, DEFAULT_DATE_SIZE);
-		Utils.setSoftSize(workField, DEFAULT_WORKFIELD_SIZE);
+		Utils.setSoftSize(workField, DEFAULT_WORK_FIELD_SIZE);
 		Utils.setSoftSize(filterDatesButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(multipleAddButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(removeRowButton, DEFAULT_BUTTON_SIZE);
@@ -756,7 +758,6 @@ public class WorkLogScr extends JXFrame
 
 	private static void updateUIMangerAndLocale()
 	{
-		UIManager.put("ComboBox.background", new ColorUIResource(UIManager.getColor("TextField.background")));
 		UIManager.put("ComboBox.font", new FontUIResource(DEFAULT_TEXT_FONT));
 		UIManager.put("TextField.font", new FontUIResource(DEFAULT_TEXT_FONT));
 		UIManager.put("TextArea.font", new FontUIResource(DEFAULT_TEXT_FONT));
