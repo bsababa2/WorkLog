@@ -2,6 +2,7 @@ package app.db;
 
 import app.entities.Customer;
 import app.entities.Job;
+import org.h2.jdbc.JdbcSQLException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -45,7 +46,19 @@ public class DBManager
 
 	private Connection getConnection() throws SQLException
 	{
-		return DriverManager.getConnection(connectionUrl, CONNECTION_USER, CONNECTION_PASS);
+		try
+		{
+			return DriverManager.getConnection(connectionUrl, CONNECTION_USER, CONNECTION_PASS);
+		}
+		catch (JdbcSQLException e)
+		{
+			e.printStackTrace();
+			if (e.getMessage().contains("Database may be already in use"))
+			{
+				e.setSQL(e.getSQL() + "\nייתכן ואתה נועל את מסד נתונים כיוון שהאפליקציה כבר רצה!");
+			}
+			throw e;
+		}
 	}
 
 	private void disconnect(PreparedStatement ps, ResultSet rs) throws SQLException
