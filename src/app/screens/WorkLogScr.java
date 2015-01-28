@@ -591,18 +591,18 @@ public class WorkLogScr extends JXFrame
 
 	private void extractJobsFromExcelFile(List<Job> jobs, File inputWorkbook) throws Exception
 	{
-		boolean isProblemOccured = false;
+		boolean isProblemOccurred = false;
 		StringBuilder problematicRows = new StringBuilder("בעיה ביבוא של העבודות הבאות:").append("\n");
 		Workbook workbook = Workbook.getWorkbook(inputWorkbook);
 		for (Sheet sheet : workbook.getSheets())
 		{
 			for (int row = 1; row < sheet.getRows(); row++)
 			{
-				isProblemOccured = processRow(jobs, problematicRows, sheet, row);
+				isProblemOccurred = processRow(jobs, problematicRows, sheet, row);
 			}
 		}
 
-		if (isProblemOccured)
+		if (isProblemOccurred)
 		{
 			Utils.showErrorMsg(WorkLogScr.this, problematicRows.toString());
 			return;
