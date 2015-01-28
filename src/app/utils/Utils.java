@@ -8,6 +8,7 @@ import jxl.read.biff.BlankCell;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -83,7 +84,7 @@ public class Utils
 		component.setMinimumSize(boxSize);
 	}
 
-	public static Image scaleImage(String imageName, int width, int height)
+	private static Image scaleImage(String imageName, int width, int height)
 	{
 		Image image = Toolkit.getDefaultToolkit().getImage(Utils.class.getResource(imageName));
 		return image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
@@ -99,13 +100,18 @@ public class Utils
 		return row == -1 ? row : table.getRowSorter().convertRowIndexToModel(row);
 	}
 
-	public static void initCustomerCombo(JComboBox customerCombo, boolean displayAllValues) throws Exception
+	public static void initCustomerCombo(JComboBox<Customer> customerCombo, boolean displayAllValues) throws Exception
 	{
-		java.util.List<Customer> customers = DBManager.getSingleton().getCustomers();
+		List<Customer> customers = DBManager.getSingleton().getCustomers();
 		if (displayAllValues) customers.add(0, Customer.ALL_VALUES);
-		customerCombo.setModel(new DefaultComboBoxModel(customers.toArray()));
+		customerCombo.setModel(new DefaultComboBoxModel<Customer>(customers.toArray(new Customer[customers.size()])));
 		customerCombo.setEditable(true);
 		customerCombo.setSelectedIndex(0);
 		AutoCompletion.enable(customerCombo);
+	}
+
+	public static ImageIcon getIconBySize(String iconName, int width, int height)
+	{
+		return new ImageIcon(Utils.scaleImage("/images/" + iconName, width, height));
 	}
 }

@@ -43,7 +43,7 @@ import java.util.List;
  */
 public class WorkLogScr extends JXFrame
 {
-	private static final String VERSION = "1.2";
+	public static final String VERSION = "1.3";
 	public static final Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
 	public static final Dimension DEFAULT_WORK_FIELD_SIZE = new Dimension(250, 25);
 	public static final Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
@@ -71,8 +71,8 @@ public class WorkLogScr extends JXFrame
 	private JXButton multipleAddButton = new JXButton("הוספה מרובה");
 	private JXButton removeRowButton = new JXButton("מחק רשומה");
 	private JXButton removeCustomerButton = new JXButton("מחק לקוח");
-	private JXButton printButton = new JXButton("הדפס טבלה", new ImageIcon(Utils.scaleImage("/images/print.png", 25, 25)));
-	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", new ImageIcon(Utils.scaleImage("/images/excel.png", 25, 25)));
+	private JXButton printButton = new JXButton("הדפס טבלה", Utils.getIconBySize("print.png", 25, 25));
+	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", Utils.getIconBySize("excel.png", 25, 25));
 
 	public WorkLogScr() throws HeadlessException
 	{
@@ -96,7 +96,7 @@ public class WorkLogScr extends JXFrame
 		JXPanel helloPanel = new JXPanel();
 		Utils.setLineLayout(helloPanel);
 		Utils.addStandardRigid(helloPanel);
-		helloPanel.add(new JXLabel(new ImageIcon(Utils.scaleImage("/images/dad.png", 50, 50))));
+		helloPanel.add(new JXLabel(Utils.getIconBySize("dad.png", 50, 50)));
 		Utils.addStandardRigid(helloPanel);
 		JXLabel helloLabel = new JXLabel("שלום נועם, התאריך היום");
 		helloLabel.setFont(DEFAULT_TITLE_FONT);

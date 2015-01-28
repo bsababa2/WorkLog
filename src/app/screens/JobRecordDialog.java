@@ -11,7 +11,6 @@ import com.alee.laf.scroll.WebScrollPane;
 import com.alee.laf.text.WebTextArea;
 import com.sun.deploy.panel.NumberDocument;
 import org.jdesktop.swingx.JXButton;
-import org.jdesktop.swingx.JXComboBox;
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXPanel;
 
@@ -41,7 +40,7 @@ public class JobRecordDialog extends JDialog
 	private JXLabel dateLabel = new JXLabel("בתאריך:");
 	private WebDateField datePicker = new WebDateField(Calendar.getInstance().getTime());
 	private JXLabel customerLabel = new JXLabel("לקוח:");
-	private JXComboBox customerCombo = new JXComboBox();
+	private JComboBox<Customer> customerCombo = new JComboBox<Customer>();
 	private JXButton addNewCustomerButton = new JXButton("הוספה");
 	private JXButton updateCustomerButton = new JXButton("עדכון");
 	private WebTextArea jobDescField = new WebTextArea(DEFAULT_JOB_DESC_TEXT);
@@ -208,7 +207,7 @@ public class JobRecordDialog extends JDialog
 					{
 						for (int i = 0; i < customerCombo.getModel().getSize(); i++)
 						{
-							Customer currCustomer = ((DefaultComboBoxModel<Customer>)customerCombo.getModel()).getElementAt(i);
+							Customer currCustomer = customerCombo.getModel().getElementAt(i);
 							if (name.trim().equals(currCustomer.getName().trim()))
 							{
 								Utils.showErrorMsg(JobRecordDialog.this, "לקוח בשם זה כבר קיים!");
