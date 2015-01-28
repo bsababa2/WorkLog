@@ -44,7 +44,7 @@ import java.util.List;
  */
 public class WorkLogScr extends JXFrame
 {
-	private static String VERSION = "1.2";
+	private static final String VERSION = "1.2";
 	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(120, 25);
 	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
 	public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
@@ -62,15 +62,11 @@ public class WorkLogScr extends JXFrame
 	private WorkTableModel workTableModel = new WorkTableModel(this);
 	private JXTable workTable = new JXTable(workTableModel);
 	private JXLabel currentDateLabel = new JXLabel();
-	private JXLabel fromDateLabel = new JXLabel("מתאריך:");
 	private WebDateField fromDatePicker = new WebDateField();
-	private JXLabel toDateLabel = new JXLabel("עד תאריך:");
 	private JXButton filterDatesButton = new JXButton("סנן תאריכים");
-	private JXLabel customerLabel = new JXLabel("לקוח:");
 	private JXComboBox customerCombo = new JXComboBox();
 	private JXButton resetButton = new JXButton("נקה חיפוש");
 	private WebDateField toDatePicker = new WebDateField(Calendar.getInstance().getTime());
-	private JXLabel workLabel = new JXLabel("עבודה שנעשתה:");
 	private JXTextField workField = new JXTextField();
 	private JXLabel totalPriceLabel = new JXLabel();
 	private JXButton multipleAddButton = new JXButton("הוספה מרובה");
@@ -112,21 +108,21 @@ public class WorkLogScr extends JXFrame
 		JXPanel filterPanel = new JXPanel();
 		Utils.setLineLayout(filterPanel);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(fromDateLabel);
+		filterPanel.add(new JXLabel("מתאריך:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(fromDatePicker);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(toDateLabel);
+		filterPanel.add(new JXLabel("עד תאריך:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(toDatePicker);
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(filterDatesButton);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(customerLabel);
+		filterPanel.add(new JXLabel("לקוח:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(customerCombo);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(workLabel);
+		filterPanel.add(new JXLabel("עבודה שנעשתה:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(workField);
 		Utils.addStandardRigid(filterPanel);
@@ -602,31 +598,7 @@ public class WorkLogScr extends JXFrame
 		{
 			for (int row = 1; row < sheet.getRows(); row++)
 			{
-				Cell[] cells = sheet.getRow(row);
-				int customerIndex = 0;
-				int dateIndex = 1;
-				int jobDescIndex = 2;
-				int priceIndex = 3;
-				int remarksIndex = 4;
-
-				try
-				{
-					if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
-					{
-						Customer customer = new Customer(cells[customerIndex].getContents());
-						Date jobDate = defaultDateFormat.parse(cells[dateIndex].getContents());
-						String jobDescr = cells[jobDescIndex].getContents();
-						double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
-						String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
-						jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
-					}
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-					problematicRows.append("בגיליון ").append(sheet.getName()).append(" בשורה מס' ").append(row).append("\n");
-					isProblemOccured = true;
-				}
+				isProblemOccured = processRow(jobs, problematicRows, sheet, row);
 			}
 		}
 
@@ -637,6 +609,36 @@ public class WorkLogScr extends JXFrame
 		}
 
 		processImportedJobs(jobs);
+	}
+
+	private boolean processRow(List<Job> jobs, StringBuilder problematicRows, Sheet sheet, int row)
+	{
+		Cell[] cells = sheet.getRow(row);
+		int customerIndex = 0;
+		int dateIndex = 1;
+		int jobDescIndex = 2;
+		int priceIndex = 3;
+		int remarksIndex = 4;
+
+		try
+		{
+			if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
+			{
+				Customer customer = new Customer(cells[customerIndex].getContents());
+				Date jobDate = defaultDateFormat.parse(cells[dateIndex].getContents());
+				String jobDescr = cells[jobDescIndex].getContents();
+				double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
+				String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
+				jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			problematicRows.append("בגיליון ").append(sheet.getName()).append(" בשורה מס' ").append(row).append("\n");
+			return true;
+		}
+		return false;
 	}
 
 	private boolean checkCellsValidity(Cell[] cells, int[] mustCells) throws Exception
