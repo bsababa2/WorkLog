@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class DBManager
 {
+	private static final String DATABASE_IN_USE = "Database may be already in use";
 	private static final String CONNECTION_USER = "barak";
 	private static final String CONNECTION_PASS = "123";
 	private static final String DB_LOC_FILE = "db.txt";
@@ -53,7 +54,7 @@ public class DBManager
 		catch (JdbcSQLException e)
 		{
 			e.printStackTrace();
-			if (e.getMessage().contains("Database may be already in use"))
+			if (e.getMessage().contains(DATABASE_IN_USE))
 			{
 				e.setSQL(e.getSQL() + "\nייתכן ואתה נועל את מסד נתונים כיוון שהאפליקציה כבר רצה!");
 			}
