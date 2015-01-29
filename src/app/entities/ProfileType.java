@@ -6,12 +6,12 @@ package app.entities;
 public class ProfileType
 {
 	private int id;
-	private String descr;
+	private String description;
 
-	public ProfileType(int id, String descr)
+	public ProfileType(int id, String description)
 	{
 		this.id = id;
-		this.descr = descr;
+		this.description = description;
 	}
 
 	public int getId()
@@ -24,13 +24,13 @@ public class ProfileType
 		this.id = id;
 	}
 
-	public String getDescr()
+	public String getDescription()
 	{
-		return descr;
+		return description;
 	}
 
-	public void setDescr(String descr)
+	public void setDescription(String description)
 	{
-		this.descr = descr;
+		this.description = description;
 	}
 }
