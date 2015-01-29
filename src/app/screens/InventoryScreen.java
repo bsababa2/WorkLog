@@ -1,9 +1,13 @@
 package app.screens;
 
+import app.entities.ProfileType;
 import app.utils.InventoryTableModel;
 import app.utils.Utils;
+import com.alee.extended.panel.GroupPanel;
+import com.alee.extended.panel.GroupingType;
+import com.alee.laf.spinner.WebSpinner;
+import com.alee.laf.text.WebTextField;
 import org.jdesktop.swingx.JXButton;
-import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.JXTable;
 
 import javax.swing.*;
@@ -14,7 +18,10 @@ public class InventoryScreen extends JDialog
 	private InventoryTableModel inventoryTableModel = new InventoryTableModel();
 	private JXTable inventoryTable = new JXTable(inventoryTableModel);
 	private JXButton addButton = new JXButton("הוסף");
-	private JXButton removeButton = new JXButton("הסר");
+	private JComboBox<ProfileType> profileTypeCombo = new JComboBox<ProfileType>();
+	private WebTextField profileField = new WebTextField();
+	private WebSpinner quantitySpinner = new WebSpinner();
+	private WebTextField remarksField = new WebTextField();
 
 	public InventoryScreen(JFrame owner)
 	{
@@ -23,14 +30,13 @@ public class InventoryScreen extends JDialog
 		Utils.setSoftSize(this, new Dimension(800, 600));
 		this.setLocationRelativeTo(owner);
 
-		JXPanel buttonPanel = new JXPanel();
-		buttonPanel.add(addButton);
-		buttonPanel.add(removeButton);
+		GroupPanel northPanel = new GroupPanel(GroupingType.fillAll, profileTypeCombo, profileField,
+			quantitySpinner, remarksField, addButton);
 
 		initSizes();
 
 		this.getContentPane().setLayout(new BorderLayout());
-		this.getContentPane().add(buttonPanel, BorderLayout.NORTH);
+		this.getContentPane().add(northPanel, BorderLayout.NORTH);
 		this.getContentPane().add(new JScrollPane(inventoryTable), BorderLayout.CENTER);
 	}
 
