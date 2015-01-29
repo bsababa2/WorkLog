@@ -29,12 +29,9 @@ public class InventoryScreen extends JDialog
 
 		initSizes();
 
-		JXPanel mainPanel = new JXPanel();
-		mainPanel.setLayout(new BorderLayout());
-		mainPanel.add(buttonPanel, BorderLayout.NORTH);
-		mainPanel.add(new JScrollPane(inventoryTable), BorderLayout.CENTER);
-
-		this.getContentPane().add(mainPanel);
+		this.getContentPane().setLayout(new BorderLayout());
+		this.getContentPane().add(buttonPanel, BorderLayout.NORTH);
+		this.getContentPane().add(new JScrollPane(inventoryTable), BorderLayout.CENTER);
 	}
 
 	private void initSizes()

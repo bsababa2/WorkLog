@@ -86,8 +86,6 @@ public class JobRecordDialog extends JDialog
 		GroupPanel remarksPanel = new GroupPanel(GroupingType.fillMiddle, Box.createHorizontalStrut(5),
 			new WebScrollPane(remarksField).setPreferredHeight(100), Box.createHorizontalStrut(5));
 
-//		GroupPanel mainPanel = new GroupPanel(10, false, Box.createVerticalStrut(10), datePanel, customerPanel, workPanel, pricePanel, remarksPanel);
-
 		JXPanel mainPanel = new JXPanel();
 		Utils.setPageLayout(mainPanel);
 		Utils.addStandardRigid(mainPanel);
