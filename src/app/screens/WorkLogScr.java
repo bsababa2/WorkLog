@@ -21,7 +21,6 @@ import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.basic.BasicMenuUI;
 import java.awt.*;
@@ -44,40 +43,36 @@ import java.util.List;
  */
 public class WorkLogScr extends JXFrame
 {
-	private static String VERSION = "1.2";
-	public static Dimension DEFAULT_COMBO_SIZE = new Dimension(120, 25);
-	public static Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
-	public static Dimension DEFAULT_WORKFILED_SIZE = new Dimension(250, 25);
-	public static Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
-	public static Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
-	public static Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
-	public static Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
-	public static Color NEW_RECORD_COLOR = new Color(217,242,138);
-	public static Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
-	public static Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
-	public static Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
-	public static MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
-	public static SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
+	public static final String VERSION = "1.3";
+	public static final Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
+	public static final Dimension DEFAULT_WORK_FIELD_SIZE = new Dimension(250, 25);
+	public static final Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
+	public static final Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
+	public static final Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
+	public static final Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
+	public static final Color COMBO_SELECTED_TEXT_COLOR = new Color(89, 179, 228);
+	public static final Color NEW_RECORD_COLOR = new Color(217,242,138);
+	public static final Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
+	public static final Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
+	public static final Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
+	public static final MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
+	public static final SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
 
 	private WorkTableModel workTableModel = new WorkTableModel(this);
 	private JXTable workTable = new JXTable(workTableModel);
 	private JXLabel currentDateLabel = new JXLabel();
-	private JXLabel fromDateLabel = new JXLabel("מתאריך:");
 	private WebDateField fromDatePicker = new WebDateField();
-	private JXLabel toDateLabel = new JXLabel("עד תאריך:");
 	private JXButton filterDatesButton = new JXButton("סנן תאריכים");
-	private JXLabel customerLabel = new JXLabel("לקוח:");
 	private JXComboBox customerCombo = new JXComboBox();
 	private JXButton resetButton = new JXButton("נקה חיפוש");
 	private WebDateField toDatePicker = new WebDateField(Calendar.getInstance().getTime());
-	private JXLabel workLabel = new JXLabel("עבודה שנעשתה:");
 	private JXTextField workField = new JXTextField();
 	private JXLabel totalPriceLabel = new JXLabel();
 	private JXButton multipleAddButton = new JXButton("הוספה מרובה");
 	private JXButton removeRowButton = new JXButton("מחק רשומה");
 	private JXButton removeCustomerButton = new JXButton("מחק לקוח");
-	private JXButton printButton = new JXButton("הדפס טבלה", new ImageIcon(Utils.scaleImage("/images/print.png", 25, 25)));
-	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", new ImageIcon(Utils.scaleImage("/images/excel.png", 25, 25)));
+	private JXButton printButton = new JXButton("הדפס טבלה", Utils.getIconBySize("print.png", 25, 25));
+	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", Utils.getIconBySize("excel.png", 25, 25));
 
 	public WorkLogScr() throws HeadlessException
 	{
@@ -101,7 +96,7 @@ public class WorkLogScr extends JXFrame
 		JXPanel helloPanel = new JXPanel();
 		Utils.setLineLayout(helloPanel);
 		Utils.addStandardRigid(helloPanel);
-		helloPanel.add(new JXLabel(new ImageIcon(Utils.scaleImage("/images/dad.png", 50, 50))));
+		helloPanel.add(new JXLabel(Utils.getIconBySize("dad.png", 50, 50)));
 		Utils.addStandardRigid(helloPanel);
 		JXLabel helloLabel = new JXLabel("שלום נועם, התאריך היום");
 		helloLabel.setFont(DEFAULT_TITLE_FONT);
@@ -109,24 +104,27 @@ public class WorkLogScr extends JXFrame
 		Utils.addSmallRigid(helloPanel);
 		helloPanel.add(currentDateLabel);
 
+
+		((JTextField)customerCombo.getEditor().getEditorComponent()).setSelectionColor(COMBO_SELECTED_TEXT_COLOR);
+
 		JXPanel filterPanel = new JXPanel();
 		Utils.setLineLayout(filterPanel);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(fromDateLabel);
+		filterPanel.add(new JXLabel("מתאריך:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(fromDatePicker);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(toDateLabel);
+		filterPanel.add(new JXLabel("עד תאריך:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(toDatePicker);
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(filterDatesButton);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(customerLabel);
+		filterPanel.add(new JXLabel("לקוח:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(customerCombo);
 		Utils.addStandardRigid(filterPanel);
-		filterPanel.add(workLabel);
+		filterPanel.add(new JXLabel("עבודה שנעשתה:"));
 		Utils.addStandardRigid(filterPanel);
 		filterPanel.add(workField);
 		Utils.addStandardRigid(filterPanel);
@@ -462,18 +460,6 @@ public class WorkLogScr extends JXFrame
 
 	private void printTable()
 	{
-//		try
-//		{
-//			PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
-//			set.add(OrientationRequested.LANDSCAPE);
-//			workTable.print(JTable.PrintMode.FIT_WIDTH, null, null, true, set, true);
-//		}
-//		catch (PrinterException e1)
-//		{
-//			Utils.showExceptionMsg(this, e1);
-//			e1.printStackTrace();
-//		}
-
 		String reportTitle = "ריכוז עבודות עבור ";
 		if (customerCombo.getSelectedItem().equals(Customer.ALL_VALUES))
 		{
@@ -509,10 +495,9 @@ public class WorkLogScr extends JXFrame
 
 	private void initSizesAndFonts()
 	{
-		Utils.setSoftSize(customerCombo, DEFAULT_COMBO_SIZE);
 		Utils.setHardSize(fromDatePicker, DEFAULT_DATE_SIZE);
 		Utils.setHardSize(toDatePicker, DEFAULT_DATE_SIZE);
-		Utils.setSoftSize(workField, DEFAULT_WORKFILED_SIZE);
+		Utils.setSoftSize(workField, DEFAULT_WORK_FIELD_SIZE);
 		Utils.setSoftSize(filterDatesButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(multipleAddButton, DEFAULT_BUTTON_SIZE);
 		Utils.setSoftSize(removeRowButton, DEFAULT_BUTTON_SIZE);
@@ -595,48 +580,54 @@ public class WorkLogScr extends JXFrame
 
 	private void extractJobsFromExcelFile(List<Job> jobs, File inputWorkbook) throws Exception
 	{
-		boolean isProblemOccured = false;
+		boolean isProblemOccurred = false;
 		StringBuilder problematicRows = new StringBuilder("בעיה ביבוא של העבודות הבאות:").append("\n");
 		Workbook workbook = Workbook.getWorkbook(inputWorkbook);
 		for (Sheet sheet : workbook.getSheets())
 		{
 			for (int row = 1; row < sheet.getRows(); row++)
 			{
-				Cell[] cells = sheet.getRow(row);
-				int customerIndex = 0;
-				int dateIndex = 1;
-				int jobDescIndex = 2;
-				int priceIndex = 3;
-				int remarksIndex = 4;
-
-				try
-				{
-					if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
-					{
-						Customer customer = new Customer(cells[customerIndex].getContents());
-						Date jobDate = defaultDateFormat.parse(cells[dateIndex].getContents());
-						String jobDescr = cells[jobDescIndex].getContents();
-						double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
-						String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
-						jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
-					}
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-					problematicRows.append("בגיליון ").append(sheet.getName()).append(" בשורה מס' ").append(row).append("\n");
-					isProblemOccured = true;
-				}
+				isProblemOccurred = processRow(jobs, problematicRows, sheet, row);
 			}
 		}
 
-		if (isProblemOccured)
+		if (isProblemOccurred)
 		{
 			Utils.showErrorMsg(WorkLogScr.this, problematicRows.toString());
 			return;
 		}
 
 		processImportedJobs(jobs);
+	}
+
+	private boolean processRow(List<Job> jobs, StringBuilder problematicRows, Sheet sheet, int row)
+	{
+		Cell[] cells = sheet.getRow(row);
+		int customerIndex = 0;
+		int dateIndex = 1;
+		int jobDescIndex = 2;
+		int priceIndex = 3;
+		int remarksIndex = 4;
+
+		try
+		{
+			if (checkCellsValidity(cells, new int[]{customerIndex,dateIndex,jobDescIndex}))
+			{
+				Customer customer = new Customer(cells[customerIndex].getContents());
+				Date jobDate = defaultDateFormat.parse(cells[dateIndex].getContents());
+				String jobDescr = cells[jobDescIndex].getContents();
+				double price = (cells.length < priceIndex + 1 || Utils.isCellEmpty(cells[priceIndex])) ? 0 : Double.parseDouble(cells[priceIndex].getContents());
+				String remarks = (cells.length < remarksIndex + 1 || Utils.isCellEmpty(cells[remarksIndex])) ? "" : cells[remarksIndex].getContents();
+				jobs.add(new Job(jobDate, customer, jobDescr, price, remarks));
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			problematicRows.append("בגיליון ").append(sheet.getName()).append(" בשורה מס' ").append(row).append("\n");
+			return true;
+		}
+		return false;
 	}
 
 	private boolean checkCellsValidity(Cell[] cells, int[] mustCells) throws Exception
@@ -708,7 +699,7 @@ public class WorkLogScr extends JXFrame
 			price += (Double)workTableModel.getValueAt(i, priceCol);
 		}
 
-		totalPriceLabel.setText("מחיר כולל: " + NumberFormat.getCurrencyInstance().format(price));
+		totalPriceLabel.setText("סה\"כ: " + NumberFormat.getCurrencyInstance().format(price));
 	}
 
 	private class WorkTableRenderer extends DefaultTableRenderer
@@ -767,7 +758,6 @@ public class WorkLogScr extends JXFrame
 
 	private static void updateUIMangerAndLocale()
 	{
-		UIManager.put("ComboBox.background", new ColorUIResource(UIManager.getColor("TextField.background")));
 		UIManager.put("ComboBox.font", new FontUIResource(DEFAULT_TEXT_FONT));
 		UIManager.put("TextField.font", new FontUIResource(DEFAULT_TEXT_FONT));
 		UIManager.put("TextArea.font", new FontUIResource(DEFAULT_TEXT_FONT));

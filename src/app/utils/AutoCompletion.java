@@ -16,7 +16,6 @@ public class AutoCompletion
 {
 	private static final String EDITOR_PROP_NAME = "editor";
 	private static final String MODEL_PROP_NAME = "model";
-	private static final String SPECIAL_CHARS = "`~!@#$%^&*()_-+=[]{}|\\\"':;?/.>,<";
 	private static final Color FOCUS_COLOR = new Color(202, 255, 201);
 
 	private BasicComboPopup popup;
@@ -97,10 +96,7 @@ public class AutoCompletion
 							return;
 						}
 					default:
-						if (isValidChar(e.getKeyChar()))
-						{
-							addCharToPattern(e.getKeyChar());
-						}
+						addCharToPattern(e.getKeyChar());
 				}
 				if (e.getKeyCode() != KeyEvent.VK_ESCAPE && e.getKeyCode() != KeyEvent.VK_ENTER)
 				{
@@ -290,7 +286,7 @@ public class AutoCompletion
 		}
 		else
 		{
-			comboBox.getToolkit().beep();
+			comboBox.setSelectedIndex(0);
 		}
 	}
 
@@ -340,11 +336,6 @@ public class AutoCompletion
 		}
 		// no item contains the pattern => return null
 		return null;
-	}
-
-	public boolean isValidChar(char c)
-	{
-		return (Character.isLetterOrDigit(c) || Character.isSpaceChar(c) || SPECIAL_CHARS.indexOf(c) != -1);
 	}
 
 	public static void enable(JComboBox comboBox)

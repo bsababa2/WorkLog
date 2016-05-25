@@ -7,14 +7,14 @@ import app.entities.Inventory;
  */
 public class InventoryTableModel extends EntityTableModel<Inventory>
 {
-	public static final int PROFILE_TYPE_COL = 0;
-	public static final int PROFILE_COL = 1;
-	public static final int QUANTITY_COL = 2;
-	public static final int REMARKS_COL = 3;
+	public static final String PROFILE_TYPE_COL = "סוג";
+	public static final String PROFILE_COL = "יצרן";
+	public static final String QUANTITY_COL = "כמות";
+	public static final String REMARKS_COL = "הערות";
 
 	public InventoryTableModel()
 	{
-		super(new String[]{"סוג", "יצרן", "כמות", "הערות"});
+		super(new String[]{PROFILE_TYPE_COL, PROFILE_COL, QUANTITY_COL, REMARKS_COL});
 	}
 
 	@Override

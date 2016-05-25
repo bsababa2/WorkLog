@@ -1,5 +1,7 @@
 package app.entities;
 
+import app.utils.InventoryTableModel;
+
 /**
  * Created by Barak on 11/01/14.
  */
@@ -61,15 +63,10 @@ public class Inventory implements ColumnToFieldMapper
 	@Override
 	public Object getFieldValueByColumnIndex(String columnName)
 	{
-//		switch (column)
-//		{
-//			case InventoryTableModel.PROFILE_TYPE_COL: return this.getProfile().getType();
-//			case InventoryTableModel.PROFILE_COL: return this.getProfile();
-//			case InventoryTableModel.QUANTITY_COL: return this.getQuantity();
-//			case InventoryTableModel.REMARKS_COL: return this.getRemarks();
-//			default: return null;
-//		}
-
+		if (columnName.equals(InventoryTableModel.PROFILE_TYPE_COL)) return this.getProfile().getType();
+		if (columnName.equals(InventoryTableModel.PROFILE_COL)) return this.getProfile().getDescription();
+		if (columnName.equals(InventoryTableModel.QUANTITY_COL)) return this.getQuantity();
+		if (columnName.equals(InventoryTableModel.REMARKS_COL)) return this.getRemarks();
 		return null;
 	}
 }

@@ -7,13 +7,13 @@ public class Profile
 {
 	private int id;
 	private ProfileType type;
-	private String descr;
+	private String description;
 
-	public Profile(int id, ProfileType type, String descr)
+	public Profile(int id, ProfileType type, String description)
 	{
 		this.id = id;
 		this.type = type;
-		this.descr = descr;
+		this.description = description;
 	}
 
 	public int getId()
@@ -36,13 +36,13 @@ public class Profile
 		this.type = type;
 	}
 
-	public String getDescr()
+	public String getDescription()
 	{
-		return descr;
+		return description;
 	}
 
-	public void setDescr(String descr)
+	public void setDescription(String description)
 	{
-		this.descr = descr;
+		this.description = description;
 	}
 }
