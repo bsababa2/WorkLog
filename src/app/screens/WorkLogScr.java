@@ -7,6 +7,7 @@ import app.utils.PrintUtils;
 import app.utils.RowWrapTableModelListener;
 import app.utils.Utils;
 import app.utils.WorkTableModel;
+import app.views.WorkTableRenderer;
 import com.alee.extended.date.WebDateField;
 import com.alee.laf.WebLookAndFeel;
 import com.alee.utils.swing.DocumentChangeListener;
@@ -15,7 +16,6 @@ import jxl.Sheet;
 import jxl.Workbook;
 import org.jdesktop.swingx.*;
 import org.jdesktop.swingx.painter.MattePainter;
-import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
 import javax.swing.*;
 import javax.swing.Timer;
@@ -43,20 +43,20 @@ import java.util.List;
  */
 public class WorkLogScr extends JXFrame
 {
-	public static final String VERSION = "1.3";
-	public static final Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
-	public static final Dimension DEFAULT_WORK_FIELD_SIZE = new Dimension(250, 25);
-	public static final Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
+	private static final String VERSION = "1.4";
+	private static final Dimension DEFAULT_DATE_SIZE = new Dimension(100, 25);
+	private static final Dimension DEFAULT_WORK_FIELD_SIZE = new Dimension(250, 25);
+	static final Dimension DEFAULT_BUTTON_SIZE = new Dimension(120, 30);
 	public static final Font DEFAULT_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
-	public static final Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
-	public static final Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
-	public static final Color COMBO_SELECTED_TEXT_COLOR = new Color(89, 179, 228);
+	private static final Font DEFAULT_LABEL_FONT = new Font("Arial", Font.BOLD, 14);
+	private static final Font DEFAULT_TITLE_FONT = new Font("Arial", Font.BOLD, 16);
+	private static final Color COMBO_SELECTED_TEXT_COLOR = new Color(89, 179, 228);
 	public static final Color NEW_RECORD_COLOR = new Color(217,242,138);
 	public static final Color NEW_RECORD_SELECTED_COLOR = new Color(149,191,21);
 	public static final Color UPDATED_RECORD_COLOR = new Color(232,242, 99);
 	public static final Color UPDATED_RECORD_SELECTED_COLOR = new Color(203, 205, 46);
-	public static final MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
-	public static final SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
+	private static final MattePainter TITLE_PAINTER = new MattePainter(new GradientPaint(0, 30, Color.darkGray, 0, 0, Color.lightGray));
+	static final SimpleDateFormat defaultDateFormat = new SimpleDateFormat("dd/MM/yy");
 
 	private WorkTableModel workTableModel = new WorkTableModel(this);
 	private JXTable workTable = new JXTable(workTableModel);
@@ -74,7 +74,7 @@ public class WorkLogScr extends JXFrame
 	private JXButton printButton = new JXButton("הדפס טבלה", Utils.getIconBySize("print.png", 25, 25));
 	private JXButton importFromExcelButton = new JXButton("יבא מאקסל", Utils.getIconBySize("excel.png", 25, 25));
 
-	public WorkLogScr() throws HeadlessException
+	private WorkLogScr() throws HeadlessException
 	{
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -139,7 +139,7 @@ public class WorkLogScr extends JXFrame
 		filterTitledPanel.add(filterPanel);
 		Utils.addSmallRigid(filterTitledPanel);
 
-		workTable.setDefaultRenderer(Object.class, new WorkTableRenderer());
+		workTable.setDefaultRenderer(Object.class, new WorkTableRenderer(workTableModel));
 		workTable.getTableHeader().setReorderingAllowed(false);
 		workTableModel.setRowHeightWrapper(workTable);
 		JScrollPane tableScrollPane = new JScrollPane(workTable);
@@ -460,6 +460,12 @@ public class WorkLogScr extends JXFrame
 
 	private void printTable()
 	{
+		PrintUtils.printTable(this, workTable, getReportTableTitle(totalPriceLabel.getText()), totalPriceLabel.getText(),
+			new double[]{0.16, 0.1, 0.5, 0.12, 0.12});
+	}
+
+	private String getReportTableTitle(String totalPrice)
+	{
 		String reportTitle = "ריכוז עבודות עבור ";
 		if (customerCombo.getSelectedItem().equals(Customer.ALL_VALUES))
 		{
@@ -470,8 +476,7 @@ public class WorkLogScr extends JXFrame
 			reportTitle += "לקוח: " + customerCombo.getSelectedItem().toString();
 		}
 
-		PrintUtils.printTable(this, workTable, reportTitle, totalPriceLabel.getText(),
-			new double[]{0.16, 0.1, 0.5, 0.12, 0.12});
+		return reportTitle + " " + totalPrice;
 	}
 
 	private void initHelloTimer()
@@ -700,60 +705,6 @@ public class WorkLogScr extends JXFrame
 		}
 
 		totalPriceLabel.setText("סה\"כ: " + NumberFormat.getCurrencyInstance().format(price));
-	}
-
-	private class WorkTableRenderer extends DefaultTableRenderer
-	{
-		private JTextArea textArea = new JTextArea();
-
-		private int dateCol = workTableModel.findColumn(WorkTableModel.DATE_COL);
-		private int priceCol = workTableModel.findColumn(WorkTableModel.PRICE_COL);
-		private int jobsCol = workTableModel.findColumn(WorkTableModel.JOBS_DESCR_COL);
-
-		private WorkTableRenderer()
-		{
-			textArea.setLineWrap(true);
-			textArea.setWrapStyleWord(true);
-		}
-
-		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
-		{
-			int realRow = Utils.getRealRow(row, table);
-
-			if (column == dateCol)
-			{
-				value = DateFormat.getDateInstance().format(value);
-			}
-			else if (column == priceCol)
-			{
-				value = NumberFormat.getCurrencyInstance().format(value);
-			}
-
-			Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-			component.setFont(DEFAULT_TEXT_FONT);
-
-			if (column == jobsCol)
-			{
-				textArea.setText(value.toString());
-				textArea.setBackground(component.getBackground());
-				textArea.setForeground(component.getForeground());
-
-				component = textArea;
-			}
-
-			if (workTableModel.getCurrentEntityList().get(realRow).isNewRecord())
-			{
-				component.setBackground(isSelected ? NEW_RECORD_SELECTED_COLOR : NEW_RECORD_COLOR);
-			}
-			else if (workTableModel.getCurrentEntityList().get(realRow).isUpdated())
-			{
-				component.setBackground(isSelected ? UPDATED_RECORD_SELECTED_COLOR : UPDATED_RECORD_COLOR);
-			}
-
-			return component;
-		}
 	}
 
 	private static void updateUIMangerAndLocale()

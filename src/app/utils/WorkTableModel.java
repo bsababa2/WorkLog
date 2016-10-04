@@ -5,6 +5,7 @@ import app.screens.WorkLogScr;
 
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
+import java.util.ArrayList;
 
 /**
  * Created by Barak on 11/01/14.
@@ -73,8 +74,8 @@ public class WorkTableModel extends EntityTableModel<Job>
 	public EntityTableModel<Job> clone() throws CloneNotSupportedException
 	{
 		WorkTableModel workTableModel = new WorkTableModel(workLogScr);
-		workTableModel.setInitialEntityList(getInitialEntityList());
-		workTableModel.setCurrentEntityList(getCurrentEntityList());
+		workTableModel.setInitialEntityList(new ArrayList<>(getInitialEntityList()));
+		workTableModel.setCurrentEntityList(new ArrayList<>(getCurrentEntityList()));
 		return workTableModel;
 	}
 }

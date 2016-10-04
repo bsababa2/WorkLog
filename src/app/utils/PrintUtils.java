@@ -20,15 +20,16 @@ import java.awt.geom.Point2D;
 import java.awt.print.PageFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 
 public class PrintUtils
 {
-	public static final FontDefinition TITLE_FONT = new FontDefinition("ARIAL", 20, true, false, false, false);
-	public static final FontDefinition FOOTER_FONT = new FontDefinition("ARIAL", 14, true, false, false, false);
-	public static final FontDefinition CELL_ITEM_FONT = new FontDefinition("ARIAL", 12, false, false, false, false);
-	public static final int HEADER_HEIGHT = 30;
-	public static final int COLUMN_HEADER_HEIGHT = 30;
-	public static final int ROW_HEIGHT = 13;
+	private static final FontDefinition TITLE_FONT = new FontDefinition("ARIAL", 20, true, false, false, false);
+	private static final FontDefinition FOOTER_FONT = new FontDefinition("ARIAL", 14, true, false, false, false);
+	private static final FontDefinition CELL_ITEM_FONT = new FontDefinition("ARIAL", 12, false, false, false, false);
+	private static final int HEADER_HEIGHT = 30;
+	private static final int COLUMN_HEADER_HEIGHT = 30;
+	private static final int ROW_HEIGHT = 13;
 
 	static
 	{
@@ -45,6 +46,7 @@ public class PrintUtils
 		try
 		{
 			tm = ((EntityTableModel) tb.getModel()).clone();
+			Collections.reverse(tm.getCurrentEntityList());
 		} catch (CloneNotSupportedException e)
 		{
 			e.printStackTrace();
@@ -236,6 +238,7 @@ public class PrintUtils
 
 		items.addElement(getVerticalLine(report.getPageDefinition().getWidth()));
 		items.addElement(getHorizontalLine(cellMaxHeight));
+
 
 		report.setData(tm);
 	}
